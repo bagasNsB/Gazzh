@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinguaSphere - Belajar Bahasa & Aksara Interaktif</title>
+  <title>LinguaSphere - Belajar Bahasa & Aksara</title>
 
   <!-- Google Fonts & Bootstrap Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,15 +14,11 @@
   <style>
     :root {
       --font-main: 'Outfit', sans-serif;
-      --font-jp: 'Noto Sans JP', sans-serif;
-      --glass-surface: rgba(255, 255, 255, 0.95);
-      --glass-border: rgba(255, 255, 255, 0.8);
-      --theme-pink: #ec4899;
-      --theme-pink-hover: #db2777;
-      --theme-soft-pink: #fdf2f8;
-      --theme-green: #10b981;
-      --theme-soft-green: #ecfdf5;
-      --theme-gray: #94a3b8;
+      --glass-surface: rgba(255, 255, 255, 0.94);
+      --glass-border: rgba(255, 255, 255, 0.7);
+      --theme-color: #ec4899;
+      --theme-hover: #db2777;
+      --theme-soft: #fdf2f8;
       --text-dark: #0f172a;
       --text-muted: #64748b;
       --border-card: #e2e8f0;
@@ -46,35 +42,42 @@
       transition: background 0.4s ease-in-out;
     }
 
-    /* TEMA BACKGROUND */
     body.theme-jp {
       background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(236, 72, 153, 0.35)),
         url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');
+      --theme-color: #ec4899;
+      --theme-hover: #db2777;
+      --theme-soft: #fdf2f8;
     }
 
     body.theme-jv {
       background-image: linear-gradient(135deg, rgba(30, 27, 24, 0.6), rgba(180, 83, 9, 0.38)),
         url('https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=1600&auto=format&fit=crop');
+      --theme-color: #b45309;
+      --theme-hover: #92400e;
+      --theme-soft: #fef3c7;
     }
 
     body.theme-en {
       background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.65), rgba(2, 132, 199, 0.38)),
         url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1600&auto=format&fit=crop');
+      --theme-color: #0284c7;
+      --theme-hover: #0369a1;
+      --theme-soft: #e0f2fe;
     }
 
-    /* HEADER NAVIGATION */
     header {
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid var(--glass-border);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .navbar {
-      max-width: 1100px;
+      max-width: 1050px;
       margin: 0 auto;
       padding: 0.85rem 1.5rem;
       display: flex;
@@ -95,7 +98,7 @@
     }
 
     .brand-logo i {
-      color: var(--theme-pink);
+      color: var(--theme-color);
     }
 
     .nav-tabs {
@@ -125,14 +128,14 @@
     }
 
     .tab-btn.active {
-      background: var(--theme-pink);
+      background: var(--theme-color);
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(236, 72, 153, 0.25);
-      border-color: var(--theme-pink);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      border-color: var(--theme-color);
     }
 
     main {
-      max-width: 1050px;
+      max-width: 950px;
       margin: 2.2rem auto;
       padding: 0 1.5rem;
       flex: 1;
@@ -150,125 +153,63 @@
       margin-bottom: 2rem;
     }
 
-    /* GRID SUBLEVEL PERSIS GAMBAR */
-    .sublevel-grid {
+    .unit-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.3rem;
-      margin-top: 1.8rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.6rem;
     }
 
-    .sublevel-card {
+    .unit-card {
       background: #ffffff;
       border: 1.5px solid var(--border-card);
       border-radius: 18px;
-      padding: 1.35rem 1.4rem;
+      padding: 1.3rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 185px;
-      position: relative;
-      transition: all 0.25s ease;
+      min-height: 160px;
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
 
-    .sublevel-card:not(.locked):hover {
+    .unit-card:hover {
       transform: translateY(-4px);
-      border-color: var(--theme-pink);
-      box-shadow: 0 12px 24px rgba(236, 72, 153, 0.12);
+      border-color: var(--theme-color);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
     }
 
-    .sublevel-card.locked {
-      background: #f8fafc;
-      border-color: #e2e8f0;
-      opacity: 0.85;
-    }
-
-    .sublevel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.6rem;
-    }
-
-    .sublevel-tag {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--theme-pink);
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-    }
-
-    .sublevel-badge-done {
-      background: var(--theme-soft-green);
-      color: var(--theme-green);
-      font-size: 0.75rem;
-      font-weight: 800;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .sublevel-badge-lock {
-      background: #f1f5f9;
-      color: var(--theme-gray);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .sublevel-card h4 {
+    .unit-card h4 {
       font-size: 1.15rem;
       font-weight: 800;
       color: #0f172a;
-      margin-bottom: 0.3rem;
-      line-height: 1.35;
+      margin-bottom: 0.4rem;
     }
 
-    .sublevel-card p {
-      font-size: 0.86rem;
-      color: #64748b;
+    .unit-card span.unit-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
       margin-bottom: 1.2rem;
+      display: block;
     }
 
-    /* TOMBOL PINK PERSIS SEPERTI GAMBAR */
-    .btn-sublevel-action {
-      background: var(--theme-pink);
-      color: #ffffff;
-      border: none;
-      padding: 0.65rem 1rem;
+    .btn-unit-open {
+      background: var(--theme-soft);
+      color: var(--theme-color);
+      border: 1px solid transparent;
+      padding: 0.6rem 1rem;
       border-radius: 12px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      cursor: pointer;
       text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
       transition: all 0.2s;
-      width: 100%;
     }
 
-    .btn-sublevel-action:hover {
-      background: var(--theme-pink-hover);
-      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    .unit-card:hover .btn-unit-open {
+      background: var(--theme-color);
+      color: #ffffff;
     }
 
-    .locked-notice {
-      text-align: center;
-      color: #94a3b8;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.65rem 0;
-    }
-
-    /* ARENA KUIS PROGRESSIVE */
     .view-panel {
       display: none;
     }
@@ -281,15 +222,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
     .indicator-pill {
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
+      color: var(--theme-color);
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--theme-pink);
+      letter-spacing: 0.5px;
     }
 
     .btn-quit {
@@ -313,38 +254,31 @@
       background: rgba(0, 0, 0, 0.07);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 1.6rem;
+      margin-bottom: 2rem;
     }
 
     .quiz-meter-fill {
       height: 100%;
-      background: var(--theme-pink);
+      background: var(--theme-color);
       border-radius: 10px;
       transition: width 0.3s ease;
     }
 
     .prompt-box {
       text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .prompt-context {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #64748b;
-      margin-bottom: 0.4rem;
+      margin-bottom: 2.2rem;
     }
 
     .reading-passage-card {
       background: #f8fafc;
       border: 1.5px solid #e2e8f0;
-      border-left: 4px solid var(--theme-pink);
+      border-left: 4px solid var(--theme-color);
       border-radius: 12px;
       padding: 1.2rem;
-      margin: 0 auto 1.2rem auto;
+      margin: 0 auto 1.5rem auto;
       max-width: 680px;
       text-align: left;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       line-height: 1.65;
       color: #1e293b;
     }
@@ -354,25 +288,18 @@
       font-weight: 900;
       color: #0f172a;
       line-height: 1.2;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
       word-break: break-word;
     }
 
     .prompt-target.audio-hidden {
       font-size: 2.2rem;
-      color: var(--theme-pink);
-    }
-
-    .prompt-clue {
-      font-size: 1.05rem;
-      color: #334155;
-      margin-bottom: 1.2rem;
-      font-weight: 600;
+      color: var(--theme-color);
     }
 
     .btn-listen {
-      background: var(--theme-soft-pink);
-      color: var(--theme-pink);
+      background: var(--theme-soft);
+      color: var(--theme-color);
       border: 1px solid transparent;
       padding: 0.6rem 1.6rem;
       border-radius: 24px;
@@ -399,8 +326,8 @@
       background: #ffffff;
       border: 2px solid #e2e8f0;
       border-radius: 14px;
-      padding: 1.15rem 1rem;
-      font-size: 1.05rem;
+      padding: 1.2rem 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #1e293b;
       cursor: pointer;
@@ -409,7 +336,7 @@
     }
 
     .choice-card:hover:not(:disabled) {
-      border-color: var(--theme-pink);
+      border-color: var(--theme-color);
       background: #fafaf9;
       transform: translateY(-2px);
     }
@@ -436,14 +363,32 @@
       height: 110px;
       margin: 0 auto 1.2rem auto;
       border-radius: 50%;
-      background: var(--theme-soft-pink);
-      color: var(--theme-pink);
+      background: var(--theme-soft);
+      color: var(--theme-color);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 2.2rem;
       font-weight: 800;
-      border: 3px solid var(--theme-pink);
+      border: 3px solid var(--theme-color);
+    }
+
+    .btn-return-hub {
+      background: var(--theme-color);
+      color: #ffffff;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 1.2rem;
+      transition: all 0.2s;
+    }
+
+    .btn-return-hub:hover {
+      background: var(--theme-hover);
     }
 
     @media (max-width: 600px) {
@@ -464,34 +409,34 @@
         <i class="bi bi-mortarboard-fill"></i> LinguaSphere
       </div>
       <ul class="nav-tabs">
-        <li><button class="tab-btn active" id="tab-jp" onclick="switchTheme('jp')">🌸 日本語 (Hiragana & Raku Raku)</button></li>
-        <li><button class="tab-btn" id="tab-jv" onclick="switchTheme('jv')">🏛️ Jawa & Nusantara</button></li>
-        <li><button class="tab-btn" id="tab-en" onclick="switchTheme('en')">🇬🇧 English Studio</button></li>
+        <li><button class="tab-btn active" id="tab-jp" onclick="switchTheme('jp')">🌸 日本語</button></li>
+        <li><button class="tab-btn" id="tab-jv" onclick="switchTheme('jv')">🏛️ Jawa</button></li>
+        <li><button class="tab-btn" id="tab-en" onclick="switchTheme('en')">🇬🇧 English</button></li>
       </ul>
     </div>
   </header>
 
   <main>
-    <!-- 1. DASHBOARD SUBLEVEL (PERSIS GAMBAR) -->
+    <!-- 1. PANEL UTAMA -->
     <section id="panel-hub" class="view-panel active">
       <div class="glass-box">
-        <h2 id="hub-title" style="font-size: 1.6rem; margin-bottom: 0.3rem;">Hiragana & Kurikulum Nihongo Raku Raku</h2>
+        <h2 id="hub-title" style="font-size: 1.6rem; margin-bottom: 0.3rem;">Materi Belajar</h2>
         <p id="hub-subtitle" style="color: #475569; font-size: 0.95rem;">
-          Selesaikan setiap sublevel untuk membuka sublevel berikutnya! Setiap sublevel memuat 10–12 soal acak.
+          Pilih topik materi yang ingin kamu latih. Soal dan opsi jawaban akan diacak otomatis.
         </p>
 
-        <div class="sublevel-grid" id="moduleCardsContainer">
-          <!-- JS Rendered Persis Gambar -->
+        <div class="unit-grid" id="moduleCardsContainer">
+          <!-- Rendered via JS -->
         </div>
       </div>
     </section>
 
-    <!-- 2. ARENA SOAL KUIS PROGRESSIVE -->
+    <!-- 2. ARENA SOAL (BERSIH TANPA DESKRIPSI) -->
     <section id="panel-quiz" class="view-panel">
       <div class="glass-box">
         <div class="quiz-navbar">
-          <span class="indicator-pill" id="soalCategoryTag">SUBLEVEL 1</span>
-          <button class="btn-quit" onclick="backToHub()"><i class="bi bi-x-circle"></i> Batalkan</button>
+          <span class="indicator-pill" id="soalCategoryTag">MATERI</span>
+          <button class="btn-quit" onclick="backToHub()"><i class="bi bi-x-circle"></i> Keluar</button>
         </div>
 
         <div class="quiz-meter-bar">
@@ -499,38 +444,35 @@
         </div>
 
         <div class="prompt-box">
-          <div class="prompt-context" id="soalContextText">Soal 1 dari 10</div>
-          
           <div id="readingPassageBox" class="reading-passage-card" style="display: none;"></div>
 
           <div class="prompt-target" id="soalMainDisplay">...</div>
-          <div class="prompt-clue" id="soalClueText">Pertanyaan...</div>
+          
           <button class="btn-listen" id="btnSoundAction" onclick="playAudioCurrent()">
-            <i class="bi bi-volume-up-fill"></i> Dengarkan Pelafalan (0.75x)
+            <i class="bi bi-volume-up-fill"></i> Dengar Audio (0.75x)
           </button>
         </div>
 
         <div class="options-layout" id="soalOptionsGrid">
-          <!-- Opsi Jawaban Dinamis -->
+          <!-- 4 Pilihan Jawaban Acak -->
         </div>
       </div>
     </section>
 
-    <!-- 3. HASIL AKHIR SUBLEVEL -->
+    <!-- 3. HASIL LATIHAN -->
     <section id="panel-finish" class="view-panel">
       <div class="glass-box finish-box">
         <div class="score-badge" id="finishScoreBadge">100%</div>
-        <h3 id="finishTitle" style="font-size: 1.6rem; margin-bottom: 0.4rem;">Sublevel Selesai!</h3>
-        <p id="finishDesc" style="color: #64748b; margin-bottom: 1rem;">Kamu telah menguasai materi ini.</p>
-        <button class="btn-sublevel-action" style="max-width: 250px; margin: 0 auto;" onclick="backToHub()">
-          Kembali ke Peta Sublevel
+        <h3 id="finishTitle" style="font-size: 1.6rem; margin-bottom: 0.4rem;">Selesai!</h3>
+        <p id="finishDesc" style="color: #64748b; margin-bottom: 1rem;">Latihan materi ini telah rampung.</p>
+        <button class="btn-return-hub" onclick="backToHub()">
+          Kembali ke Daftar Materi
         </button>
       </div>
     </section>
   </main>
 
   <script>
-    // HELPER SHUFFLE
     function shuffleArray(arr) {
       const copy = [...arr];
       for (let i = copy.length - 1; i > 0; i--) {
@@ -540,413 +482,441 @@
       return copy;
     }
 
-    // BANK SUBLEVEL LENGKAP (JEPANG LENGKAP SAMPAI N, DAKUON, RAKU RAKU + JAWA + INGGRIS)
     const courseDatabases = {
-      // =========================== 1. JEPANG (SUBLEVEL PERSIS GAMBAR) ===========================
+      // =========================== 1. JEPANG (BERSIH DARI DESKRIPSI) ===========================
       jp: {
-        title: 'Hiragana & Kurikulum Nihongo Raku Raku',
-        desc: 'Selesaikan tiap baris Hiragana sampai huruf N, Dakuon, serta tema resmi Nihongo Raku Raku (10-12 soal per sublevel).',
+        title: 'Bahasa Jepang (日本語)',
+        desc: 'Pilih materi huruf Hiragana, Dakuon, atau tema Nihongo Raku Raku.',
         modules: [
           {
-            id: 'jp_sub1',
-            tag: 'SUBLEVEL 1',
-            title: 'Sublevel 1 — あいうえお',
-            desc: 'Hiragana Vokal Dasar',
+            id: 'jp_u1',
+            title: 'Hiragana: あ いうえお',
+            meta: 'Baris Vokal (10 Soal Acak)',
             questions: [
-              { target: 'あ', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'あ', options: ['Ka', 'A', 'O', 'Ta'], correct: 1 },
-              { target: 'い', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'い', options: ['U', 'Shi', 'I', 'Ri'], correct: 2 },
-              { target: 'う', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'う', options: ['U', 'O', 'E', 'N'], correct: 0 },
-              { target: 'え', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'え', options: ['A', 'Ro', 'So', 'E'], correct: 3 },
-              { target: 'お', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'お', options: ['O', 'A', 'Ha', 'Mu'], correct: 0 },
-              { target: 'あい', context: 'Kata Vokal', clue: 'Kata bermakna "cinta", dibaca:', sound: 'あい', options: ['Oi', 'Ai', 'Ie', 'Ue'], correct: 1 },
-              { target: 'うえ', context: 'Kata Vokal', clue: 'Kata bermakna "atas", dibaca:', sound: 'うえ', options: ['Ao', 'Ea', 'Ue', 'Iu'], correct: 2 },
-              { target: 'あお', context: 'Warna Vokal', clue: 'Kata bermakna "biru" (Ao), dibaca:', sound: 'あお', options: ['Ao', 'Oa', 'Ie', 'Ui'], correct: 0 },
-              { target: 'いえ', context: 'Tempat', clue: 'Kata bermakna "rumah" (Ie), dibaca:', sound: 'いえ', options: ['Ue', 'Ie', 'Ai', 'Oi'], correct: 1 },
-              { target: 'いいえ', context: 'Ungkapan', clue: 'Kata penolakan santun ("tidak"), dibaca:', sound: 'いいえ', options: ['Iie', 'Iai', 'Ooi', 'Eee'], correct: 0 }
+              { target: 'あ', sound: 'あ', options: ['Ka', 'A', 'O', 'Ta'], correct: 1 },
+              { target: 'い', sound: 'い', options: ['U', 'Shi', 'I', 'Ri'], correct: 2 },
+              { target: 'う', sound: 'う', options: ['U', 'O', 'E', 'N'], correct: 0 },
+              { target: 'え', sound: 'え', options: ['A', 'Ro', 'So', 'E'], correct: 3 },
+              { target: 'お', sound: 'お', options: ['O', 'A', 'Ha', 'Mu'], correct: 0 },
+              { target: 'あい', sound: 'あい', options: ['Oi', 'Ai', 'Ie', 'Ue'], correct: 1 },
+              { target: 'うえ', sound: 'うえ', options: ['Ao', 'Ea', 'Ue', 'Iu'], correct: 2 },
+              { target: 'あお', sound: 'あお', options: ['Ao', 'Oa', 'Ie', 'Ui'], correct: 0 },
+              { target: 'いえ', sound: 'いえ', options: ['Ue', 'Ie', 'Ai', 'Oi'], correct: 1 },
+              { target: 'いいえ', sound: 'いいえ', options: ['Iie', 'Iai', 'Ooi', 'Eee'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub2',
-            tag: 'SUBLEVEL 2',
-            title: 'Sublevel 2 — かきくけこ',
-            desc: 'Hiragana Baris Ka',
+            id: 'jp_u2',
+            title: 'Hiragana: かきくけこ',
+            meta: 'Baris Ka (10 Soal Acak)',
             questions: [
-              { target: 'か', context: 'Baris Ka', clue: 'Karakter ini dibaca:', sound: 'か', options: ['Ki', 'Ka', 'Ke', 'Ko'], correct: 1 },
-              { target: 'き', context: 'Baris Ka', clue: 'Karakter dua garis horizontal ini dibaca:', sound: 'き', options: ['Sa', 'Ki', 'Chi', 'Ke'], correct: 1 },
-              { target: 'く', context: 'Baris Ka', clue: 'Karakter sudut lancip ini dibaca:', sound: 'く', options: ['Ku', 'He', 'Te', 'Ta'], correct: 0 },
-              { target: 'け', context: 'Baris Ka', clue: 'Karakter ini dibaca:', sound: 'け', options: ['Ha', 'Ke', 'Ka', 'I'], correct: 1 },
-              { target: 'こ', context: 'Baris Ka', clue: 'Karakter dua garis atas-bawah ini dibaca:', sound: 'こ', options: ['Ni', 'Ta', 'Ko', 'E'], correct: 2 },
-              { target: 'あき', context: 'Musim', clue: 'Musim gugur (Aki), tersusun dari huruf:', sound: 'あき', options: ['A-ke', 'A-ki', 'A-ka', 'A-ko'], correct: 1 },
-              { target: 'かお', context: 'Bagian Tubuh', clue: 'Wajah (Kao), dibaca:', sound: 'かお', options: ['Ka-o', 'Ki-o', 'Ke-a', 'Ko-u'], correct: 0 },
-              { target: 'きく', context: 'Kata Kerja', clue: 'Mendengarkan (Kiku), dibaca:', sound: 'きく', options: ['Ki-ke', 'Ku-ku', 'Ki-ku', 'Ka-ku'], correct: 2 },
-              { target: 'いけ', context: 'Tempat', clue: 'Kolam air (Ike), dibaca:', sound: 'いけ', options: ['I-ke', 'I-ka', 'A-ke', 'U-ke'], correct: 0 },
-              { target: 'ここ', context: 'Petunjuk Tempat', clue: 'Di sini (Koko), tersusun dari huruf:', sound: 'ここ', options: ['Ko-ko', 'Ka-ka', 'Ki-ki', 'Ke-ke'], correct: 0 }
+              { target: 'か', sound: 'か', options: ['Ki', 'Ka', 'Ke', 'Ko'], correct: 1 },
+              { target: 'き', sound: 'き', options: ['Sa', 'Ki', 'Chi', 'Ke'], correct: 1 },
+              { target: 'く', sound: 'く', options: ['Ku', 'He', 'Te', 'Ta'], correct: 0 },
+              { target: 'け', sound: 'け', options: ['Ha', 'Ke', 'Ka', 'I'], correct: 1 },
+              { target: 'こ', sound: 'こ', options: ['Ni', 'Ta', 'Ko', 'E'], correct: 2 },
+              { target: 'あき', sound: 'あき', options: ['A-ke', 'A-ki', 'A-ka', 'A-ko'], correct: 1 },
+              { target: 'かお', sound: 'かお', options: ['Ka-o', 'Ki-o', 'Ke-a', 'Ko-u'], correct: 0 },
+              { target: 'きく', sound: 'きく', options: ['Ki-ke', 'Ku-ku', 'Ki-ku', 'Ka-ku'], correct: 2 },
+              { target: 'いけ', sound: 'いけ', options: ['I-ke', 'I-ka', 'A-ke', 'U-ke'], correct: 0 },
+              { target: 'ここ', sound: 'ここ', options: ['Ko-ko', 'Ka-ka', 'Ki-ki', 'Ke-ke'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub3',
-            tag: 'SUBLEVEL 3',
-            title: 'Sublevel 3 — さしすせそ',
-            desc: 'Hiragana Baris Sa',
+            id: 'jp_u3',
+            title: 'Hiragana: さしすせそ',
+            meta: 'Baris Sa (10 Soal Acak)',
             questions: [
-              { target: 'さ', context: 'Baris Sa', clue: 'Karakter satu garis mendatar ini dibaca:', sound: 'さ', options: ['Ki', 'Chi', 'Sa', 'So'], correct: 2 },
-              { target: 'し', context: 'Pengecualian Bunyi', clue: 'Karakter mirip kail pancing ini dibaca:', sound: 'し', options: ['Si', 'Shi', 'Tsu', 'I'], correct: 1 },
-              { target: 'す', context: 'Baris Sa', clue: 'Karakter simpul bulat di tengah dibaca:', sound: 'す', options: ['Mu', 'Nu', 'Su', 'O'], correct: 2 },
-              { target: 'せ', context: 'Baris Sa', clue: 'Karakter ini dibaca:', sound: 'せ', options: ['Se', 'Sa', 'Ya', 'Ke'], correct: 0 },
-              { target: 'そ', context: 'Baris Sa', clue: 'Karakter garis bersambung ini dibaca:', sound: 'そ', options: ['Ro', 'So', 'E', 'Ru'], correct: 1 },
-              { target: 'あさ', context: 'Waktu', clue: 'Pagi hari (Asa), dibaca:', sound: 'あさ', options: ['A-shi', 'A-sa', 'A-so', 'A-se'], correct: 1 },
-              { target: 'すし', context: 'Kuliner', clue: 'Makanan khas Jepang (Sushi), dibaca:', sound: 'すし', options: ['Su-shi', 'Sa-shi', 'Shi-su', 'So-shi'], correct: 0 },
-              { target: 'おそい', context: 'Kata Sifat', clue: 'Lambat / terlambat (Osoi), dibaca:', sound: 'おそい', options: ['O-so-i', 'A-se-i', 'O-sa-i', 'U-shi-i'], correct: 0 },
-              { target: 'せかい', context: 'Benda Alam', clue: 'Dunia (Sekai), dibaca:', sound: 'せかい', options: ['Se-ka-i', 'Sa-ki-i', 'Se-ki-u', 'So-ka-i'], correct: 0 },
-              { target: 'うし', context: 'Hewan', clue: 'Sapi (Ushi), dibaca:', sound: 'うし', options: ['U-shi', 'A-shi', 'U-su', 'O-shi'], correct: 0 }
+              { target: 'さ', sound: 'さ', options: ['Ki', 'Chi', 'Sa', 'So'], correct: 2 },
+              { target: 'し', sound: 'し', options: ['Si', 'Shi', 'Tsu', 'I'], correct: 1 },
+              { target: 'す', sound: 'す', options: ['Mu', 'Nu', 'Su', 'O'], correct: 2 },
+              { target: 'せ', sound: 'せ', options: ['Se', 'Sa', 'Ya', 'Ke'], correct: 0 },
+              { target: 'そ', sound: 'そ', options: ['Ro', 'So', 'E', 'Ru'], correct: 1 },
+              { target: 'あさ', sound: 'あさ', options: ['A-shi', 'A-sa', 'A-so', 'A-se'], correct: 1 },
+              { target: 'すし', sound: 'すし', options: ['Su-shi', 'Sa-shi', 'Shi-su', 'So-shi'], correct: 0 },
+              { target: 'おそい', sound: 'おそい', options: ['O-so-i', 'A-se-i', 'O-sa-i', 'U-shi-i'], correct: 0 },
+              { target: 'せかい', sound: 'せかい', options: ['Se-ka-i', 'Sa-ki-i', 'Se-ki-u', 'So-ka-i'], correct: 0 },
+              { target: 'うし', sound: 'うし', options: ['U-shi', 'A-shi', 'U-su', 'O-shi'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub4',
-            tag: 'SUBLEVEL 4',
-            title: 'Sublevel 4 — たちつてと',
-            desc: 'Hiragana Baris Ta',
+            id: 'jp_u4',
+            title: 'Hiragana: たちつてと',
+            meta: 'Baris Ta (10 Soal Acak)',
             questions: [
-              { target: 'た', context: 'Baris Ta', clue: 'Karakter pembuka keluarga T ini dibaca:', sound: 'た', options: ['Na', 'Ko', 'Ta', 'Ni'], correct: 2 },
-              { target: 'ち', context: 'Pengecualian Bunyi', clue: 'Karakter mirip angka 5 ini dibaca:', sound: 'ち', options: ['Chi', 'Ti', 'Sa', 'Ki'], correct: 0 },
-              { target: 'つ', context: 'Pengecualian Bunyi', clue: 'Karakter gelombang tunggal ini dibaca:', sound: 'つ', options: ['Shi', 'Tsu', 'Tu', 'U'], correct: 1 },
-              { target: 'て', context: 'Baris Ta', clue: 'Karakter ini dibaca:', sound: 'て', options: ['Ku', 'Te', 'Ta', 'To'], correct: 1 },
-              { target: 'と', context: 'Baris Ta', clue: 'Karakter ini dibaca:', sound: 'と', options: ['To', 'E', 'Te', 'I'], correct: 0 },
-              { target: 'つき', context: 'Benda Langit', clue: 'Bulan (Tsuki), dibaca:', sound: 'つき', options: ['Chi-ki', 'Tsu-ki', 'Ta-ki', 'Tsu-ka'], correct: 1 },
-              { target: 'うた', context: 'Kesenian', clue: 'Lagu (Uta), dibaca:', sound: 'うた', options: ['U-ta', 'O-ta', 'A-ta', 'U-te'], correct: 0 },
-              { target: 'ちかいてつ', context: 'Transportasi', clue: 'Kereta bawah tanah (Chikatetsu), diawali suku kata:', sound: 'ちかてつ', options: ['Chi', 'Ta', 'Tsu', 'Te'], correct: 0 },
-              { target: 'くつ', context: 'Pakaian', clue: 'Sepatu (Kutsu), dibaca:', sound: 'くつ', options: ['Ku-tsu', 'Ka-tsu', 'Ku-chi', 'Ke-tsu'], correct: 0 },
-              { target: 'とけい', context: 'Benda', clue: 'Jam (Tokei), diawali suku kata:', sound: 'とけい', options: ['To', 'Te', 'Ta', 'Tsu'], correct: 0 }
+              { target: 'た', sound: 'た', options: ['Na', 'Ko', 'Ta', 'Ni'], correct: 2 },
+              { target: 'ち', sound: 'ち', options: ['Chi', 'Ti', 'Sa', 'Ki'], correct: 0 },
+              { target: 'つ', sound: 'つ', options: ['Shi', 'Tsu', 'Tu', 'U'], correct: 1 },
+              { target: 'て', sound: 'て', options: ['Ku', 'Te', 'Ta', 'To'], correct: 1 },
+              { target: 'と', sound: 'と', options: ['To', 'E', 'Te', 'I'], correct: 0 },
+              { target: 'つき', sound: 'つき', options: ['Chi-ki', 'Tsu-ki', 'Ta-ki', 'Tsu-ka'], correct: 1 },
+              { target: 'うた', sound: 'うた', options: ['U-ta', 'O-ta', 'A-ta', 'U-te'], correct: 0 },
+              { target: 'くつ', sound: 'くつ', options: ['Ku-tsu', 'Ka-tsu', 'Ku-chi', 'Ke-tsu'], correct: 0 },
+              { target: 'とけい', sound: 'とけい', options: ['To-ke-i', 'Te-ke-i', 'Ta-ke-i', 'Tsu-ke-i'], correct: 0 },
+              { target: 'ちかてつ', sound: 'ちかてつ', options: ['Chi-ka-te-tsu', 'Ta-ka-te-tsu', 'Chi-ki-to-tsu', 'Tsu-ka-te-chi'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub5',
-            tag: 'SUBLEVEL 5',
-            title: 'Sublevel 5 — なにぬねの',
-            desc: 'Hiragana Baris Na',
+            id: 'jp_u5',
+            title: 'Hiragana: なにぬねの',
+            meta: 'Baris Na (10 Soal Acak)',
             questions: [
-              { target: 'な', context: 'Baris Na', clue: 'Karakter ini dibaca:', sound: 'な', options: ['Ta', 'Na', 'Ni', 'Ha'], correct: 1 },
-              { target: 'に', context: 'Baris Na', clue: 'Karakter ini dibaca:', sound: 'に', options: ['Ko', 'Ni', 'Ta', 'I'], correct: 1 },
-              { target: 'ぬ', context: 'Baris Na', clue: 'Karakter bersimpul lingkar di bawah ini dibaca:', sound: 'ぬ', options: ['Me', 'Ne', 'Nu', 'Mu'], correct: 2 },
-              { target: 'ね', context: 'Baris Na', clue: 'Karakter berujung simpul ini dibaca:', sound: 'ね', options: ['Re', 'Wa', 'Ne', 'Nu'], correct: 2 },
-              { target: 'の', context: 'Baris Na', clue: 'Karakter satu goresan lingkaran ini dibaca:', sound: 'の', options: ['No', 'Me', 'O', 'Ru'], correct: 0 },
-              { target: 'いぬ', context: 'Hewan', clue: 'Anjing (Inu), dibaca:', sound: 'いぬ', options: ['I-ne', 'I-nu', 'A-nu', 'U-ne'], correct: 1 },
-              { target: 'ねこ', context: 'Hewan', clue: 'Kucing (Neko), dibaca:', sound: 'ねこ', options: ['Ne-ko', 'Nu-ko', 'Re-ko', 'Na-ko'], correct: 0 },
-              { target: 'さかな', context: 'Makanan', clue: 'Ikan (Sakana), berakhiran suku kata:', sound: 'さかな', options: ['Na', 'Ni', 'Nu', 'Ne'], correct: 0 },
-              { target: 'なに', context: 'Kata Tanya', clue: 'Apa (Nani), dibaca:', sound: 'なに', options: ['Na-ni', 'Na-no', 'Ni-na', 'Ne-ni'], correct: 0 },
-              { target: 'きのう', context: 'Waktu', clue: 'Kemarin (Kinou), memuat suku kata:', sound: 'きのう', options: ['No', 'Na', 'Nu', 'Ne'], correct: 0 }
+              { target: 'な', sound: 'な', options: ['Ta', 'Na', 'Ni', 'Ha'], correct: 1 },
+              { target: 'に', sound: 'に', options: ['Ko', 'Ni', 'Ta', 'I'], correct: 1 },
+              { target: 'ぬ', sound: 'ぬ', options: ['Me', 'Ne', 'Nu', 'Mu'], correct: 2 },
+              { target: 'ね', sound: 'ね', options: ['Re', 'Wa', 'Ne', 'Nu'], correct: 2 },
+              { target: 'の', sound: 'の', options: ['No', 'Me', 'O', 'Ru'], correct: 0 },
+              { target: 'いぬ', sound: 'いぬ', options: ['I-ne', 'I-nu', 'A-nu', 'U-ne'], correct: 1 },
+              { target: 'ねこ', sound: 'ねこ', options: ['Ne-ko', 'Nu-ko', 'Re-ko', 'Na-ko'], correct: 0 },
+              { target: 'さかな', sound: 'さかな', options: ['Sa-ka-na', 'Sa-ki-ni', 'Sa-ka-ne', 'So-ka-na'], correct: 0 },
+              { target: 'なに', sound: 'なに', options: ['Na-ni', 'Na-no', 'Ni-na', 'Ne-ni'], correct: 0 },
+              { target: 'きのう', sound: 'きのう', options: ['Ki-no-u', 'Ki-na-u', 'Ki-nu-u', 'Ka-no-u'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub6',
-            tag: 'SUBLEVEL 6',
-            title: 'Sublevel 6 — はひふへほ',
-            desc: 'Hiragana Baris Ha',
+            id: 'jp_u6',
+            title: 'Hiragana: はひふへほ',
+            meta: 'Baris Ha (10 Soal Acak)',
             questions: [
-              { target: 'は', context: 'Baris Ha', clue: 'Karakter ini dibaca:', sound: 'は', options: ['Ha', 'Ho', 'Ke', 'Na'], correct: 0 },
-              { target: 'ひ', context: 'Baris Ha', clue: 'Karakter tapal kuda ini dibaca:', sound: 'ひ', options: ['He', 'Hi', 'Shi', 'I'], correct: 1 },
-              { target: 'ふ', context: 'Pengecualian Bunyi', clue: 'Karakter ini dibaca:', sound: 'ふ', options: ['Hu', 'Fu', 'Mu', 'Ku'], correct: 1 },
-              { target: 'へ', context: 'Baris Ha', clue: 'Karakter satu puncak lancip ini dibaca:', sound: 'へ', options: ['Ku', 'He', 'Te', 'I'], correct: 1 },
-              { target: 'ほ', context: 'Baris Ha', clue: 'Karakter bertutup garis atas ini dibaca:', sound: 'ほ', options: ['Ha', 'Ma', 'Ho', 'Ne'], correct: 2 },
-              { target: 'はな', context: 'Bunga', clue: 'Bunga (Hana), dibaca:', sound: 'はな', options: ['Ha-na', 'Ho-na', 'Ha-ne', 'Hi-na'], correct: 0 },
-              { target: 'ひと', context: 'Orang', clue: 'Orang (Hito), dibaca:', sound: 'ひと', options: ['Hi-to', 'He-to', 'Ha-to', 'Fu-to'], correct: 0 },
-              { target: 'ふね', context: 'Transportasi', clue: 'Kapal laut (Fune), dibaca:', sound: 'ふね', options: ['Fu-ne', 'Hu-ne', 'Fu-nu', 'Ha-ne'], correct: 0 },
-              { target: 'ほし', context: 'Langit', clue: 'Bintang (Hoshi), dibaca:', sound: 'ほし', options: ['Ho-shi', 'Ha-shi', 'Ho-sa', 'Hi-shi'], correct: 0 },
-              { target: 'へや', context: 'Ruangan', clue: 'Kamar / Ruangan (Heya), diawali suku kata:', sound: 'へや', options: ['He', 'Ha', 'Hi', 'Ho'], correct: 0 }
+              { target: 'は', sound: 'は', options: ['Ha', 'Ho', 'Ke', 'Na'], correct: 0 },
+              { target: 'ひ', sound: 'ひ', options: ['He', 'Hi', 'Shi', 'I'], correct: 1 },
+              { target: 'ふ', sound: 'ふ', options: ['Hu', 'Fu', 'Mu', 'Ku'], correct: 1 },
+              { target: 'へ', sound: 'へ', options: ['Ku', 'He', 'Te', 'I'], correct: 1 },
+              { target: 'ほ', sound: 'ほ', options: ['Ha', 'Ma', 'Ho', 'Ne'], correct: 2 },
+              { target: 'はな', sound: 'はな', options: ['Ha-na', 'Ho-na', 'Ha-ne', 'Hi-na'], correct: 0 },
+              { target: 'ひと', sound: 'ひと', options: ['Hi-to', 'He-to', 'Ha-to', 'Fu-to'], correct: 0 },
+              { target: 'ふね', sound: 'ふね', options: ['Fu-ne', 'Hu-ne', 'Fu-nu', 'Ha-ne'], correct: 0 },
+              { target: 'ほし', sound: 'ほし', options: ['Ho-shi', 'Ha-shi', 'Ho-sa', 'Hi-shi'], correct: 0 },
+              { target: 'へや', sound: 'へや', options: ['He-ya', 'Ha-ya', 'Hi-ya', 'Ho-ya'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub7',
-            tag: 'SUBLEVEL 7',
-            title: 'Sublevel 7 — まみむめも',
-            desc: 'Hiragana Baris Ma',
+            id: 'jp_u7',
+            title: 'Hiragana: ま〜ん (Ma, Ya, Ra, Wa, N)',
+            meta: 'Baris Penutup Lengkap (10 Soal Acak)',
             questions: [
-              { target: 'ま', context: 'Baris Ma', clue: 'Karakter pembuka keluarga M ini dibaca:', sound: 'ま', options: ['Ho', 'Ma', 'Mo', 'Ki'], correct: 1 },
-              { target: 'み', context: 'Baris Ma', clue: 'Karakter berangka 2 modifikasi ini dibaca:', sound: 'み', options: ['Mi', 'Nu', 'Me', 'Yo'], correct: 0 },
-              { target: 'む', context: 'Baris Ma', clue: 'Karakter bertitik kanan atas ini dibaca:', sound: 'む', options: ['Su', 'Mu', 'Nu', 'A'], correct: 1 },
-              { target: 'め', context: 'Baris Ma', clue: 'Karakter silang lingkar ini dibaca:', sound: 'め', options: ['Nu', 'Me', 'Ne', 'No'], correct: 1 },
-              { target: 'も', context: 'Baris Ma', clue: 'Karakter ini dibaca:', sound: 'も', options: ['Mo', 'Shi', 'So', 'Ma'], correct: 0 },
-              { target: 'みず', context: 'Minuman', clue: 'Air minum (Mizu), diawali suku kata:', sound: 'みず', options: ['Mi', 'Mu', 'Ma', 'Me'], correct: 0 },
-              { target: 'まち', context: 'Tempat', clue: 'Kota (Machi), dibaca:', sound: 'まち', options: ['Ma-chi', 'Mo-chi', 'Ma-ta', 'Me-chi'], correct: 0 },
-              { target: 'むし', context: 'Hewan', clue: 'Serangga (Mushi), dibaca:', sound: 'むし', options: ['Mu-shi', 'Ma-shi', 'Me-shi', 'Mo-shi'], correct: 0 },
-              { target: 'め', context: 'Tubuh', clue: 'Mata (Me), dibaca:', sound: 'め', options: ['Me', 'Nu', 'Ne', 'No'], correct: 0 },
-              { target: 'もの', context: 'Benda', clue: 'Barang (Mono), dibaca:', sound: 'もの', options: ['Mo-no', 'Ma-no', 'Mu-no', 'Me-no'], correct: 0 }
+              { target: 'ま', sound: 'ま', options: ['Ho', 'Ma', 'Mo', 'Ki'], correct: 1 },
+              { target: 'や', sound: 'や', options: ['Ya', 'Se', 'Ka', 'Yu'], correct: 0 },
+              { target: 'ゆ', sound: 'ゆ', options: ['Yo', 'Yu', 'Ya', 'Nu'], correct: 1 },
+              { target: 'よ', sound: 'よ', options: ['Ma', 'Ha', 'Yo', 'Ni'], correct: 2 },
+              { target: 'ら', sound: 'ら', options: ['U', 'Chi', 'Ra', 'Ro'], correct: 2 },
+              { target: 'り', sound: 'り', options: ['I', 'Ri', 'Shi', 'Ru'], correct: 1 },
+              { target: 'る', sound: 'る', options: ['Ro', 'Ru', 'So', 'Re'], correct: 1 },
+              { target: 'わ', sound: 'わ', options: ['Re', 'Wa', 'Ne', 'O'], correct: 1 },
+              { target: 'を', sound: 'を', options: ['Wo / O', 'Wa', 'E', 'Ro'], correct: 0 },
+              { target: 'ん', sound: 'ん', options: ['M', 'N', 'Ng', 'H'], correct: 1 }
             ]
           },
           {
-            id: 'jp_sub8',
-            tag: 'SUBLEVEL 8',
-            title: 'Sublevel 8 — やゆよ',
-            desc: 'Hiragana Baris Ya',
+            id: 'jp_u8',
+            title: 'Dakuon & Handakuon',
+            meta: 'Tanda Tenten & Maru (10 Soal Acak)',
             questions: [
-              { target: 'や', context: 'Baris Ya', clue: 'Karakter pembuka keluarga Y ini dibaca:', sound: 'や', options: ['Ya', 'Se', 'Ka', 'Yu'], correct: 0 },
-              { target: 'ゆ', context: 'Baris Ya', clue: 'Karakter berlekuk ini dibaca:', sound: 'ゆ', options: ['Yo', 'Yu', 'Ya', 'Nu'], correct: 1 },
-              { target: 'よ', context: 'Baris Ya', clue: 'Karakter bersimpul ini dibaca:', sound: 'よ', options: ['Ma', 'Ha', 'Yo', 'Ni'], correct: 2 },
-              { target: 'やま', context: 'Alam', clue: 'Gunung (Yama), dibaca:', sound: 'やま', options: ['Ya-ma', 'Yu-ma', 'Yo-ma', 'Ya-ha'], correct: 0 },
-              { target: 'ゆき', context: 'Musim', clue: 'Salju (Yuki), dibaca:', sound: 'ゆき', options: ['Yu-ki', 'Ya-ki', 'Yo-ki', 'Yu-sa'], correct: 0 },
-              { target: 'よる', context: 'Waktu', clue: 'Malam (Yoru), diawali suku kata:', sound: 'よる', options: ['Yo', 'Ya', 'Yu', 'Ma'], correct: 0 },
-              { target: 'へや', context: 'Kamar', clue: 'Kamar (Heya), berakhiran suku kata:', sound: 'へや', options: ['Ya', 'Yu', 'Yo', 'Wa'], correct: 0 },
-              { target: 'ゆめ', context: 'Impian', clue: 'Mimpi (Yume), dibaca:', sound: 'ゆめ', options: ['Yu-me', 'Ya-me', 'Yo-me', 'Yu-nu'], correct: 0 },
-              { target: 'やすみ', context: 'Waktu', clue: 'Libur / Istirahat (Yasumi), diawali suku kata:', sound: 'やすみ', options: ['Ya', 'Yu', 'Yo', 'Ma'], correct: 0 },
-              { target: 'よい', context: 'Sifat', clue: 'Bagus / Baik (Yoi), dibaca:', sound: 'よい', options: ['Yo-i', 'Ya-i', 'Yu-i', 'Ma-i'], correct: 0 }
+              { target: 'が', sound: 'が', options: ['Ka', 'Ga', 'Za', 'Da'], correct: 1 },
+              { target: 'ぎ', sound: 'ぎ', options: ['Gi', 'Ji', 'Di', 'Bi'], correct: 0 },
+              { target: 'ざ', sound: 'ざ', options: ['Za', 'Ga', 'Da', 'Ba'], correct: 0 },
+              { target: 'じ', sound: 'じ', options: ['Zi', 'Ji', 'Gi', 'Di'], correct: 1 },
+              { target: 'だ', sound: 'だ', options: ['Ba', 'Ga', 'Da', 'Za'], correct: 2 },
+              { target: 'ば', sound: 'ば', options: ['Ba', 'Pa', 'Ma', 'Da'], correct: 0 },
+              { target: 'ぱ', sound: 'ぱ', options: ['Ba', 'Pa', 'Fa', 'Ha'], correct: 1 },
+              { target: 'ぴ', sound: 'ぴ', options: ['Bi', 'Pi', 'Mi', 'Gi'], correct: 1 },
+              { target: 'ぷ', sound: 'ぷ', options: ['Pu', 'Bu', 'Mu', 'Ku'], correct: 0 },
+              { target: 'かぎ', sound: 'かぎ', options: ['Ka-gi', 'Ka-ki', 'Ka-zi', 'Ka-bi'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub9',
-            tag: 'SUBLEVEL 9',
-            title: 'Sublevel 9 — らりるれろ',
-            desc: 'Hiragana Baris Ra',
+            id: 'jp_u9',
+            title: 'Raku Raku: あいさつ (Aisatsu)',
+            meta: 'Salam & Instruksi Kelas (10 Soal Acak)',
             questions: [
-              { target: 'ら', context: 'Baris Ra', clue: 'Karakter ini dibaca:', sound: 'ら', options: ['U', 'Chi', 'Ra', 'Ro'], correct: 2 },
-              { target: 'り', context: 'Baris Ra', clue: 'Karakter dua garis sejajar panjang kanan dibaca:', sound: 'り', options: ['I', 'Ri', 'Shi', 'Ru'], correct: 1 },
-              { target: 'る', context: 'Baris Ra', clue: 'Karakter bersimpul bawah ini dibaca:', sound: 'る', options: ['Ro', 'Ru', 'So', 'Re'], correct: 1 },
-              { target: 'れ', context: 'Baris Ra', clue: 'Karakter dengan ujung ekor keluar dibaca:', sound: 'れ', options: ['Wa', 'Ne', 'Re', 'Me'], correct: 2 },
-              { target: 'ろ', context: 'Baris Ra', clue: 'Karakter tanpa simpul di bawah dibaca:', sound: 'ろ', options: ['Ru', 'Ro', 'O', 'Ko'], correct: 1 },
-              { target: 'とり', context: 'Hewan', clue: 'Burung (Tori), dibaca:', sound: 'とり', options: ['To-ri', 'Te-ri', 'Ta-ri', 'To-ru'], correct: 0 },
-              { target: 'くるま', context: 'Transportasi', clue: 'Mobil (Kuruma), memuat suku kata:', sound: 'くるま', options: ['Ru', 'Ro', 'Ra', 'Re'], correct: 0 },
-              { target: 'さくら', context: 'Bunga', clue: 'Bunga Sakura, berakhiran suku kata:', sound: 'さくら', options: ['Ra', 'Ri', 'Ru', 'Re'], correct: 0 },
-              { target: 'しろい', context: 'Warna', clue: 'Putih (Shiroi), memuat suku kata:', sound: 'しろい', options: ['Ro', 'Ru', 'Ra', 'Re'], correct: 0 },
-              { target: 'きれい', context: 'Sifat', clue: 'Cantik / Bersih (Kirei), memuat suku kata:', sound: 'きれい', options: ['Re', 'Ra', 'Ru', 'Ro'], correct: 0 }
+              { target: 'おはようございます', sound: 'おはようございます', options: ['Selamat siang', 'Selamat pagi', 'Selamat malam', 'Selamat tidur'], correct: 1 },
+              { target: 'こんにちは', sound: 'こんにちは', options: ['Selamat siang / Halo', 'Selamat pagi', 'Sampai jumpa', 'Terima kasih'], correct: 0 },
+              { target: 'こんばんは', sound: 'こんばんは', options: ['Selamat malam', 'Selamat pagi', 'Selamat jalan', 'Sama-sama'], correct: 0 },
+              { target: 'きいて ください', sound: 'きいてください', options: ['Tolong dengarkan', 'Tolong lihat', 'Tolong tulis', 'Tolong berdiri'], correct: 0 },
+              { target: 'みて ください', sound: 'みてください', options: ['Tolong baca', 'Tolong lihat', 'Tolong dengar', 'Tolong ucapkan'], correct: 1 },
+              { target: 'かいて ください', sound: 'かいてください', options: ['Tolong tulis', 'Tolong hitung', 'Tolong maju', 'Tolong duduk'], correct: 0 },
+              { target: 'いってきます', sound: 'いってきます', options: ['Saya berangkat', 'Saya pulang', 'Selamat datang', 'Sampai jumpa'], correct: 0 },
+              { target: 'ただいま', sound: 'ただいま', options: ['Saya pulang', 'Saya pergi', 'Selamat makan', 'Terima kasih'], correct: 0 },
+              { target: 'いただきます', sound: 'いただきます', options: ['Diucapkan sebelum makan', 'Diucapkan selesai makan', 'Diucapkan sebelum tidur', 'Diucapkan saat bangun'], correct: 0 },
+              { target: 'ごちそうさまでした', sound: 'ごちそうさまでした', options: ['Diucapkan selesai makan', 'Diucapkan sebelum makan', 'Diucapkan saat masuk toko', 'Diucapkan saat pamit'], correct: 0 }
             ]
           },
           {
-            id: 'jp_sub10',
-            tag: 'SUBLEVEL 10',
-            title: 'Sublevel 10 — わ・を・ん',
-            desc: 'Hiragana Baris Wa & Konsonan N',
+            id: 'jp_u10',
+            title: 'Raku Raku: もちもの (Mochimono)',
+            meta: 'Benda Bawaan & Sekolah (10 Soal Acak)',
             questions: [
-              { target: 'わ', context: 'Baris Wa', clue: 'Karakter bulat melengkung menutup ini dibaca:', sound: 'わ', options: ['Re', 'Wa', 'Ne', 'O'], correct: 1 },
-              { target: 'を', context: 'Partikel Objek', clue: 'Karakter partikel penanda objek kalimat dibaca:', sound: 'を', options: ['Wo / O', 'Wa', 'E', 'Ro'], correct: 0 },
-              { target: 'ん', context: 'Konsonan Tunggal', clue: 'Satu-satunya huruf konsonan mati tanpa vokal dibaca:', sound: 'ん', options: ['M', 'N', 'Ng', 'H'], correct: 1 },
-              { target: 'ほん', context: 'Benda', clue: 'Buku (Hon), diakhiri huruf:', sound: 'ほん', options: ['N (ん)', 'Wa', 'Wo', 'Mu'], correct: 0 },
-              { target: 'わたし', context: 'Kata Ganti', clue: 'Saya (Watashi), diawali huruf:', sound: 'わたし', options: ['Wa', 'Re', 'Ne', 'O'], correct: 0 },
-              { target: 'でんわ', context: 'Komunikasi', clue: 'Telepon (Denwa), memuat huruf:', sound: 'でんわ', options: ['N dan Wa', 'Wo dan Wa', 'Re dan N', 'Ne dan Wa'], correct: 0 },
-              { target: 'にほん', context: 'Negara', clue: 'Jepang (Nihon), diakhiri huruf:', sound: 'にほん', options: ['N (ん)', 'Mu', 'Nu', 'Wa'], correct: 0 },
-              { target: 'ごはん', context: 'Makanan', clue: 'Nasi (Gohan), diakhiri huruf:', sound: 'ごはん', options: ['N (ん)', 'Ha', 'Wa', 'He'], correct: 0 },
-              { target: 'みかん', context: 'Buah', clue: 'Jeruk (Mikan), diakhiri huruf:', sound: 'みかん', options: ['N (ん)', 'Ka', 'Wa', 'Ma'], correct: 0 },
-              { target: 'きりん', context: 'Hewan', clue: 'Jerapah (Kirin), diakhiri huruf:', sound: 'きりん', options: ['N (ん)', 'Ri', 'Wa', 'Ra'], correct: 0 }
-            ]
-          },
-          {
-            id: 'jp_sub11',
-            tag: 'SUBLEVEL 11',
-            title: 'Sublevel 11 — Dakuon (が・ざ・だ・ば)',
-            desc: 'Bunyi Tenten (゛)',
-            questions: [
-              { target: 'が', context: 'Dakuon K -> G', clue: 'Karakter Ka bertanda tenten dibaca:', sound: 'が', options: ['Ka', 'Ga', 'Za', 'Da'], correct: 1 },
-              { target: 'ぎ', context: 'Dakuon K -> G', clue: 'Karakter Ki bertanda tenten dibaca:', sound: 'ぎ', options: ['Gi', 'Ji', 'Di', 'Bi'], correct: 0 },
-              { target: 'ざ', context: 'Dakuon S -> Z', clue: 'Karakter Sa bertanda tenten dibaca:', sound: 'ざ', options: ['Za', 'Ga', 'Da', 'Ba'], correct: 0 },
-              { target: 'じ', context: 'Dakuon S -> J', clue: 'Karakter Shi bertanda tenten berbunyi:', sound: 'じ', options: ['Zi', 'Ji', 'Gi', 'Di'], correct: 1 },
-              { target: 'だ', context: 'Dakuon T -> D', clue: 'Karakter Ta bertanda tenten dibaca:', sound: 'だ', options: ['Ba', 'Ga', 'Da', 'Za'], correct: 2 },
-              { target: 'ば', context: 'Dakuon H -> B', clue: 'Karakter Ha bertanda tenten dibaca:', sound: 'ば', options: ['Ba', 'Pa', 'Ma', 'Da'], correct: 0 },
-              { target: 'かぎ', context: 'Benda', clue: 'Kunci (Kagi), memuat dakuon:', sound: 'かぎ', options: ['Gi', 'Ga', 'Gu', 'Ge'], correct: 0 },
-              { target: 'みず', context: 'Minuman', clue: 'Air (Mizu), memuat dakuon:', sound: 'みず', options: ['Zu', 'Za', 'Ze', 'Zo'], correct: 0 },
-              { target: 'でんしゃ', context: 'Kereta', clue: 'Kereta listrik (Densha), diawali dakuon:', sound: 'でんしゃ', options: ['De', 'Da', 'Do', 'Di'], correct: 0 },
-              { target: 'かばん', context: 'Benda', clue: 'Tas bawaan (Kaban), memuat dakuon:', sound: 'かばん', options: ['Ba', 'Bi', 'Bu', 'Be'], correct: 0 }
-            ]
-          },
-          {
-            id: 'jp_sub12',
-            tag: 'SUBLEVEL 12',
-            title: 'Sublevel 12 — Handakuon (ぱ・ぴ・ぷ・ぺ・ぽ)',
-            desc: 'Bunyi Maru Bulat (゜)',
-            questions: [
-              { target: 'ぱ', context: 'Handakuon H -> P', clue: 'Karakter Ha bertanda maru (゜) dibaca:', sound: 'ぱ', options: ['Ba', 'Pa', 'Fa', 'Ha'], correct: 1 },
-              { target: 'ぴ', context: 'Handakuon H -> P', clue: 'Karakter Hi bertanda maru (゜) dibaca:', sound: 'ぴ', options: ['Bi', 'Pi', 'Mi', 'Gi'], correct: 1 },
-              { target: 'ぷ', context: 'Handakuon H -> P', clue: 'Karakter Fu bertanda maru (゜) dibaca:', sound: 'ぷ', options: ['Pu', 'Bu', 'Mu', 'Ku'], correct: 0 },
-              { target: 'ぺ', context: 'Handakuon H -> P', clue: 'Karakter He bertanda maru (゜) dibaca:', sound: 'ぺ', options: ['Pe', 'Be', 'Me', 'Te'], correct: 0 },
-              { target: 'ぽ', context: 'Handakuon H -> P', clue: 'Karakter Ho bertanda maru (゜) dibaca:', sound: 'ぽ', options: ['Po', 'Bo', 'Mo', 'To'], correct: 0 },
-              { target: 'えんぴつ', context: 'Alat Tulis', clue: 'Pensil (Enpitsu), memuat handakuon:', sound: 'えんぴつ', options: ['Pi', 'Pa', 'Pu', 'Pe'], correct: 0 },
-              { target: 'きっぷ', context: 'Tiket', clue: 'Tiket karcis (Kippu), memuat handakuon:', sound: 'きっぷ', options: ['Pu', 'Pa', 'Pi', 'Po'], correct: 0 },
-              { target: 'さんぽ', context: 'Aktivitas', clue: 'Jalan-jalan santai (Sanpo), memuat handakuon:', sound: 'さんぽ', options: ['Po', 'Pu', 'Pa', 'Pe'], correct: 0 },
-              { target: 'しっぽ', context: 'Bagian Tubuh', clue: 'Ekor hewan (Shippo), diakhiri suku kata:', sound: 'しっぽ', options: ['Po', 'Pa', 'Pu', 'Pi'], correct: 0 },
-              { target: 'ぺらぺら', context: 'Kefasihan', clue: 'Lancar fasih bicara bahasa asing (Perapera), diawali:', sound: 'ぺらぺら', options: ['Pe', 'Pi', 'Pa', 'Po'], correct: 0 }
-            ]
-          },
-          {
-            id: 'jp_raku1',
-            tag: 'RAKU RAKU 1',
-            title: 'Sublevel 13 — あいさつ (Aisatsu)',
-            desc: 'Salam Harian & Instruksi Kelas SMK',
-            questions: [
-              { target: 'おはようございます', context: 'Salam Pagi', clue: 'Diucapkan saat bertemu guru di pagi hari (formal):', sound: 'おはようございます', options: ['Konnichiwa', 'Ohayou gozaimasu', 'Konbanwa', 'Oyasumi'], correct: 1 },
-              { target: 'きいて ください', context: 'Instruksi Kelas', clue: 'Instruksi guru "Kiite kudasai" berarti:', sound: 'きいてください', options: ['Tolong dengarkan', 'Tolong buka buku', 'Tolong tulis', 'Tolong berdiri'], correct: 0 },
-              { target: 'みて ください', context: 'Instruksi Kelas', clue: 'Instruksi guru "Mite kudasai" berarti:', sound: 'みてください', options: ['Tolong baca', 'Tolong lihat', 'Tolong dengar', 'Tolong ucapkan'], correct: 1 },
-              { target: 'かいて ください', context: 'Instruksi Kelas', clue: 'Instruksi guru "Kaite kudasai" berarti:', sound: 'かいてください', options: ['Tolong tulis', 'Tolong hitung', 'Tolong maju', 'Tolong duduk'], correct: 0 },
-              { target: 'すみません、しつもんが あります', context: 'Etika Kelas', clue: 'Maksud dari kalimat siswa ini adalah:', sound: 'すみませんしつもんがあります', options: ['Permisi, saya mau bertanya', 'Permisi, saya izin ke toilet', 'Buku saya tertinggal', 'Maaf saya terlambat'], correct: 0 },
-              { target: 'いってきます', context: 'Berangkat', clue: 'Salam saat pamit berangkat dari rumah:', sound: 'いってきます', options: ['Ittekimasu', 'Tadaima', 'Okaeri', 'Sayounara'], correct: 0 },
-              { target: 'ただいま', context: 'Pulang', clue: 'Salam saat baru tiba kembali di rumah:', sound: 'ただいま', options: ['Tadaima', 'Ittekimasu', 'Konnichiwa', 'Oyasumi'], correct: 0 },
-              { target: 'いただきます', context: 'Makan', clue: 'Diucapkan tepat sebelum mulai menyantap hidangan:', sound: 'いただきます', options: ['Itadakimasu', 'Gochisousama', 'Oishii', 'Kanpai'], correct: 0 },
-              { target: 'ごちそうさまでした', context: 'Selesai Makan', clue: 'Diucapkan setelah selesai makan sebagai ungkapan syukur:', sound: 'ごちそうさまでした', options: ['Gochisousama deshita', 'Itadakimasu', 'Arigatou', 'Omatase'], correct: 0 },
-              { target: 'また あした', context: 'Perpisahan', clue: 'Salam perpisahan santai bermakna "Sampai jumpa besok":', sound: 'またあした', options: ['Mata ashita', 'Sayounara', 'Konbanwa', 'Hajimemashite'], correct: 0 }
+              { target: 'ほん', sound: 'ほん', options: ['Buku', 'Pena', 'Tas', 'Sepatu'], correct: 0 },
+              { target: 'かばん', sound: 'かばん', options: ['Dompet', 'Tas', 'Kunci', 'Payung'], correct: 1 },
+              { target: 'とけい', sound: 'とけい', options: ['Jam', 'Kacamata', 'Ponsel', 'Topi'], correct: 0 },
+              { target: 'さいふ', sound: 'さいふ', options: ['Uang', 'Dompet', 'Buku saku', 'Kunci'], correct: 1 },
+              { target: 'かさ', sound: 'かさ', options: ['Sepatu', 'Jas hujan', 'Payung', 'Syal'], correct: 2 },
+              { target: 'ふでばこ', sound: 'ふでばこ', options: ['Tempat pensil', 'Penggaris', 'Penghapus', 'Buku tulis'], correct: 0 },
+              { target: 'けしゴム', sound: 'けしゴム', options: ['Penghapus', 'Rautan', 'Pena', 'Gunting'], correct: 0 },
+              { target: 'ものさし', sound: 'ものさし', options: ['Penggaris', 'Lem', 'Pensil', 'Kertas'], correct: 0 },
+              { target: 'えんぴつ', sound: 'えんぴつ', options: ['Pensil', 'Penghapus', 'Spidol', 'Kapur'], correct: 0 },
+              { target: 'ノート', sound: 'ノート', options: ['Buku catatan', 'Koran', 'Majalah', 'Kamus'], correct: 0 }
             ]
           }
         ]
       },
 
-      // =========================== 2. JAWA & NUSANTARA ===========================
+      // =========================== 2. JAWA & NUSANTARA (BERSIH DARI DESKRIPSI) ===========================
       jv: {
-        title: 'Aksara & Sastra Jawa Nusantara',
-        desc: 'Materi carakan bertahap per 5 aksara, sandhangan, paugeran tembang macapat, hingga unggah-ungguh.',
+        title: 'Aksara & Sastra Jawa',
+        desc: 'Pilih topik materi aksara carakan, sandhangan, atau sastra macapat.',
         modules: [
           {
-            id: 'jv_sub1',
-            tag: 'SUBLEVEL 1',
-            title: 'Sublevel 1 — Carakan Ha-Na-Ca-Ra-Ka',
-            desc: '5 Aksara Pokok Pembuka',
+            id: 'jv_u1',
+            title: 'Carakan: Ha Na Ca Ra Ka',
+            meta: '5 Aksara Pembuka (10 Soal Acak)',
             questions: [
-              { target: 'ꦲ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ha', options: ['Ka', 'Ha', 'Na', 'Ca'], correct: 1 },
-              { target: 'ꦤ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Na', options: ['Da', 'Ta', 'Na', 'Ka'], correct: 2 },
-              { target: 'ꦕ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ca', options: ['Ca', 'Ra', 'Wa', 'La'], correct: 0 },
-              { target: 'ꦫ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ra', options: ['Ga', 'Ba', 'Nga', 'Ra'], correct: 3 },
-              { target: 'ꦏ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ka', options: ['Ta', 'Ka', 'Sa', 'Pa'], correct: 1 },
-              { target: 'ꦤꦫ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Nara', options: ['Kana', 'Rana', 'Nara', 'Hana'], correct: 2 },
-              { target: 'ꦲꦤ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Hana', options: ['Hana', 'Cana', 'Kana', 'Rana'], correct: 0 },
-              { target: 'ꦕꦫ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Cara', options: ['Raca', 'Kara', 'Hara', 'Cara'], correct: 3 },
-              { target: 'ꦏꦤ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Kana', options: ['Kana', 'Hana', 'Naka', 'Rana'], correct: 0 },
-              { target: 'ꦫꦏ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Raka', options: ['Kara', 'Raka', 'Caka', 'Naka'], correct: 1 }
+              { target: 'ꦲ', sound: 'Ha', options: ['Ka', 'Ha', 'Na', 'Ca'], correct: 1 },
+              { target: 'ꦤ', sound: 'Na', options: ['Da', 'Ta', 'Na', 'Ka'], correct: 2 },
+              { target: 'ꦕ', sound: 'Ca', options: ['Ca', 'Ra', 'Wa', 'La'], correct: 0 },
+              { target: 'ꦫ', sound: 'Ra', options: ['Ga', 'Ba', 'Nga', 'Ra'], correct: 3 },
+              { target: 'ꦏ', sound: 'Ka', options: ['Ta', 'Ka', 'Sa', 'Pa'], correct: 1 },
+              { target: 'ꦤꦫ', sound: 'Nara', options: ['Kana', 'Rana', 'Nara', 'Hana'], correct: 2 },
+              { target: 'ꦲꦤ', sound: 'Hana', options: ['Hana', 'Cana', 'Kana', 'Rana'], correct: 0 },
+              { target: 'ꦕꦫ', sound: 'Cara', options: ['Raca', 'Kara', 'Hara', 'Cara'], correct: 3 },
+              { target: 'ꦏꦤ', sound: 'Kana', options: ['Kana', 'Hana', 'Naka', 'Rana'], correct: 0 },
+              { target: 'ꦫꦏ', sound: 'Raka', options: ['Kara', 'Raka', 'Caka', 'Naka'], correct: 1 }
             ]
           },
           {
-            id: 'jv_sub2',
-            tag: 'SUBLEVEL 2',
-            title: 'Sublevel 2 — Carakan Da-Ta-Sa-Wa-La',
-            desc: '5 Aksara Pokok Baris Kedua',
+            id: 'jv_u2',
+            title: 'Carakan: Da Ta Sa Wa La',
+            meta: '5 Aksara Baris Kedua (10 Soal Acak)',
             questions: [
-              { target: 'ꦢ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Da', options: ['Ta', 'Da', 'Sa', 'Wa'], correct: 1 },
-              { target: 'ꦠ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ta', options: ['La', 'Pa', 'Ta', 'Dha'], correct: 2 },
-              { target: 'ꦱ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Sa', options: ['Sa', 'Wa', 'La', 'Ya'], correct: 0 },
-              { target: 'ꦮ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Wa', options: ['Ga', 'Ba', 'Wa', 'Ra'], correct: 2 },
-              { target: 'ꦭ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'La', options: ['Ha', 'Ca', 'Ka', 'La'], correct: 3 },
-              { target: 'ꦢꦮ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Dawa', options: ['Dawa (Panjang)', 'Tawa', 'Sawa', 'Lawa'], correct: 0 },
-              { target: 'ꦭꦠ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Lata', options: ['Tala', 'Wata', 'Lata', 'Sala'], correct: 2 },
-              { target: 'ꦱꦮ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Sawa', options: ['Sawa', 'Wasa', 'Dawa', 'Lawa'], correct: 0 },
-              { target: 'ꦮꦠ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Wata', options: ['Tawa', 'Wata', 'Data', 'Sata'], correct: 1 },
-              { target: 'ꦢꦱ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Dasa', options: ['Sada', 'Dasa (Sepuluh)', 'Wada', 'Lada'], correct: 1 }
+              { target: 'ꦢ', sound: 'Da', options: ['Ta', 'Da', 'Sa', 'Wa'], correct: 1 },
+              { target: 'ꦠ', sound: 'Ta', options: ['La', 'Pa', 'Ta', 'Dha'], correct: 2 },
+              { target: 'ꦱ', sound: 'Sa', options: ['Sa', 'Wa', 'La', 'Ya'], correct: 0 },
+              { target: 'ꦮ', sound: 'Wa', options: ['Ga', 'Ba', 'Wa', 'Ra'], correct: 2 },
+              { target: 'ꦭ', sound: 'La', options: ['Ha', 'Ca', 'Ka', 'La'], correct: 3 },
+              { target: 'ꦢꦮ', sound: 'Dawa', options: ['Dawa', 'Tawa', 'Sawa', 'Lawa'], correct: 0 },
+              { target: 'ꦭꦠ', sound: 'Lata', options: ['Tala', 'Wata', 'Lata', 'Sala'], correct: 2 },
+              { target: 'ꦱꦮ', sound: 'Sawa', options: ['Sawa', 'Wasa', 'Dawa', 'Lawa'], correct: 0 },
+              { target: 'ꦮꦠ', sound: 'Wata', options: ['Tawa', 'Wata', 'Data', 'Sata'], correct: 1 },
+              { target: 'ꦢꦱ', sound: 'Dasa', options: ['Sada', 'Dasa', 'Wada', 'Lada'], correct: 1 }
+            ]
+          },
+          {
+            id: 'jv_u3',
+            title: 'Sandhangan Swara & Panyigeg',
+            meta: 'Tanda Vokal & Konsonan Mati (10 Soal Acak)',
+            questions: [
+              { target: 'ꦶ', sound: 'Wulu', options: ['Vokal U', 'Vokal I', 'Vokal E', 'Vokal O'], correct: 1 },
+              { target: 'ꦸ', sound: 'Suku', options: ['Vokal U', 'Vokal A', 'Vokal I', 'Vokal O'], correct: 0 },
+              { target: 'ꦺ', sound: 'Taling', options: ['Vokal O', 'Vokal I', 'Vokal E (sate)', 'Vokal U'], correct: 2 },
+              { target: 'ꦼ', sound: 'Pepet', options: ['Vokal I', 'Vokal A', 'Vokal U', 'Vokal E (sepet)'], correct: 3 },
+              { target: 'ꦂ', sound: 'Layar', options: ['Mati -H', 'Mati -R', 'Mati -NG', 'Mati total'], correct: 1 },
+              { target: 'ꦁ', sound: 'Cecak', options: ['Mati -S', 'Mati -N', 'Mati -NG', 'Mati -R'], correct: 2 },
+              { target: 'ꦃ', sound: 'Wignyan', options: ['Mati -H', 'Mati -R', 'Mati -K', 'Mati -P'], correct: 0 },
+              { target: 'ꦱꦶꦱꦶ', sound: 'Sisi', options: ['Susu', 'Soso', 'Sasa', 'Sisi'], correct: 3 },
+              { target: 'ꦏꦸꦏꦸ', sound: 'Kuku', options: ['Kuku', 'Kiki', 'Kaka', 'Koko'], correct: 0 },
+              { target: 'ꦱꦸꦫ', sound: 'Sura', options: ['Sura', 'Sari', 'Sira', 'Sere'], correct: 0 }
+            ]
+          },
+          {
+            id: 'jv_u4',
+            title: 'Sastra Macapat',
+            meta: 'Paugeran & Watak Tembang (10 Soal Acak)',
+            questions: [
+              { target: 'Guru Gatra', sound: 'Guru Gatra', options: ['Cacahing suku kata', 'Cacahing larik saben sabait', 'Tibaning swara vokal', 'Tinggi rendah nada'], correct: 1 },
+              { target: 'Guru Wilangan', sound: 'Guru Wilangan', options: ['Cacahing wanda saben sagatra', 'Jumlah bait', 'Irama tembang', 'Nama pengarang'], correct: 0 },
+              { target: 'Guru Lagu', sound: 'Guru Lagu', options: ['Tibaning swara ing pungkasan gatra', 'Judul lagu', 'Alat musik', 'Penyanyi'], correct: 0 },
+              { target: '12u - 6a - 8i - 12a', sound: 'Pocung', options: ['Gambuh', 'Sinom', 'Pocung', 'Kinanthi'], correct: 2 },
+              { target: '7u - 10u - 12i - 8u - 8o', sound: 'Gambuh', options: ['Gambuh', 'Pocung', 'Mijil', 'Durma'], correct: 0 },
+              { target: 'Watak Pocung', sound: 'Watak Pocung', options: ['Galak dan marah', 'Sembrana, lucu, cangkriman', 'Sedih terharu', 'Khidmat resmi'], correct: 1 },
+              { target: 'Watak Gambuh', sound: 'Watak Gambuh', options: ['Pituduh akrab lan pitutur becik', 'Peperangan seram', 'Tangisan duka', 'Marah murka'], correct: 0 },
+              { target: 'Sinom', sound: 'Sinom', options: ['Masa muda yang tumbuh', 'Masa bayi', 'Masa tua', 'Kematian'], correct: 0 },
+              { target: 'Kinanthi', sound: 'Kinanthi', options: ['Dibimbing perilakunya', 'Ditinggal sendiri', 'Diberi harta', 'Dimarahi'], correct: 0 },
+              { target: 'Durma', sound: 'Durma', options: ['Keras, galak, perang', 'Kasmaran', 'Sedih nelangsa', 'Lucu santai'], correct: 0 }
             ]
           }
         ]
       },
 
-      // =========================== 3. BAHASA INGGRIS ===========================
+      // =========================== 3. BAHASA INGGRIS (READING & LISTENING BERSIH) ===========================
       en: {
         title: 'English Language Studio',
-        desc: 'Tantangan Reading Comprehension dan Listening Lab dengan format soal acak.',
+        desc: 'Reading Comprehension, Listening Lab, serta frasa umum.',
         modules: [
           {
-            id: 'en_sub1',
-            tag: 'SUBLEVEL 1',
-            title: 'Sublevel 1 — Reading Short Stories',
-            desc: 'Memahami teks narasi singkat & konteks situasi.',
+            id: 'en_u1',
+            title: 'Reading Comprehension',
+            meta: 'Short Passage Reading (10 Soal Acak)',
             questions: [
               {
                 passage: "Sarah is a university student living in London. Every morning at 7:30 AM, she walks to the nearest underground station and takes the train to her campus. Today, it was raining heavily, so she carried a large blue umbrella.",
-                passageDesc: "Bacalah teks cerita pendek di atas:",
-                target: "Reading 1",
-                context: "Transportation",
-                clue: "How does Sarah travel to her campus?",
+                target: "Sarah's Commute",
                 sound: "How does Sarah travel to her campus?",
                 options: ["She drives her own car", "She takes the underground train", "She rides a bicycle", "She takes a public bus"],
                 correct: 1
               },
               {
                 passage: "Sarah is a university student living in London. Every morning at 7:30 AM, she walks to the nearest underground station and takes the train to her campus. Today, it was raining heavily, so she carried a large blue umbrella.",
-                passageDesc: "Bacalah teks cerita pendek di atas:",
-                target: "Reading 2",
-                context: "Weather Detail",
-                clue: "Why did Sarah carry a large blue umbrella?",
-                sound: "Why did Sarah carry a large blue umbrella?",
-                options: ["Because it was very sunny", "Because it was raining heavily", "Because she was selling umbrellas", "Because it was snowing"],
+                target: "Rainy Morning",
+                sound: "Why did Sarah carry an umbrella?",
+                options: ["Because it was sunny", "Because it was raining heavily", "Because she was selling it", "Because of strong wind"],
                 correct: 1
               },
               {
-                passage: "Alex had an important job interview at 10:00 AM. His alarm clock did not ring, causing him to wake up late. He quickly wore his suit, skipped breakfast, and ordered a taxi to avoid being late. Luckily, he arrived at the office five minutes before the interview started.",
-                passageDesc: "Perhatikan teks cerita berikut:",
-                target: "Reading 3",
-                context: "Job Interview",
-                clue: "What caused Alex to wake up late in the morning?",
-                sound: "What caused Alex to wake up late in the morning?",
-                options: ["He slept late watching movies", "His alarm clock did not ring", "His taxi was delayed", "He had breakfast with his friend"],
+                passage: "Alex had an important job interview at 10:00 AM. His alarm clock did not ring, causing him to wake up late. He quickly wore his suit, skipped breakfast, and ordered a taxi. Luckily, he arrived at the office five minutes before the interview started.",
+                target: "The Alarm",
+                sound: "Why did Alex wake up late?",
+                options: ["He slept late watching movies", "His alarm clock did not ring", "His taxi broke down", "He cooked breakfast"],
                 correct: 1
               },
               {
-                passage: "Alex had an important job interview at 10:00 AM. His alarm clock did not ring, causing him to wake up late. He quickly wore his suit, skipped breakfast, and ordered a taxi to avoid being late. Luckily, he arrived at the office five minutes before the interview started.",
-                passageDesc: "Perhatikan teks cerita berikut:",
-                target: "Reading 4",
-                context: "Time Management",
-                clue: "At what time did Alex arrive at the office?",
-                sound: "At what time did Alex arrive at the office?",
-                options: ["At 10:05 AM (Late)", "At 9:55 AM (5 minutes early)", "At 10:00 AM sharp", "At 9:30 AM"],
+                passage: "Alex had an important job interview at 10:00 AM. His alarm clock did not ring, causing him to wake up late. He quickly wore his suit, skipped breakfast, and ordered a taxi. Luckily, he arrived at the office five minutes before the interview started.",
+                target: "Arrival Time",
+                sound: "What time did Alex arrive at the office?",
+                options: ["At 10:05 AM", "At 9:55 AM", "At 10:00 AM", "At 9:30 AM"],
                 correct: 1
+              },
+              {
+                passage: "David loves baking bread on weekends. Last Saturday, he ran out of flour, so he had to visit the supermarket early in the morning before starting his recipe.",
+                target: "David's Weekend",
+                sound: "Why did David go to the supermarket?",
+                options: ["He needed to buy flour", "He wanted to buy baked bread", "He was meeting a friend", "He worked there"],
+                correct: 0
+              },
+              {
+                passage: "David loves baking bread on weekends. Last Saturday, he ran out of flour, so he had to visit the supermarket early in the morning before starting his recipe.",
+                target: "Baking Schedule",
+                sound: "When does David usually bake bread?",
+                options: ["On weekends", "Every Monday morning", "Only on holidays", "Every evening"],
+                correct: 0
+              },
+              {
+                passage: "Emma planned to visit the national museum on Sunday. However, when she arrived at the gate, a sign stated that the museum was temporarily closed for renovation.",
+                target: "Museum Visit",
+                sound: "Why could Emma not enter the museum?",
+                options: ["She lost her ticket", "It was closed for renovation", "She arrived too late", "It was raining"],
+                correct: 1
+              },
+              {
+                passage: "Emma planned to visit the national museum on Sunday. However, when she arrived at the gate, a sign stated that the museum was temporarily closed for renovation.",
+                target: "Emma's Plan",
+                sound: "Where did Emma plan to go on Sunday?",
+                options: ["To the cinema", "To the national museum", "To the library", "To a concert"],
+                correct: 1
+              },
+              {
+                passage: "Tom adopted a puppy from the shelter yesterday. The puppy was very energetic and chewed on his slippers all afternoon.",
+                target: "New Puppy",
+                sound: "What did the puppy do all afternoon?",
+                options: ["Slept on the couch", "Chewed on Tom's slippers", "Ran away outside", "Barked at neighbors"],
+                correct: 1
+              },
+              {
+                passage: "Tom adopted a puppy from the shelter yesterday. The puppy was very energetic and chewed on his slippers all afternoon.",
+                target: "Pet Adoption",
+                sound: "Where did Tom get the puppy from?",
+                options: ["From the animal shelter", "From a pet shop", "From his neighbor", "Found on the street"],
+                correct: 0
               }
             ]
           },
           {
-            id: 'en_sub2',
-            tag: 'SUBLEVEL 2',
-            title: 'Sublevel 2 — Listening Comprehension',
-            desc: 'Teks disembunyikan. Uji pendengaran telingamu!',
+            id: 'en_u2',
+            title: 'Listening Lab',
+            meta: 'Audio Comprehension (10 Soal Acak)',
             questions: [
               {
                 isListening: true,
-                target: "🔊 [Dengarkan Audio]",
-                context: "Listening 1",
-                clue: "Dengarkan suara yang diputar. Manakah arti bahasa Indonesia yang tepat?",
+                target: "🔊 [Dengar Audio]",
                 sound: "Have a safe flight back home!",
                 options: ["Semoga penerbangan pulangmu aman dan selamat!", "Selamat menikmati sarapan pagi!", "Tolong bersihkan kamar penerbangan!", "Kapan pesawatmu mendarat?"],
                 correct: 0
               },
               {
                 isListening: true,
-                target: "🔊 [Dengarkan Audio]",
-                context: "Listening 2",
-                clue: "Dengarkan pertanyaannya. Maksud penutur adalah:",
+                target: "🔊 [Dengar Audio]",
                 sound: "Could you tell me how to get to the train station?",
-                options: ["Menanyakan arah jalan menuju stasiun kereta", "Menjual tiket kereta murah", "Memberitahu bahwa kereta sudah berangkat", "Mengajak makan di dekat stasiun"],
+                options: ["Menanyakan arah menuju stasiun kereta", "Menjual tiket kereta", "Memberitahu kereta sudah berangkat", "Mengajak makan di dekat stasiun"],
                 correct: 0
               },
               {
                 isListening: true,
-                target: "🔊 [Dengarkan Audio]",
-                context: "Listening 3",
-                clue: "Dengarkan kalimat ini. Pembicara sedang menyatakan bahwa dia:",
+                target: "🔊 [Dengar Audio]",
                 sound: "I think I am coming down with a flu.",
-                options: ["Sedang merasa mulai tertular flu / kurang sehat", "Sangat menyukai musim hujan", "Hendak bepergian ke luar kota", "Sudah sembuh total dari sakit"],
+                options: ["Merasa mulai tertular flu / kurang sehat", "Menyukai musim hujan", "Hendak bepergian keluar kota", "Sudah sembuh total dari sakit"],
                 correct: 0
               },
               {
                 isListening: true,
-                target: "🔊 [Dengarkan Audio]",
-                context: "Listening 4",
-                clue: "Dengarkan respon percakapan berikut. Sikap penutur adalah:",
+                target: "🔊 [Dengar Audio]",
                 sound: "I could not agree with you more.",
                 options: ["Sangat setuju sepenuhnya dengan pendapatmu", "Sama sekali tidak setuju denganmu", "Ragu-ragu mengambil keputusan", "Tidak mau mendengarkan argumen"],
                 correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengar Audio]",
+                sound: "What do you usually do in your spare time?",
+                options: ["Aktivitas di waktu luang / hobi", "Berapa jam kamu bekerja", "Kapan kamu akan pensiun", "Berapa harga jam tanganmu"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengar Audio]",
+                sound: "Please make yourself at home.",
+                options: ["Anggaplah seperti di rumah sendiri", "Segeralah pulang ke rumahmu", "Bereskan perabotan rumah ini", "Kunci pintu depan"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengar Audio]",
+                sound: "I look forward to hearing from you soon.",
+                options: ["Sangat menantikan kabar balasanmu", "Melihat ke arah jendela depan", "Mendengar suara gaduh", "Menolak pesan darimu"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengar Audio]",
+                sound: "Never mind, it is completely fine.",
+                options: ["Lupakan saja, semuanya baik-baik saja", "Pikiranmu sangat tajam", "Jangan lupa besok datang", "Semua orang merasa panik"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengar Audio]",
+                sound: "Could you please repeat that more slowly?",
+                options: ["Minta diulangi dengan lebih pelan", "Minta agar tidak berbicara lagi", "Minta berjalan lebih cepat", "Minta menambah volume musik"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengar Audio]",
+                sound: "Let us keep in touch.",
+                options: ["Mari kita tetap saling berkabar", "Jangan sentuh barang itu", "Ayo berjalan kaki bersama", "Sampai jumpa di pesta"],
+                correct: 0
               }
+            ]
+          },
+          {
+            id: 'en_u3',
+            title: 'Native Idioms & Metaphors',
+            meta: 'Ungkapan Kiasan (10 Soal Acak)',
+            questions: [
+              { target: 'Piece of cake', sound: 'Piece of cake', options: ['Kue manis', 'Sangat mudah diselesaikan', 'Tugas sulit', 'Waktu istirahat'], correct: 1 },
+              { target: 'Break a leg!', sound: 'Break a leg', options: ['Hati-hati jatuh', 'Semoga sukses / Good luck!', 'Berhenti berlari', 'Jangan bergerak'], correct: 1 },
+              { target: 'Under the weather', sound: 'Under the weather', options: ['Kedinginan di gunung', 'Kurang enak badan / Sakit', 'Menikmati hujan', 'Sangat bahagia'], correct: 1 },
+              { target: 'Hit the books', sound: 'Hit the books', options: ['Membeli buku baru', 'Membuang lemari', 'Mulai belajar giat', 'Membaca komik'], correct: 2 },
+              { target: 'Cost an arm and a leg', sound: 'Cost an arm and a leg', options: ['Sangat mahal harganya', 'Harganya murah meriah', 'Dilarang dibeli', 'Sangat berat'], correct: 0 },
+              { target: 'Once in a blue moon', sound: 'Once in a blue moon', options: ['Tiap bulan purnama', 'Sangat jarang sekali terjadi', 'Pasti tiap malam', 'Selalu berulang'], correct: 1 },
+              { target: 'Spill the beans', sound: 'Spill the beans', options: ['Menumpahkan sup', 'Membocorkan rahasia', 'Memasak kacang', 'Mengajak berkelahi'], correct: 1 },
+              { target: 'See eye to eye', sound: 'See eye to eye', options: ['Saling memelototi', 'Saling sepakat dan sepaham', 'Saling bermusuhan', 'Tidak mau bertemu'], correct: 1 },
+              { target: 'Burn the midnight oil', sound: 'Burn the midnight oil', options: ['Menyalakan lilin', 'Bekerja/belajar hingga larut malam', 'Membuang minyak', 'Menonton film'], correct: 1 },
+              { target: 'Bite the bullet', sound: 'Bite the bullet', options: ['Menghadapi kenyataan sulit dengan tabah', 'Makan tergesa-gesa', 'Menolak tanggung jawab', 'Membeli senjata'], correct: 0 }
             ]
           }
         ]
       }
     };
 
-    // SYSTEM PROGRESSION (Penyimpanan Status Lulus & Gembok di LocalStorage)
-    function getPassedModules() {
-      try {
-        return JSON.parse(localStorage.getItem('linguasphere_passed') || '[]');
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function savePassedModule(modId) {
-      const passed = getPassedModules();
-      if (!passed.includes(modId)) {
-        passed.push(modId);
-        localStorage.setItem('linguasphere_passed', JSON.stringify(passed));
-      }
-    }
-
-    // STATE CONTROLLER
     let currentThemeKey = 'jp';
     let activeModule = null;
     let randomizedQuestions = [];
@@ -973,66 +943,27 @@
       const activeBtn = document.getElementById(`tab-${key}`);
       if (activeBtn) activeBtn.classList.add('active');
 
-      renderSublevelHub();
+      renderModuleHub();
       backToHub();
     }
 
-    // RENDER PERSIS GAMBAR
-    function renderSublevelHub() {
+    function renderModuleHub() {
       const data = courseDatabases[currentThemeKey];
       if (!data) return;
 
       document.getElementById('hub-title').innerText = data.title;
       document.getElementById('hub-subtitle').innerText = data.desc;
 
-      const passedList = getPassedModules();
       const container = document.getElementById('moduleCardsContainer');
-
-      container.innerHTML = data.modules.map((mod, idx) => {
-        const isPassed = passedList.includes(mod.id);
-        // Sublevel pertama selalu terbuka, sublevel berikutnya terbuka jika sublevel sebelumnya sudah lulus
-        const isUnlocked = idx === 0 || passedList.includes(data.modules[idx - 1].id);
-
-        if (!isUnlocked) {
-          // KARTU TERKUNCI PERSIS GAMBAR
-          const prevTitle = data.modules[idx - 1].tag;
-          return `
-            <div class="sublevel-card locked">
-              <div>
-                <div class="sublevel-header">
-                  <span class="sublevel-tag" style="color: #94a3b8;">${mod.tag}</span>
-                  <span class="sublevel-badge-lock"><i class="bi bi-lock-fill"></i> Lock</span>
-                </div>
-                <h4 style="color: #64748b;">${mod.title}</h4>
-                <p>${mod.desc}</p>
-              </div>
-              <div class="locked-notice">${prevTitle} Harus Lulus</div>
-            </div>
-          `;
-        } else {
-          // KARTU TERBUKA / SELESAI PERSIS GAMBAR
-          const badgeHtml = isPassed
-            ? `<span class="sublevel-badge-done">100% ✓</span>`
-            : ``;
-          const btnLabel = isPassed ? 'Ulangi &rarr;' : 'Mulai &rarr;';
-
-          return `
-            <div class="sublevel-card" onclick="startModuleSession('${mod.id}')">
-              <div>
-                <div class="sublevel-header">
-                  <span class="sublevel-tag">${mod.tag}</span>
-                  ${badgeHtml}
-                </div>
-                <h4>${mod.title}</h4>
-                <p>${mod.desc}</p>
-              </div>
-              <button class="btn-sublevel-action" onclick="startModuleSession('${mod.id}')">
-                ${btnLabel}
-              </button>
-            </div>
-          `;
-        }
-      }).join('');
+      container.innerHTML = data.modules.map(mod => `
+        <div class="unit-card" onclick="startModuleSession('${mod.id}')">
+          <div>
+            <h4>${mod.title}</h4>
+            <span class="unit-meta">${mod.meta}</span>
+          </div>
+          <div class="btn-unit-open">Mulai Latihan &rarr;</div>
+        </div>
+      `).join('');
     }
 
     function startModuleSession(modId) {
@@ -1040,12 +971,11 @@
       activeModule = pack.modules.find(m => m.id === modId);
       if (!activeModule) return;
 
-      // ACAK SELURUH SOAL DINAMIS
       randomizedQuestions = shuffleArray(activeModule.questions);
       currentQIndex = 0;
       sessionScore = 0;
 
-      document.getElementById('soalCategoryTag').innerText = activeModule.tag + ' — ' + activeModule.desc;
+      document.getElementById('soalCategoryTag').innerText = activeModule.title;
       renderCurrentCard();
       showView('panel-quiz');
     }
@@ -1054,12 +984,10 @@
       const q = randomizedQuestions[currentQIndex];
       const total = randomizedQuestions.length;
 
-      document.getElementById('soalContextText').innerText = `Soal ${currentQIndex + 1} dari ${total}`;
-      
       const passageBox = document.getElementById('readingPassageBox');
       if (q.passage) {
         passageBox.style.display = 'block';
-        passageBox.innerHTML = `<strong>${q.passageDesc || 'Teks Cerita:'}</strong><br>${q.passage}`;
+        passageBox.innerText = q.passage;
       } else {
         passageBox.style.display = 'none';
       }
@@ -1072,12 +1000,9 @@
         mainTargetEl.classList.remove('audio-hidden');
       }
 
-      document.getElementById('soalClueText').innerText = q.clue;
-
       const fillPercent = ((currentQIndex + 1) / total) * 100;
       document.getElementById('soalProgressBar').style.width = `${fillPercent}%`;
 
-      // ACAK OPSI JAWABAN
       const optionsWithMeta = q.options.map((opt, originalIdx) => ({
         text: opt,
         isCorrect: originalIdx === q.correct
@@ -1112,7 +1037,7 @@
         } else {
           showFinishScreen();
         }
-      }, 950);
+      }, 900);
     }
 
     function showFinishScreen() {
@@ -1120,19 +1045,18 @@
       document.getElementById('finishScoreBadge').innerText = `${finalVal}%`;
 
       if (finalVal >= 70) {
-        savePassedModule(activeModule.id);
-        document.getElementById('finishTitle').innerText = '🎉 Sublevel Lulus!';
-        document.getElementById('finishDesc').innerText = 'Luar biasa! Sublevel berikutnya kini telah terbuka dan dapat kamu akses.';
+        document.getElementById('finishTitle').innerText = '🎉 Latihan Berhasil!';
+        document.getElementById('finishDesc').innerText = 'Skor kamu sangat baik pada materi ini.';
       } else {
-        document.getElementById('finishTitle').innerText = 'Sedikit Lagi!';
-        document.getElementById('finishDesc').innerText = 'Dapatkan minimal nilai 70% untuk membuka sublevel berikutnya.';
+        document.getElementById('finishTitle').innerText = 'Tetap Semangat!';
+        document.getElementById('finishDesc').innerText = 'Coba ulangi lagi untuk mempertajam pemahamanmu.';
       }
 
       showView('panel-finish');
     }
 
     function backToHub() {
-      renderSublevelHub();
+      renderModuleHub();
       showView('panel-hub');
     }
 
@@ -1155,8 +1079,7 @@
       window.speechSynthesis.speak(utterance);
     }
 
-    // Jalankan langsung
-    renderSublevelHub();
+    renderModuleHub();
     showView('panel-hub');
   </script>
 </body>
