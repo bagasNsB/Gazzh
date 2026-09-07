@@ -14,7 +14,7 @@
   <style>
     :root {
       --font-main: 'Outfit', sans-serif;
-      --glass-surface: rgba(255, 255, 255, 0.90);
+      --glass-surface: rgba(255, 255, 255, 0.92);
       --glass-border: rgba(255, 255, 255, 0.6);
       --glass-shadow: 0 16px 36px 0 rgba(15, 23, 42, 0.14);
       --theme-accent: #e11d48;
@@ -31,7 +31,7 @@
     body {
       min-height: 100vh;
       color: #0f172a;
-      transition: background 0.5s ease-in-out;
+      transition: background 0.4s ease-in-out;
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -61,11 +61,10 @@
       --theme-soft: #e0f2fe;
     }
 
-    /* Header Navigasi */
     header {
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.85);
       border-bottom: 1px solid var(--glass-border);
       position: sticky;
       top: 0;
@@ -91,6 +90,7 @@
       align-items: center;
       gap: 0.5rem;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .nav-tabs {
@@ -102,7 +102,7 @@
 
     .tab-btn {
       background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.08);
       padding: 0.5rem 1.1rem;
       border-radius: 24px;
       font-weight: 600;
@@ -112,7 +112,7 @@
       display: flex;
       align-items: center;
       gap: 0.4rem;
-      transition: all 0.25s;
+      transition: all 0.2s;
     }
 
     .tab-btn:hover {
@@ -134,7 +134,6 @@
       width: 100%;
     }
 
-    /* Kotak Kaca Glassmorphism */
     .glass-box {
       background: var(--glass-surface);
       backdrop-filter: blur(16px);
@@ -144,15 +143,8 @@
       padding: 2.2rem;
       box-shadow: var(--glass-shadow);
       margin-bottom: 2rem;
-      animation: fadeIn 0.3s ease-in-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Grid Kartu Materi */
     .level-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -222,7 +214,7 @@
       border-color: var(--theme-accent);
     }
 
-    /* Layar Soal */
+    /* Tampilan Panel */
     .view-panel {
       display: none;
     }
@@ -360,7 +352,6 @@
       color: #b91c1c !important;
     }
 
-    /* Layar Selesai */
     .finish-box {
       text-align: center;
       padding: 2.5rem 1rem;
@@ -415,9 +406,9 @@
 
   <header>
     <div class="navbar">
-      <a href="javascript:void(0)" onclick="backToHub()" class="brand-logo">
+      <div onclick="backToHub()" class="brand-logo">
         <i class="bi bi-compass-fill"></i> LinguaSphere
-      </a>
+      </div>
       <ul class="nav-tabs">
         <li><button class="tab-btn active" id="tab-jp" onclick="switchTheme('jp')">🌸 日本語 (Jepang)</button></li>
         <li><button class="tab-btn" id="tab-jv" onclick="switchTheme('jv')">🏛️ Jawa & Nusantara</button></li>
@@ -427,21 +418,21 @@
   </header>
 
   <main>
-    <!-- ================= 1. DASHBOARD PILIH MODUL ================= -->
+    <!-- 1. DASHBOARD MODUL -->
     <section id="panel-hub" class="view-panel active">
       <div class="glass-box">
         <h2 id="hub-title" style="font-size: 1.6rem; margin-bottom: 0.3rem;">Belajar Bahasa Jepang (日本語)</h2>
         <p id="hub-subtitle" style="color: #475569; font-size: 0.95rem;">
-          Pilih salah satu dari 5 materi di bawah ini untuk memulai latihan interaktif.
+          Pilih modul di bawah ini untuk memulai latihan interaktif.
         </p>
 
         <div class="level-grid" id="moduleCardsContainer">
-          <!-- Rendered via JS -->
+          <!-- JS Rendered -->
         </div>
       </div>
     </section>
 
-    <!-- ================= 2. ARENA SOAL INTERAKTIF ================= -->
+    <!-- 2. ARENA SOAL -->
     <section id="panel-quiz" class="view-panel">
       <div class="glass-box">
         <div class="quiz-navbar">
@@ -463,18 +454,18 @@
         </div>
 
         <div class="options-layout" id="soalOptionsGrid">
-          <!-- 4 Opsi Jawaban -->
+          <!-- 4 Pilihan Jawaban -->
         </div>
       </div>
     </section>
 
-    <!-- ================= 3. LAYAR HASIL AKHIR ================= -->
+    <!-- 3. HASIL AKHIR -->
     <section id="panel-finish" class="view-panel">
       <div class="glass-box finish-box">
         <div class="score-badge" id="finishScoreBadge">100</div>
         <h3 id="finishTitle" style="font-size: 1.6rem; margin-bottom: 0.4rem;">Luar Biasa!</h3>
         <p id="finishDesc" style="color: #64748b; margin-bottom: 1rem;">Kamu telah menyelesaikan modul ini.</p>
-        <button class="btn-return-hub" id="btnBackFinish" onclick="backToHub()">
+        <button class="btn-return-hub" onclick="backToHub()">
           Kembali ke Modul
         </button>
       </div>
@@ -482,9 +473,8 @@
   </main>
 
   <script>
-    // ================= BANK MATERI & SOAL (MINIMAL 5 MODUL PER BAHASA, 10 SOAL PER MODUL) =================
     const courseDatabases = {
-      // =========================== 1. JEPANG (5 MODUL) ===========================
+      // 1. JEPANG (5 MODUL)
       jp: {
         title: 'Belajar Bahasa Jepang (日本語)',
         desc: 'Kuasai aksara fonetik, etika berkomunikasi, perlengkapan harian, hingga hitungan waktu di Tokyo.',
@@ -515,7 +505,7 @@
             questions: [
               { target: 'ア', context: 'Katakana Vokal', clue: 'Huruf vokal pembuka Katakana dibaca:', sound: 'ア', options: ['A', 'I', 'U', 'E'], correct: 0 },
               { target: 'カ', context: 'Katakana Konsonan', clue: 'Bentuk tegas tanpa titik ini berbunyi:', sound: 'カ', options: ['Ku', 'Ka', 'Ta', 'Ro'], correct: 1 },
-              { target: 'コーヒー', context: 'Kata Serapan', clue: 'Kata "Koohii" (Katakana) dalam bahasa Indonesia berarti:', sound: 'コーヒー', options: ['Teh manis', 'Kopi', 'Air mineral', 'Kue'], correct: 1 },
+              { target: 'コーヒー', context: 'Kata Serapan', clue: 'Kata "Koohii" dalam bahasa Indonesia berarti:', sound: 'コーヒー', options: ['Teh manis', 'Kopi', 'Air mineral', 'Kue'], correct: 1 },
               { target: 'ホテル', context: 'Fasilitas', clue: 'Kata "Hoteru" mengacu pada tempat:', sound: 'ホテル', options: ['Hotel', 'Rumah sakit', 'Bandara', 'Restoran'], correct: 0 },
               { target: 'タクシー', context: 'Transportasi', clue: 'Alat transportasi "Takushii" adalah:', sound: 'タクシー', options: ['Kereta listrik', 'Taksi', 'Bus kota', 'Pesawat'], correct: 1 },
               { target: 'テレビ', context: 'Elektronik', clue: 'Kata "Terebi" merupakan singkatan dari:', sound: 'テレビ', options: ['Telepon', 'Televisi', 'Radio', 'Komputer'], correct: 1 },
@@ -551,7 +541,7 @@
             questions: [
               { target: '本 (ほん)', context: 'Alat Belajar', clue: 'Kata "Hon" berarti:', sound: 'ほん', options: ['Buku', 'Buku tulis', 'Kamus', 'Pena'], correct: 0 },
               { target: '鞄 (かばん)', context: 'Barang Bawaan', clue: 'Kata "Kaban" artinya adalah:', sound: 'かばん', options: ['Tas bawaan', 'Dompet', 'Sepatu', 'Baju'], correct: 0 },
-              { target: '時計 (とけい)', context: 'Penunjuk Waktu', clue: 'Kata "Tokei" merujuk pada benda:', sound: 'とけい', options: ['Jam tangan / dinding', 'Kacamata', 'Cincin', 'Kunci'], correct: 0 },
+              { target: '時計 (とけい)', context: 'Penunjuk Waktu', clue: 'Kata "Tokei" merujuk pada benda:', sound: 'とけi', options: ['Jam tangan / dinding', 'Kacamata', 'Cincin', 'Kunci'], correct: 0 },
               { target: '財布 (さいふ)', context: 'Benda Berharga', clue: 'Kata "Saifu" memiliki arti:', sound: 'さいふ', options: ['Dompet uang', 'Koper', 'Amplop', 'Kotak pensil'], correct: 0 },
               { target: '傘 (かさ)', context: 'Pelindung Hujan', clue: 'Benda pelindung "Kasa" adalah:', sound: 'かさ', options: ['Payung', 'Topi', 'Jas hujan', 'Syal'], correct: 0 },
               { target: '鍵 (かぎ)', context: 'Keamanan Pintu', clue: 'Benda logam kecil "Kagi" berarti:', sound: 'かぎ', options: ['Kunci', 'Gunting', 'Paku', 'Pisau'], correct: 0 },
@@ -582,7 +572,7 @@
         ]
       },
 
-      // =========================== 2. JAWA & NUSANTARA (5 MODUL) ===========================
+      // 2. JAWA & NUSANTARA (5 MODUL)
       jv: {
         title: 'Aksara & Sastra Jawa Nusantara',
         desc: 'Pelajari carakan 20 aksara, hukum sandhangan, paugeran tembang macapat, hingga ragam dialek Nusantara.',
@@ -619,7 +609,7 @@
               { target: 'ꦂ (Layar)', context: 'Sandhangan Panyigeg', clue: 'Tanda garis miring di atas aksara mematikan konsonan:', sound: 'Layar', options: ['Mati -R', 'Mati -H', 'Mati -NG', 'Mati vokal total'], correct: 0 },
               { target: 'ꦃ (Wignyan)', context: 'Sandhangan Panyigeg', clue: 'Tanda Wignyan di belakang aksara mematikan konsonan:', sound: 'Wignyan', options: ['Mati -H', 'Mati -R', 'Mati -K', 'Mati -NG'], correct: 0 },
               { target: 'ꦁ (Cecak)', context: 'Sandhangan Panyigeg', clue: 'Tanda Cecak bulat kecil di atas mematikan konsonan:', sound: 'Cecak', options: ['Mati -NG', 'Mati -R', 'Mati -S', 'Mati -N'], correct: 0 },
-              { target: '꧀ (Pangkon)', context: 'Sandhangan Panyigeg', clue: 'Pangkon berfungsi pada akhir kalimat untuk:', sound: 'Pangkon', options: ['Mematikan huruf konsonan', 'Membuat huruf kapital', 'Tanda seru', 'Tanda tanya'], correct: 0 },
+              { target: 'Pangkon', context: 'Sandhangan Panyigeg', clue: 'Pangkon berfungsi pada akhir kalimat untuk:', sound: 'Pangkon', options: ['Mematikan huruf konsonan', 'Membuat huruf kapital', 'Tanda seru', 'Tanda tanya'], correct: 0 },
               { target: 'ꦱꦶꦱꦶ', context: 'Latihan Membaca', clue: 'Dua aksara Sa berwulu ini dibaca:', sound: 'Sisi', options: ['Sisi', 'Susu', 'Sasa', 'Sose'], correct: 0 }
             ]
           },
@@ -680,7 +670,7 @@
         ]
       },
 
-      // =========================== 3. BAHASA INGGRIS (5 MODUL) ===========================
+      // 3. BAHASA INGGRIS (5 MODUL)
       en: {
         title: 'English Language Studio',
         desc: 'Asah kepekaan frasa natural, kosakata fungsional, idiom penutur asli, dan etika kerja global.',
@@ -754,7 +744,7 @@
               { target: 'Turn down', context: 'Polite Refusal', clue: 'Kata "turn down an offer" bermakna:', sound: 'Turn down', options: ['Menolak tawaran secara santun', 'Menerima pekerjaan', 'Mengecilkan volume', 'Mengubah arah'], correct: 0 },
               { target: 'Hold on', context: 'Phone Etiquette', clue: 'Ucapan "Please hold on a second" di telepon berarti:', sound: 'Hold on', options: ['Mohon tunggu sebentar', 'Pegang gagang teleponnya', 'Tutup panggilannya', 'Tolong bicara keras'], correct: 0 },
               { target: 'Give up', context: 'Perseverance', clue: 'Frasa penting "Never give up" menyemangati untuk:', sound: 'Give up', options: ['Jangan pernah menyerah', 'Berikan semua barangmu', 'Istirahatlah selamanya', 'Lupakan impianmu'], correct: 0 },
-              { target: 'Show up', context: 'Attendance', clue: 'Frasa "He didn't show up" berarti seseorang:', sound: 'Show up', options: ['Tidak hadir / tidak datang', 'Tidak memamerkan pakaian', 'Hadir paling depan', 'Membawa pertunjukan'], correct: 0 }
+              { target: 'Show up', context: 'Attendance', clue: 'Frasa "He did not show up" berarti seseorang:', sound: 'Show up', options: ['Tidak hadir / tidak datang', 'Tidak memamerkan pakaian', 'Hadir paling depan', 'Membawa pertunjukan'], correct: 0 }
             ]
           },
           {
@@ -779,28 +769,23 @@
       }
     };
 
-    // ================= PENGELOLA TAMPILAN & STATE =================
     let currentThemeKey = 'jp';
     let activeModule = null;
     let currentQIndex = 0;
     let sessionScore = 0;
 
-    // FUNGSI GANTI VIEW UTAMA (Mengatasi bug tombol macet)
     function showView(viewId) {
       document.querySelectorAll('.view-panel').forEach(panel => {
         panel.classList.remove('active');
-        panel.style.display = 'none';
       });
 
       const target = document.getElementById(viewId);
       if (target) {
         target.classList.add('active');
-        target.style.display = 'block';
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // GANTI TEMA BAHASA
     function switchTheme(key) {
       currentThemeKey = key;
       document.body.className = `theme-${key}`;
@@ -813,9 +798,10 @@
       backToHub();
     }
 
-    // RENDER MENU MODUL
     function renderModuleHub() {
       const data = courseDatabases[currentThemeKey];
+      if (!data) return;
+
       document.getElementById('hub-title').innerText = data.title;
       document.getElementById('hub-subtitle').innerText = data.desc;
 
@@ -832,7 +818,6 @@
       `).join('');
     }
 
-    // MULAI KUIS
     function startModuleSession(modId) {
       const pack = courseDatabases[currentThemeKey];
       activeModule = pack.modules.find(m => m.id === modId);
@@ -846,7 +831,6 @@
       showView('panel-quiz');
     }
 
-    // RENDER KARTU SOAL
     function renderCurrentCard() {
       const q = activeModule.questions[currentQIndex];
       const total = activeModule.questions.length;
@@ -864,7 +848,6 @@
       `).join('');
     }
 
-    // CEK JAWABAN
     function submitChoice(pickedIdx) {
       const q = activeModule.questions[currentQIndex];
       const buttons = document.querySelectorAll('.choice-card');
@@ -889,7 +872,6 @@
       }, 950);
     }
 
-    // LAYAR HASIL AKHIR
     function showFinishScreen() {
       const finalVal = Math.min(100, sessionScore);
       document.getElementById('finishScoreBadge').innerText = finalVal;
@@ -905,12 +887,10 @@
       showView('panel-finish');
     }
 
-    // KEMBALI KE MODUL (DIPERBAIKI SECARA GLOBAL)
     function backToHub() {
       showView('panel-hub');
     }
 
-    // AUDIO PERAMBAN (RATE 0.75x)
     function playAudioCurrent() {
       if (!activeModule) return;
       const q = activeModule.questions[currentQIndex];
@@ -930,11 +910,9 @@
       window.speechSynthesis.speak(utterance);
     }
 
-    // Inisialisasi awal saat pertama kali web dibuka
-    window.onload = function() {
-      renderModuleHub();
-      showView('panel-hub');
-    };
+    // Jalankan langsung tanpa menunggu aset gambar
+    renderModuleHub();
+    showView('panel-hub');
   </script>
 </body>
 </html>
