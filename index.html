@@ -2,10 +2,401 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Website Pertamaku</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil & Portofolio</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-sky: #eaf4fc;
+      --bg-card: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-hover: #0369a1;
+      --text-black: #0f172a;
+      --text-muted: #475569;
+      --silver-border: #cbd5e1;
+      --silver-gradient: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-sky);
+      color: var(--text-black);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    header {
+      background: #ffffff;
+      border-bottom: 2px solid var(--silver-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-black);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* Container Utama */
+    main {
+      max-width: 1050px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    /* Hero Section */
+    .hero-card {
+      background: var(--bg-card);
+      border: 1px solid var(--silver-border);
+      border-radius: 16px;
+      padding: 3rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 2rem;
+      align-items: center;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--silver-gradient);
+      border: 1px solid var(--silver-border);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      line-height: 1.25;
+      font-weight: 800;
+      color: var(--text-black);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: var(--accent-blue);
+    }
+
+    .hero-text p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #ffffff;
+      padding: 0.75rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-black);
+      border: 1px solid var(--silver-border);
+      padding: 0.75rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    .hero-avatar-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+      background-color: #cbd5e1;
+    }
+
+    /* Grid Bagian Bawah */
+    .grid-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--silver-border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.8rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .skill-tag {
+      font-size: 0.75rem;
+      background: #e0f2fe;
+      color: var(--accent-blue);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    /* Project Cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      border: 1px solid var(--silver-border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      background: #f8fafc;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-blue);
+    }
+
+    .project-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-black);
+    }
+
+    .project-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--text-black);
+      color: #94a3b8;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+      border-top: 3px solid var(--silver-border);
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Responsive untuk Layar HP */
+    @media (max-width: 768px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+      .grid-section {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none; /* Sederhana untuk mobile */
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Halo, ini website pertamaku!</h1>
-  <p>Website ini di-hosting pakai GitHub Pages.</p>
+
+  <!-- Navigasi -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="brand">PORTFOLIO.</a>
+      <ul class="nav-links">
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#skills">Keahlian</a></li>
+        <li><a href="#projects">Proyek</a></li>
+        <li><a href="mailto:emailmu@example.com">Kontak</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Konten Utama -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-card" id="about">
+      <div class="hero-text">
+        <span class="hero-badge">Selamat Datang</span>
+        <h1>Halo, Saya <span>Nama Kamu</span></h1>
+        <p>Saya seorang pengembang web dan antusias teknologi. Terbiasa membangun sistem, mengonfigurasi jaringan, serta membuat tampilan web yang modern dan responsif.</p>
+        <div class="btn-group">
+          <a href="#projects" class="btn-primary">Lihat Proyek</a>
+          <a href="mailto:emailmu@example.com" class="btn-secondary">Hubungi Saya</a>
+        </div>
+      </div>
+      <div class="hero-avatar-wrap">
+        <!-- Ganti URL gambar di bawah dengan fotomu -->
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="Foto Profil" class="hero-avatar">
+      </div>
+    </section>
+
+    <!-- Grid Skill & Project -->
+    <section class="grid-section">
+      <!-- Panel Kiri: Skillset -->
+      <div class="panel" id="skills">
+        <h3 class="panel-title">Keahlian Utama</h3>
+        <ul class="skill-list">
+          <li class="skill-item">
+            <span>HTML & CSS Modern</span>
+            <span class="skill-tag">Dasar</span>
+          </li>
+          <li class="skill-item">
+            <span>Jaringan & Server</span>
+            <span class="skill-tag">Infrastruktur</span>
+          </li>
+          <li class="skill-item">
+            <span>Linux & Git</span>
+            <span class="skill-tag">Tools</span>
+          </li>
+          <li class="skill-item">
+            <span>Domain & DNS Management</span>
+            <span class="skill-tag">Web Setup</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Panel Kanan: Proyek -->
+      <div class="panel" id="projects">
+        <h3 class="panel-title">Proyek Unggulan</h3>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h4>Website Statis</h4>
+            <p>Deploy website landing page yang ringan menggunakan GitHub Pages dan domain kustom.</p>
+            <a href="#" class="project-link">Lihat Detail &rarr;</a>
+          </div>
+          <div class="project-card">
+            <h4>Konfigurasi Jaringan</h4>
+            <p>Simulasi topologi jaringan, integrasi DNS, dan manajemen routing IP.</p>
+            <a href="#" class="project-link">Lihat Detail &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Hak Cipta Terpelihara. Dibuat dengan GitHub Pages.</p>
+  </footer>
+
 </body>
 </html>
