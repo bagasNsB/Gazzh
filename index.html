@@ -3,27 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinguaNusantara - Belajar Bahasa, Aksara & Ujian Interaktif</title>
+  <title>LinguaNusantara - Belajar Interaktif</title>
   
-  <!-- Font Modern Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
     :root {
-      --bg-sky: #f0f7fd;
-      --bg-card: #ffffff;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
       --accent-blue: #0284c7;
-      --accent-hover: #0369a1;
-      --accent-light: #e0f2fe;
+      --accent-pink: #ec4899;
+      --pink-soft: #fdf2f8;
       --text-dark: #0f172a;
       --text-muted: #64748b;
-      --silver-border: #cbd5e1;
-      --silver-soft: #f1f5f9;
-      --silver-gradient: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+      --silver-border: #e2e8f0;
       --success-green: #10b981;
       --danger-red: #ef4444;
     }
@@ -36,15 +32,14 @@
     }
 
     body {
-      background-color: var(--bg-sky);
+      background-color: var(--bg-main);
       color: var(--text-dark);
-      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    /* Navbar */
+    /* Header Navigasi */
     header {
       background: #ffffff;
       border-bottom: 2px solid var(--silver-border);
@@ -54,7 +49,7 @@
     }
 
     .navbar {
-      max-width: 1100px;
+      max-width: 1050px;
       margin: 0 auto;
       padding: 1rem 1.5rem;
       display: flex;
@@ -63,7 +58,7 @@
     }
 
     .brand {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--text-dark);
       text-decoration: none;
@@ -72,21 +67,16 @@
       gap: 0.5rem;
     }
 
-    .brand i {
-      color: var(--accent-blue);
-    }
-
     .nav-tabs {
       display: flex;
       gap: 0.4rem;
       list-style: none;
-      flex-wrap: wrap;
     }
 
     .tab-btn {
       background: transparent;
       border: 1px solid transparent;
-      padding: 0.5rem 0.9rem;
+      padding: 0.5rem 1rem;
       border-radius: 8px;
       font-weight: 600;
       font-size: 0.88rem;
@@ -96,1076 +86,706 @@
     }
 
     .tab-btn:hover {
+      background: #f1f5f9;
       color: var(--accent-blue);
-      background-color: var(--accent-light);
     }
 
     .tab-btn.active {
-      background-color: var(--accent-blue);
+      background: var(--accent-blue);
       color: #ffffff;
     }
 
-    /* Container Utama */
     main {
-      max-width: 1100px;
+      max-width: 900px;
       margin: 2rem auto;
       padding: 0 1.5rem;
       flex: 1;
       width: 100%;
     }
 
-    .hero-banner {
-      background: #ffffff;
-      border: 1px solid var(--silver-border);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
-    }
-
-    .hero-banner h1 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-banner p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      max-width: 750px;
-      margin: 0 auto;
-    }
-
-    /* Tab Switcher Content */
-    .content-section {
+    /* Section Control */
+    .module-section {
       display: none;
-      animation: fadeIn 0.3s ease-in-out;
     }
 
-    .content-section.active {
+    .module-section.active {
       display: block;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Sub Navigation */
-    .subnav {
-      display: flex;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .sub-btn {
-      background: #ffffff;
-      border: 1px solid var(--silver-border);
-      padding: 0.45rem 0.9rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .sub-btn.active, .sub-btn:hover {
-      border-color: var(--accent-blue);
-      background: var(--accent-light);
-      color: var(--accent-blue);
-    }
-
-    .quiz-trigger-btn {
-      background: var(--text-dark);
-      color: #ffffff;
-      border: none;
-      padding: 0.45rem 1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .quiz-trigger-btn:hover {
-      background: var(--accent-blue);
-    }
-
-    /* Grid & Kartu Materi */
-    .grid-cards {
+    /* Sublevel Selector Grid */
+    .sublevel-menu {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.2rem;
+      margin-top: 1.5rem;
     }
 
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--silver-border);
-      border-radius: 12px;
-      padding: 1.2rem;
-      position: relative;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent-blue);
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.6rem;
-    }
-
-    .char-main {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1.2;
-    }
-
-    .char-romaji {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--accent-blue);
-    }
-
-    .char-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .sound-btn {
-      background: var(--accent-light);
-      color: var(--accent-blue);
-      border: none;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: all 0.2s;
-    }
-
-    .sound-btn:hover {
-      background: var(--accent-blue);
-      color: #ffffff;
-      transform: scale(1.05);
-    }
-
-    /* Macapat Card */
-    .macapat-card {
+    .sublevel-card {
       background: #ffffff;
       border: 1px solid var(--silver-border);
       border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
+      padding: 1.3rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .macapat-card h3 {
-      font-size: 1.2rem;
-      color: var(--text-dark);
+    .sublevel-card:hover {
+      border-color: var(--accent-pink);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px -5px rgba(236, 72, 153, 0.1);
+    }
+
+    .sublevel-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 0.3rem;
+    }
+
+    .sublevel-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+
+    .sublevel-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .btn-start-quiz {
+      background: var(--pink-soft);
+      color: var(--accent-pink);
+      border: none;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+
+    /* ================= TAMPILAN KUIS PROGRESSIVE ================= */
+    #quiz-screen {
+      display: none;
+      background: #ffffff;
+      border: 1px solid var(--silver-border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 25px rgba(15, 23, 42, 0.05);
+    }
+
+    .quiz-top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      margin-bottom: 0.2rem;
     }
 
-    .paugeran-badge {
-      background: var(--silver-gradient);
-      border: 1px solid var(--silver-border);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
+    .quiz-sublevel-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--accent-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .macapat-text {
-      background: var(--bg-sky);
-      padding: 1rem 1.2rem;
-      border-radius: 8px;
-      margin: 0.8rem 0;
-      font-style: italic;
+    .btn-cancel-quiz {
+      background: transparent;
+      border: none;
+      color: #64748b;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-cancel-quiz:hover {
+      color: var(--danger-red);
+    }
+
+    .quiz-main-heading {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
       color: var(--text-dark);
-      line-height: 1.8;
-      border-left: 4px solid var(--accent-blue);
     }
 
-    .macapat-meaning {
-      font-size: 0.88rem;
+    .quiz-status-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      font-weight: 600;
       color: var(--text-muted);
       margin-bottom: 0.8rem;
     }
 
-    /* Area Kuis Interaktif */
-    .quiz-container {
-      background: #ffffff;
-      border: 2px solid var(--silver-border);
+    .quiz-status-score {
+      color: var(--accent-pink);
+      font-weight: 800;
+    }
+
+    /* Progress Bar Pink */
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: #f1f5f9;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 10%;
+      background: var(--accent-pink);
+      border-radius: 20px;
+      transition: width 0.3s ease;
+    }
+
+    /* Card Karakter Utama */
+    .quiz-card-display {
+      border: 1px solid #e0e7ff;
+      background: #f8fafc;
       border-radius: 16px;
-      padding: 2rem;
-      margin-top: 2rem;
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+      padding: 3rem 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
     }
 
-    .quiz-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--silver-border);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .quiz-question-box {
-      margin-bottom: 1.5rem;
-    }
-
-    .quiz-q-title {
-      font-size: 1.05rem;
+    .quiz-card-badge {
+      font-size: 0.82rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--text-dark);
+      letter-spacing: 1px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
     }
 
-    .quiz-options {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
+    .quiz-main-char {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #1e293b;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
     }
 
-    .option-btn {
-      background: var(--silver-soft);
-      border: 1px solid var(--silver-border);
-      padding: 0.8rem 1rem;
-      border-radius: 10px;
-      text-align: left;
+    .btn-voice {
+      background: #fce7f3;
+      color: #db2777;
+      border: none;
+      padding: 0.55rem 1.4rem;
+      border-radius: 30px;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       transition: all 0.2s;
     }
 
-    .option-btn:hover {
-      background: var(--accent-light);
-      border-color: var(--accent-blue);
+    .btn-voice:hover {
+      background: #fbcfe8;
+      transform: scale(1.03);
     }
 
-    .option-btn.correct {
+    /* Grid Pilihan Jawaban */
+    .quiz-answers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .ans-btn {
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      padding: 1.2rem;
+      border-radius: 12px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1e293b;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .ans-btn:hover:not(:disabled) {
+      border-color: #94a3b8;
+      background: #f8fafc;
+      transform: translateY(-2px);
+    }
+
+    .ans-btn.correct {
       background: #dcfce7 !important;
       border-color: var(--success-green) !important;
       color: #166534 !important;
     }
 
-    .option-btn.wrong {
+    .ans-btn.wrong {
       background: #fee2e2 !important;
       border-color: var(--danger-red) !important;
       color: #991b1b !important;
     }
 
-    .feedback-box {
-      margin-top: 1rem;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
+    /* Hasil Akhir */
+    #quiz-result-screen {
       display: none;
-    }
-
-    /* Kotak Saran & Masukan */
-    .feedback-section {
-      background: #ffffff;
-      border: 1px solid var(--silver-border);
-      border-radius: 16px;
-      padding: 2rem;
-      margin-top: 3rem;
-      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--silver-border);
-      border-radius: 8px;
-      font-size: 0.9rem;
-      background: #fafafa;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--accent-blue);
-      background: #ffffff;
-    }
-
-    .btn-submit {
-      background: var(--accent-blue);
-      color: #ffffff;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-submit:hover {
-      background: var(--accent-hover);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--text-dark);
-      color: #94a3b8;
       text-align: center;
-      padding: 1.5rem;
-      font-size: 0.85rem;
-      border-top: 3px solid var(--silver-border);
-      margin-top: 4rem;
+      padding: 3rem 1rem;
     }
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .nav-tabs {
-        width: 100%;
-        justify-content: center;
-      }
-      .quiz-options {
+    .result-score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      color: var(--accent-pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 auto 1.5rem auto;
+      border: 4px solid #fbcfe8;
+    }
+
+    @media (max-width: 600px) {
+      .quiz-answers-grid {
         grid-template-columns: 1fr;
       }
-      .quiz-trigger-btn {
-        margin-left: 0;
-        width: 100%;
-        justify-content: center;
+      .quiz-main-char {
+        font-size: 3rem;
+      }
+      .quiz-main-heading {
+        font-size: 1.25rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Navigasi Utama -->
   <header>
     <div class="navbar">
       <a href="#" class="brand">
-        <i class="bi bi-translate"></i> LinguaNusantara
+        <i class="bi bi-mortarboard-fill text-primary"></i> LinguaNusantara
       </a>
       <ul class="nav-tabs">
-        <li><button class="tab-btn active" onclick="switchLanguage('id')">Nusantara & Daerah</button></li>
-        <li><button class="tab-btn" onclick="switchLanguage('jp')">Bahasa Jepang</button></li>
-        <li><button class="tab-btn" onclick="switchLanguage('en')">Bahasa Inggris</button></li>
-        <li><button class="tab-btn" onclick="switchLanguage('exam')"><i class="bi bi-mortarboard-fill me-1"></i> Ujian Akhir</button></li>
+        <li><button class="tab-btn active" onclick="switchCategory('jp')">Bahasa Jepang</button></li>
+        <li><button class="tab-btn" onclick="switchCategory('jv')">Aksara & Jawa</button></li>
+        <li><button class="tab-btn" onclick="switchCategory('en')">Bahasa Inggris</button></li>
       </ul>
     </div>
   </header>
 
-  <!-- Konten Utama -->
   <main>
-    <div class="hero-banner">
-      <h1 id="bannerTitle">Belajar Bahasa Nusantara & Daerah</h1>
-      <p id="bannerDesc">Pelajari ragam bahasa daerah, aksara tradisional, tembang klasik, kosakata dunia, dan uji kemampuanmu lewat evaluasi interaktif.</p>
+    <!-- ================= 1. MODUL JEPANG ================= -->
+    <section id="module-jp" class="module-section active">
+      <h2>Pilih Sublevel Belajar Jepang</h2>
+      <p class="text-muted">Mulai dari vokal dasar, baris konsonan, hingga kosakata benda dan percakapan harian.</p>
+
+      <div class="sublevel-menu">
+        <div class="sublevel-card" onclick="startLevel('jp_vocal')">
+          <div>
+            <div class="sublevel-tag">Sublevel 1 — あいうえお</div>
+            <h4>Hiragana Vokal Dasar</h4>
+            <p>Tebak huruf vokal dasar A, I, U, E, O (5 Soal Latihan).</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+
+        <div class="sublevel-card" onclick="startLevel('jp_kasa')">
+          <div>
+            <div class="sublevel-tag">Sublevel 2 — かさたな</div>
+            <h4>Hiragana Baris Ka & Sa</h4>
+            <p>Mulai membedakan huruf mirip seperti さ vs き, か, dll.</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+
+        <div class="sublevel-card" onclick="startLevel('jp_aisatsu')">
+          <div>
+            <div class="sublevel-tag">Sublevel 3 — 挨拶 (Aisatsu)</div>
+            <h4>Salam & Percakapan</h4>
+            <p>Membaca kata utuh: Ohayou, Konnichiwa, Arigatou.</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+
+        <div class="sublevel-card" onclick="startLevel('jp_mochimono')">
+          <div>
+            <div class="sublevel-tag">Sublevel 4 — 持ち物 (Tantangan)</div>
+            <h4>Kosakata Benda Bawaan</h4>
+            <p>Level tinggi: Membaca Hiragana benda (Hon, Kaban, Tokei).</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. MODUL AKSARA & JAWA ================= -->
+    <section id="module-jv" class="module-section">
+      <h2>Pilih Sublevel Aksara & Bahasa Jawa</h2>
+      <p class="text-muted">Pelajari Carakan dasar, Sandhangan Swara, hingga aturan Tembang Macapat.</p>
+
+      <div class="sublevel-menu">
+        <div class="sublevel-card" onclick="startLevel('jv_carakan1')">
+          <div>
+            <div class="sublevel-tag">Sublevel 1 — Carakan Dasar</div>
+            <h4>Ha-Na-Ca-Ra-Ka</h4>
+            <p>Tebak 5 aksara pokok baris pertama.</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+
+        <div class="sublevel-card" onclick="startLevel('jv_sandhangan')">
+          <div>
+            <div class="sublevel-tag">Sublevel 2 — Sandhangan Swara</div>
+            <h4>Wulu, Suku, Taling, Pepet</h4>
+            <p>Mengidentifikasi perubahan vokal I, U, E, O pada aksara.</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+
+        <div class="sublevel-card" onclick="startLevel('jv_tembang')">
+          <div>
+            <div class="sublevel-tag">Sublevel 3 — Macapat (Tantangan)</div>
+            <h4>Paugeran Tembang Jawa</h4>
+            <p>Menentukan guru gatra dan watak tembang Pocung & Gambuh.</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3. MODUL BAHASA INGGRIS ================= -->
+    <section id="module-en" class="module-section">
+      <h2>Pilih Sublevel Bahasa Inggris</h2>
+      <p class="text-muted">Tingkatkan kemampuan dari kosakata harian hingga idiom native speaker.</p>
+
+      <div class="sublevel-menu">
+        <div class="sublevel-card" onclick="startLevel('en_basic')">
+          <div>
+            <div class="sublevel-tag">Sublevel 1 — Basics</div>
+            <h4>Everyday Greetings</h4>
+            <p>Latihan kosakata sapaan dan respons santun.</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+
+        <div class="sublevel-card" onclick="startLevel('en_idioms')">
+          <div>
+            <div class="sublevel-tag">Sublevel 2 — Master Idioms</div>
+            <h4>Common Native Idioms</h4>
+            <p>Tebak makna idiom seperti "Break a leg", "Piece of cake".</p>
+          </div>
+          <span class="btn-start-quiz">Mulai Sublevel &rarr;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. LAYAR KUIS INTERAKTIF ================= -->
+    <section id="quiz-screen">
+      <div class="quiz-top-bar">
+        <div class="quiz-sublevel-title" id="quizSublevelTag">SUBLEVEL 1 — あいうえお</div>
+        <button class="btn-cancel-quiz" onclick="cancelQuiz()"><i class="bi bi-x-lg"></i> Batalkan</button>
+      </div>
+
+      <h3 class="quiz-main-heading" id="quizMainTitle">Hiragana Vokal Dasar</h3>
+
+      <div class="quiz-status-row">
+        <span id="quizCounter">Soal 1 dari 5</span>
+        <span>Skor: <span class="quiz-status-score" id="quizScoreText">0</span></span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="quizProgressBar"></div>
+      </div>
+
+      <!-- Kartu Soal di Tengah -->
+      <div class="quiz-card-display">
+        <div class="quiz-card-badge" id="quizCardBadge">HIRAGANA (BASIC)</div>
+        <div class="quiz-main-char" id="quizMainChar">あ</div>
+        <div>
+          <button class="btn-voice" id="btnVoiceQuiz" onclick="speakCurrentQuestion()">
+            <i class="bi bi-volume-up-fill"></i> Dengarkan Pelafalan
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Pilihan Jawaban -->
+      <div class="quiz-answers-grid" id="quizAnswersGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- Layar Hasil Akhir Kuis -->
+    <div id="quiz-result-screen" class="sublevel-card">
+      <div class="result-score-circle" id="finalScoreCircle">100</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;" id="finalResultTitle">Luar Biasa!</h3>
+      <p class="text-muted" id="finalResultDesc" style="margin-bottom: 1.5rem;">Kamu berhasil menyelesaikan sublevel ini dengan sangat baik.</p>
+      <button class="ans-btn" style="background: var(--accent-pink); color: #ffffff; border: none; max-width: 250px; margin: 0 auto;" onclick="cancelQuiz()">
+        Selesai & Kembali
+      </button>
     </div>
-
-    <!-- ================= SECTION 1: INDONESIA & DAERAH ================= -->
-    <section id="section-id" class="content-section active">
-      <div class="subnav">
-        <button class="sub-btn active" onclick="switchSubTab('id', 'aksara')">Aksara Jawa & Sandhangan</button>
-        <button class="sub-btn" onclick="switchSubTab('id', 'tembang')">Tembang Macapat</button>
-        <button class="sub-btn" onclick="switchSubTab('id', 'daerah')">Percakapan Daerah Populer</button>
-        <button class="quiz-trigger-btn" onclick="openTopicQuiz('quiz-id')">
-          <i class="bi bi-patch-question-fill"></i> Kuis Materi Daerah
-        </button>
-      </div>
-
-      <!-- 1.1 Aksara Jawa & Sandhangan -->
-      <div id="sub-id-aksara">
-        <h4 style="margin-bottom: 1rem; font-size: 1.1rem; color: var(--text-dark);">20 Aksara Carakan & Pasangan</h4>
-        <div class="grid-cards mb-4" id="aksaraGrid"></div>
-
-        <h4 style="margin: 2rem 0 1rem 0; font-size: 1.1rem; color: var(--text-dark);">Sandhangan Swara Utama (Pangowah Swara)</h4>
-        <div class="grid-cards" id="sandhanganGrid"></div>
-      </div>
-
-      <!-- 1.2 Tembang Macapat -->
-      <div id="sub-id-tembang" style="display: none;">
-        <div id="tembangList"></div>
-      </div>
-
-      <!-- 1.3 Percakapan Daerah -->
-      <div id="sub-id-daerah" style="display: none;">
-        <div class="grid-cards" id="daerahGrid"></div>
-      </div>
-
-      <!-- Kuis Materi Daerah -->
-      <div id="quiz-id" class="quiz-container" style="display: none;">
-        <div class="quiz-header">
-          <div>
-            <h3 style="font-size: 1.2rem;">Kuis Evaluasi: Bahasa Daerah & Aksara Jawa</h3>
-            <small class="text-muted">Pilih jawaban yang paling tepat</small>
-          </div>
-          <button class="sub-btn" onclick="closeTopicQuiz('quiz-id')"><i class="bi bi-x-lg"></i> Tutup</button>
-        </div>
-        <div id="quiz-id-body"></div>
-      </div>
-    </section>
-
-    <!-- ================= SECTION 2: BAHASA JEPANG ================= -->
-    <section id="section-jp" class="content-section">
-      <div class="subnav">
-        <button class="sub-btn active" onclick="switchSubTab('jp', 'hiragana')">Hiragana (ひらがな)</button>
-        <button class="sub-btn" onclick="switchSubTab('jp', 'katakana')">Katakana (カタカナ)</button>
-        <button class="sub-btn" onclick="switchSubTab('jp', 'aisatsu')">Aisatsu (Salam)</button>
-        <button class="sub-btn" onclick="switchSubTab('jp', 'jikou')">Jikoshoukai (Perkenalan Diri)</button>
-        <button class="sub-btn" onclick="switchSubTab('jp', 'mochimono')">Mochimono (Benda Bawaan)</button>
-        <button class="quiz-trigger-btn" onclick="openTopicQuiz('quiz-jp')">
-          <i class="bi bi-patch-question-fill"></i> Kuis Bahasa Jepang
-        </button>
-      </div>
-
-      <div id="jpContentGrid" class="grid-cards"></div>
-
-      <!-- Kuis Materi Jepang -->
-      <div id="quiz-jp" class="quiz-container" style="display: none;">
-        <div class="quiz-header">
-          <div>
-            <h3 style="font-size: 1.2rem;">Kuis Evaluasi: Bahasa Jepang Dasar</h3>
-            <small class="text-muted">Uji penguasaan huruf dan kosakata tema Jepang</small>
-          </div>
-          <button class="sub-btn" onclick="closeTopicQuiz('quiz-jp')"><i class="bi bi-x-lg"></i> Tutup</button>
-        </div>
-        <div id="quiz-jp-body"></div>
-      </div>
-    </section>
-
-    <!-- ================= SECTION 3: BAHASA INGGRIS ================= -->
-    <section id="section-en" class="content-section">
-      <div class="subnav">
-        <button class="sub-btn active" onclick="switchSubTab('en', 'daily')">Daily Greetings</button>
-        <button class="sub-btn" onclick="switchSubTab('en', 'conversation')">Useful Expressions</button>
-        <button class="sub-btn" onclick="switchSubTab('en', 'idioms')">Common Idioms</button>
-        <button class="quiz-trigger-btn" onclick="openTopicQuiz('quiz-en')">
-          <i class="bi bi-patch-question-fill"></i> English Mini Test
-        </button>
-      </div>
-
-      <div id="enContentGrid" class="grid-cards"></div>
-
-      <!-- Kuis Materi Inggris -->
-      <div id="quiz-en" class="quiz-container" style="display: none;">
-        <div class="quiz-header">
-          <div>
-            <h3 style="font-size: 1.2rem;">Mini Test: Practical English</h3>
-            <small class="text-muted">Select the most accurate response</small>
-          </div>
-          <button class="sub-btn" onclick="closeTopicQuiz('quiz-en')"><i class="bi bi-x-lg"></i> Close</button>
-        </div>
-        <div id="quiz-en-body"></div>
-      </div>
-    </section>
-
-    <!-- ================= SECTION 4: UJIAN AKHIR TERPADU ================= -->
-    <section id="section-exam" class="content-section">
-      <div class="macapat-card">
-        <h3><i class="bi bi-journal-check text-primary me-2"></i> Evaluasi Akhir Pemahaman Bahasa</h3>
-        <p class="text-muted" style="margin: 0.5rem 0 1rem 0;">
-          Ujian ini mencakup seluruh bab yang telah dipelajari: Aksara Jawa, Tembang Macapat, Percakapan Nusantara, Bahasa Jepang (Aisatsu & Huruf), serta Bahasa Inggris praktis.
-        </p>
-        <div id="finalExamContainer"></div>
-      </div>
-    </section>
-
-    <!-- Kotak Saran & Evaluasi Pelajar -->
-    <section class="feedback-section">
-      <h3 style="font-size: 1.2rem; margin-bottom: 0.4rem;"><i class="bi bi-chat-heart text-primary me-2"></i>Kotak Saran & Permintaan Materi</h3>
-      <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 1.2rem;">Punya ide materi bahasa lain atau saran pengembangan fitur web? Tuliskan masukanmu di bawah ini.</p>
-      
-      <form id="suggestionForm" onsubmit="handleSuggestionSubmit(event)">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="mb-3">
-          <div class="form-group">
-            <label>Nama Kamu</label>
-            <input type="text" class="form-control" id="sugName" placeholder="Contoh: Budi" required>
-          </div>
-          <div class="form-group">
-            <label>Topik yang Disarankan</label>
-            <select class="form-control" id="sugCategory">
-              <option value="Aksara Nusantara">Aksara Daerah Baru (Bali, Sunda, Batak)</option>
-              <option value="Kosakata Bahasa Jepang">Kosakata / Tata Bahasa Jepang Baru</option>
-              <option value="Fitur Audio & Kuis">Fitur Suara / Desain Kuis</option>
-              <option value="Lainnya">Lainnya</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Pesan / Masukan</label>
-          <textarea class="form-control" id="sugMessage" rows="3" placeholder="Tuliskan materi apa yang ingin diperdalam atau masukan untuk website ini..." required></textarea>
-        </div>
-        <button type="submit" class="btn-submit"><i class="bi bi-send-fill me-1"></i> Kirim Masukan</button>
-      </form>
-      <div id="sugAlert" style="display: none; margin-top: 1rem; padding: 0.8rem; border-radius: 8px; background: #dcfce7; color: #166534; font-weight: 600;">
-        Terima kasih! Saran dan masukanmu berhasil dicatat.
-      </div>
-    </section>
-
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 LinguaNusantara. Dilengkapi Sistem Suara Alami & Bank Soal Interaktif.</p>
-  </footer>
-
   <script>
-    // ================= 1. PENGELOLA SUARA NATURAL =================
-    let naturalVoices = [];
+    // ================= BANK SOAL BERTINGKAT =================
+    const levelDatabase = {
+      // 1. Jepang Vokal (Mudah)
+      jp_vocal: {
+        tag: 'SUBLEVEL 1 — あいうえお',
+        title: 'Hiragana Vokal Dasar',
+        badge: 'HIRAGANA (BASIC)',
+        langCode: 'ja',
+        questions: [
+          { char: 'あ', sound: 'あ', options: ['a', 'ka', 'ru', 'ke'], correct: 0 },
+          { char: 'い', sound: 'い', options: ['u', 'i', 'e', 'o'], correct: 1 },
+          { char: 'う', sound: 'う', options: ['ta', 'n', 'u', 'a'], correct: 2 },
+          { char: 'え', sound: 'え', options: ['o', 're', 'i', 'e'], correct: 3 },
+          { char: 'お', sound: 'お', options: ['o', 'a', 'ki', 'shi'], correct: 0 }
+        ]
+      },
+      // 2. Baris Ka & Sa (Sedang - Membedakan bentuk mirip)
+      jp_kasa: {
+        tag: 'SUBLEVEL 2 — かさたな',
+        title: 'Hiragana Baris Ka & Sa',
+        badge: 'HIRAGANA (INTERMEDIATE)',
+        langCode: 'ja',
+        questions: [
+          { char: 'か', sound: 'か', options: ['ki', 'ka', 'ku', 'te'], correct: 1 },
+          { char: 'き', sound: 'き', options: ['sa', 'chi', 'ki', 'so'], correct: 2 },
+          { char: 'さ', sound: 'さ', options: ['sa', 'ki', 'chi', 'shi'], correct: 0 },
+          { char: 'し', sound: 'し', options: ['tsu', 'shi', 'i', 'no'], correct: 1 },
+          { char: 'す', sound: 'す', options: ['mu', 'nu', 'su', 'o'], correct: 2 }
+        ]
+      },
+      // 3. Aisatsu (Sulit - Membaca Kata Utuh)
+      jp_aisatsu: {
+        tag: 'SUBLEVEL 3 — 挨拶 (AISATSU)',
+        title: 'Salam & Ungkapan Bahasa Jepang',
+        badge: 'KOSAKATA / SALAM',
+        langCode: 'ja',
+        questions: [
+          { char: 'おはよう', sound: 'おはよう', options: ['Ohayou (Pagi)', 'Konnichiwa (Siang)', 'Konbanwa (Malam)', 'Sayounara'], correct: 0 },
+          { char: 'ありがとう', sound: 'ありがとう', options: ['Sumimasen', 'Arigatou (Terima Kasih)', 'Gomen', 'Oyasumi'], correct: 1 },
+          { char: 'すみません', sound: 'すみません', options: ['Itadakimasu', 'Hajimemashite', 'Sumimasen (Permisi/Maaf)', 'Konnichiwa'], correct: 2 },
+          { char: 'いただきます', sound: 'いただきます', options: ['Sebelum tidur', 'Sebelum makan', 'Selesai makan', 'Saat pulang'], correct: 1 }
+        ]
+      },
+      // 4. Mochimono (Paling Sulit)
+      jp_mochimono: {
+        tag: 'SUBLEVEL 4 — 持ち物 (BENDA)',
+        title: 'Kosakata Benda Bawaan',
+        badge: 'BENDA SEHARI-HARI',
+        langCode: 'ja',
+        questions: [
+          { char: 'かばん', sound: 'かばん', options: ['Buku', 'Tas Bawaan', 'Dompet', 'Jam Tangan'], correct: 1 },
+          { char: 'とけい', sound: 'とけい', options: ['Jam Tangan', 'Pensil', 'Payung', 'Sepatu'], correct: 0 },
+          { char: 'ほん', sound: 'ほん', options: ['Buku Bacaan', 'Smartphone', 'Kacamata', 'Pintu'], correct: 0 },
+          { char: 'さいふ', sound: 'さいふ', options: ['Kunci', 'Uang', 'Dompet Uang', 'Topi'], correct: 2 }
+        ]
+      },
 
-    function initVoices() {
-      if ('speechSynthesis' in window) {
-        naturalVoices = window.speechSynthesis.getVoices();
+      // 5. Jawa Carakan (Mudah)
+      jv_carakan1: {
+        tag: 'SUBLEVEL 1 — CARAKAN POKOK',
+        title: 'Aksara Jawa Baris 1',
+        badge: 'AKSARA JAWA',
+        langCode: 'id',
+        questions: [
+          { char: 'ꦲ', sound: 'Ha', options: ['Ha', 'Na', 'Ca', 'Ra'], correct: 0 },
+          { char: 'ꦤ', sound: 'Na', options: ['Ka', 'Na', 'Da', 'Ta'], correct: 1 },
+          { char: 'ꦕ', sound: 'Ca', options: ['Ra', 'Wa', 'Ca', 'La'], correct: 2 },
+          { char: 'ꦫ', sound: 'Ra', options: ['Ga', 'Ba', 'Nga', 'Ra'], correct: 3 },
+          { char: 'ꦏ', sound: 'Ka', options: ['Ka', 'Ta', 'Sa', 'Pa'], correct: 0 }
+        ]
+      },
+      // 6. Jawa Sandhangan (Sedang)
+      jv_sandhangan: {
+        tag: 'SUBLEVEL 2 — PANGOWAH SWARA',
+        title: 'Sandhangan Swara Jawa',
+        badge: 'SANDHANGAN',
+        langCode: 'id',
+        questions: [
+          { char: 'ꦏꦶ', sound: 'Ki', options: ['Ka', 'Ki (Wulu)', 'Ku (Suku)', 'Ko (Taling)'], correct: 1 },
+          { char: 'ꦱꦸ', sound: 'Su', options: ['Sa', 'Se', 'Su (Suku)', 'Si'], correct: 2 },
+          { char: 'ꦺꦠ', sound: 'Te', options: ['Té (Taling)', 'Ta', 'To', 'Tu'], correct: 0 },
+          { char: 'ꦩꦼ', sound: 'Me', options: ['Mi', 'Me (Pepet)', 'Mo', 'Mu'], correct: 1 }
+        ]
+      },
+      // 7. Macapat (Tantangan)
+      jv_tembang: {
+        tag: 'SUBLEVEL 3 — TEMBANG MACAPAT',
+        title: 'Paugeran Tembang Macapat',
+        badge: 'SASTRA JAWA',
+        langCode: 'id',
+        questions: [
+          { char: 'Pocung', sound: 'Tembang Pocung', options: ['4 Gatra (12u, 6a, 8i, 12a)', '5 Gatra (7u, 10u...)', '6 Gatra', '7 Gatra'], correct: 0 },
+          { char: 'Gambuh', sound: 'Tembang Gambuh', options: ['Watak galak/perang', 'Watak akrab/nasihat santun', 'Watak sedih nelangsa', 'Watak asmara'], correct: 1 }
+        ]
+      },
+
+      // 8. Inggris Basics
+      en_basic: {
+        tag: 'SUBLEVEL 1 — GREETINGS',
+        title: 'Everyday English Greetings',
+        badge: 'ENGLISH BASICS',
+        langCode: 'en',
+        questions: [
+          { char: 'Good morning', sound: 'Good morning', options: ['Selamat pagi', 'Selamat siang', 'Selamat sore', 'Selamat jalan'], correct: 0 },
+          { char: 'Excuse me', sound: 'Excuse me', options: ['Terima kasih', 'Permisi / Maaf', 'Sampai jumpa', 'Tolong saya'], correct: 1 }
+        ]
+      },
+      // 9. Inggris Idioms
+      en_idioms: {
+        tag: 'SUBLEVEL 2 — NATIVE IDIOMS',
+        title: 'Mastering English Idioms',
+        badge: 'IDIOMS & SLANG',
+        langCode: 'en',
+        questions: [
+          { char: 'Break a leg!', sound: 'Break a leg', options: ['Patahkan kakimu', 'Semoga berhasil / Good luck', 'Berhenti berlari', 'Jangan menyerah'], correct: 1 },
+          { char: 'Piece of cake', sound: 'Piece of cake', options: ['Kue lezat', 'Sangat mudah dikerjakan', 'Tugas sulit', 'Waktu istirahat'], correct: 1 },
+          { char: 'Under the weather', sound: 'Under the weather', options: ['Menikmati hujan', 'Kurang enak badan / Sakit', 'Di luar ruangan', 'Sangat dingin'], correct: 1 }
+        ]
       }
+    };
+
+    // ================= STATE DAN LOGIKA KUIS =================
+    let currentLevelData = null;
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Ganti Kategori Tab Atas
+    function switchCategory(cat) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.module-section').forEach(s => s.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      document.getElementById(`module-${cat}`).classList.add('active');
+
+      cancelQuiz();
     }
 
-    if ('speechSynthesis' in window) {
-      initVoices();
-      window.speechSynthesis.onvoiceschanged = initVoices;
+    // Mulai Sublevel Kuis
+    function startLevel(levelKey) {
+      currentLevelData = levelDatabase[levelKey];
+      if (!currentLevelData) return;
+
+      currentQuestionIndex = 0;
+      score = 0;
+
+      document.querySelectorAll('.module-section').forEach(s => s.style.display = 'none');
+      document.getElementById('quiz-result-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+
+      document.getElementById('quizSublevelTag').innerText = currentLevelData.tag;
+      document.getElementById('quizMainTitle').innerText = currentLevelData.title;
+      document.getElementById('quizCardBadge').innerText = currentLevelData.badge;
+
+      renderCurrentQuestion();
     }
 
-    function speakText(text, langCode) {
-      if (!('speechSynthesis' in window)) {
-        alert('Browser Anda tidak mendukung Text-to-Speech.');
-        return;
-      }
+    // Render Butir Soal Berjalan
+    function renderCurrentQuestion() {
+      const q = currentLevelData.questions[currentQuestionIndex];
+      const total = currentLevelData.questions.length;
 
-      window.speechSynthesis.cancel(); // Matikan audio sebelumnya
+      document.getElementById('quizCounter').innerText = `Soal ${currentQuestionIndex + 1} dari ${total}`;
+      document.getElementById('quizScoreText').innerText = score;
+      document.getElementById('quizMainChar').innerText = q.char;
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.90;  // Kecepatan natural tidak buru-buru
-      utterance.pitch = 1.02; // Artikulasi hangat
+      const progressPercent = ((currentQuestionIndex + 1) / total) * 100;
+      document.getElementById('quizProgressBar').style.width = `${progressPercent}%`;
 
-      let targetPrefix = 'id';
-      if (langCode === 'ja') {
-        targetPrefix = 'ja';
-        utterance.lang = 'ja-JP';
-      } else if (langCode === 'en') {
-        targetPrefix = 'en';
-        utterance.lang = 'en-US';
+      const answersBox = document.getElementById('quizAnswersGrid');
+      answersBox.innerHTML = q.options.map((opt, idx) => `
+        <button class="ans-btn" onclick="checkAnswer(${idx})">${opt}</button>
+      `).join('');
+    }
+
+    // Pemeriksaan Jawaban
+    function checkAnswer(chosenIdx) {
+      const q = currentLevelData.questions[currentQuestionIndex];
+      const buttons = document.querySelectorAll('.ans-btn');
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (chosenIdx === q.correct) {
+        buttons[chosenIdx].classList.add('correct');
+        score += 20;
+        document.getElementById('quizScoreText').innerText = score;
       } else {
-        utterance.lang = 'id-ID';
+        buttons[chosenIdx].classList.add('wrong');
+        buttons[q.correct].classList.add('correct');
       }
 
-      // Prioritaskan suara kualitas tinggi (Natural, Google, Neural)
-      if (naturalVoices.length > 0) {
-        const foundVoice = naturalVoices.find(v => 
-          v.lang.toLowerCase().startsWith(targetPrefix) && 
-          (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Neural') || v.name.includes('Premium'))
-        ) || naturalVoices.find(v => v.lang.toLowerCase().startsWith(targetPrefix));
+      setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < currentLevelData.questions.length) {
+          renderCurrentQuestion();
+        } else {
+          showFinalQuizResult();
+        }
+      }, 900);
+    }
 
-        if (foundVoice) utterance.voice = foundVoice;
+    // Layar Hasil Akhir
+    function showFinalQuizResult() {
+      document.getElementById('quiz-screen').style.display = 'none';
+      const resScreen = document.getElementById('quiz-result-screen');
+      resScreen.style.display = 'block';
+
+      document.getElementById('finalScoreCircle').innerText = score;
+      if (score >= 80) {
+        document.getElementById('finalResultTitle').innerText = '🎉 Sempurna & Hebat!';
+        document.getElementById('finalResultDesc').innerText = 'Kamu menguasai materi sublevel ini dengan sangat baik.';
+      } else {
+        document.getElementById('finalResultTitle').innerText = 'Bagus! Terus Berlatih';
+        document.getElementById('finalResultDesc').innerText = 'Kamu sudah berusaha dengan baik, coba lagi untuk skor maksimal.';
       }
+    }
+
+    // Batalkan Kuis / Kembali ke Menu
+    function cancelQuiz() {
+      document.getElementById('quiz-screen').style.display = 'none';
+      document.getElementById('quiz-result-screen').style.display = 'none';
+      document.querySelectorAll('.module-section').forEach(s => s.style.display = 'block');
+    }
+
+    // Pelafalan Suara: Natural, Pelan, dan Jelas
+    function speakCurrentQuestion() {
+      if (!currentLevelData) return;
+      const q = currentLevelData.questions[currentQuestionIndex];
+      const soundText = q.sound || q.char;
+      const lang = currentLevelData.langCode;
+
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(soundText);
+      
+      // Kecepatan disetel lebih pelan (0.75) agar artikulasi jelas
+      utterance.rate = 0.75;
+      utterance.pitch = 1.0;
+
+      if (lang === 'ja') utterance.lang = 'ja-JP';
+      else if (lang === 'en') utterance.lang = 'en-US';
+      else utterance.lang = 'id-ID';
 
       window.speechSynthesis.speak(utterance);
     }
-
-    // ================= 2. DATABASE MATERI LENGKAP =================
-
-    // Aksara Jawa Lengkap (20 Carakan)
-    const carakanLengkap = [
-      { char: 'ꦲ', romaji: 'Ha', pas: '...꧀ꦲ', desc: 'Hana Hurip (Nafas Hidup)' },
-      { char: 'ꦤ', romaji: 'Na', pas: '...꧀ꦤ', desc: 'Nur Hurip (Cahaya Hidup)' },
-      { char: 'ꦕ', romaji: 'Ca', pas: '...꧀ꦕ', desc: 'Cipta Hening' },
-      { char: 'ꦫ', romaji: 'Ra', pas: '...꧀ꦫ', desc: 'Rasa Sejati' },
-      { char: 'ꦏ', romaji: 'Ka', pas: '...꧀ꦏ', desc: 'Karsa Mulia' },
-      { char: 'ꦢ', romaji: 'Da', pas: '...꧀ꦢ', desc: 'Datan Kena Serik' },
-      { char: 'ꦠ', romaji: 'Ta', pas: '...꧀ꦠ', desc: 'Tatas Teteg Ati' },
-      { char: 'ꦱ', romaji: 'Sa', pas: '...꧀ꦱ', desc: 'Sanyata Laku' },
-      { char: 'ꦮ', romaji: 'Wa', pas: '...꧀ꦮ', desc: 'Waspada Ing Laku' },
-      { char: 'ꦭ', romaji: 'La', pas: '...꧀ꦭ', desc: 'Lir Handayani' },
-      { char: 'ꦥ', romaji: 'Pa', pas: '...꧀ꦥ', desc: 'Papan Panguripan' },
-      { char: 'ꦝ', romaji: 'Dha', pas: '...꧀ꦝ', desc: 'Dhadha Berbudi' },
-      { char: 'ꦪ', romaji: 'Ya', pas: '...꧀ꦪ', desc: 'Yekti Nyata' },
-      { char: 'ꦚ', romaji: 'Nya', pas: '...꧀ꦚ', desc: 'Nyawiji Ing Rasa' },
-      { char: 'ꦩ', romaji: 'Ma', pas: '...꧀ꦩ', desc: 'Madep Mantep' },
-      { char: 'ꦒ', romaji: 'Ga', pas: '...꧀ꦒ', desc: 'Gusti Pangeran' },
-      { char: 'ꦧ', romaji: 'Ba', pas: '...꧀ꦧ', desc: 'Budi Rahayu' },
-      { char: 'ꦛ', romaji: 'Tha', pas: '...꧀ꦛ', desc: 'Thukul Becik' },
-      { char: 'ꦔ', romaji: 'Nga', pas: '...꧀ꦔ', desc: 'Ngabekti Mring Gusti' },
-      { char: 'ꦥꦠꦺꦤ꧀', romaji: 'Pangkon (꧀)', pas: 'Pemati vokal', desc: 'Pangkon pemati vokal konsonan' }
-    ];
-
-    const sandhanganData = [
-      { char: 'ꦶ', romaji: 'Wulu', desc: 'Ngarahake swara dadi "I" (Contoh: ꦱꦶ = Si)' },
-      { char: 'ꦸ', romaji: 'Suku', desc: 'Ngarahake swara dadi "U" (Contoh: ꦱꦸ = Su)' },
-      { char: 'ꦺ', romaji: 'Taling', desc: 'Ngarahake swara dadi "É" (Contoh: ꦺꦱ = Sé)' },
-      { char: 'ꦼ', romaji: 'Pepet', desc: 'Ngarahake swara dadi "E" lemah (Contoh: ꦱꦼ = Se)' },
-      { char: 'ꦺ...ꦴ', romaji: 'Taling-Tarung', desc: 'Ngarahake swara dadi "O" (Contoh: ꦺꦱꦴ = So)' },
-      { char: 'ꦂ', romaji: 'Layar', desc: 'Sigeg/mati konsonan "R" ing pungkasan' },
-      { char: 'ꦃ', romaji: 'Wignyan', desc: 'Sigeg/mati konsonan "H" ing pungkasan' },
-      { char: 'ꦁ', romaji: 'Cecak', desc: 'Sigeg/mati konsonan "Ng" ing pungkasan' }
-    ];
-
-    const tembangData = [
-      {
-        nama: 'Tembang Pocung',
-        paugeran: 'Paugeran: 12u, 6a, 8i, 12a',
-        teks: 'Ngelmu iku kalakone kanthi laku,\nLekase lawan kas,\nTegese kas nyantosani,\nSetya budya pangekese durangkara.',
-        arti: 'Ilmu itu hanya dapat dicapai dengan perbuatan nyata, dimulai dari tekad kemauan yang kokoh. Tekad tersebut menguatkan jiwa budi luhur untuk menyingkirkan watak angkara.',
-        sound: 'Ngelmu iku kalakone kanthi laku. Lekase lawan kas. Tegese kas nyantosani. Setya budya pangekese durangkara.'
-      },
-      {
-        nama: 'Tembang Gambuh',
-        paugeran: 'Paugeran: 7u, 10u, 12i, 8u, 8o',
-        teks: 'Sekar gambuh ping catur,\nKang cinatur polah kang kalantur,\nTanpa tutur katula-tula katali,\nKadaluwarsa kapatuh,\nKapatuh pan dadi awon.',
-        arti: 'Tembang gambuh yang keempat membicarakan perilaku yang menyimpang tanpa nasihat, akhirnya menderita, dan jika dibiarkan berlarut-larut akan membudaya menjadi kehancuran.',
-        sound: 'Sekar gambuh ping catur. Kang cinatur polah kang kalantur. Tanpa tutur katula tula katali. Kadaluwarsa kapatuh. Kapatuh pan dadi awon.'
-      },
-      {
-        nama: 'Tembang Kinanthi',
-        paugeran: 'Paugeran: 8u, 8i, 8a, 8i, 8a, 8i',
-        teks: 'Padha gulangen ing kalbu,\nIng sasmita amrih lantip,\nAja sira dhahar nendra,\nPrawiranen den kaesthi,\nPesuwen sariranira,\nSudanen dhahar lan guling.',
-        arti: 'Latihlah kepekaan batinmu agar tajam menangkap isyarat kehidupan. Jangan hanya mengutamakan makan dan tidur, tetapi latihlah dirimu dengan mengurangi kemewahan dan tidur berlebih.',
-        sound: 'Padha gulangen ing kalbu. Ing sasmita amrih lantip. Aja sira dhahar nendra. Prawiranen den kaesthi. Pesuwen sariranira. Sudanen dhahar lan guling.'
-      },
-      {
-        nama: 'Tembang Sinom',
-        paugeran: 'Paugeran: 8a, 8i, 8a, 8i, 7i, 8u, 7a, 8i, 12a',
-        teks: 'Amenangi zaman edan,\nEwuh aya ing pambudi,\nMelu edan nora tahan,\nJen tan melu anglakoni,\nBoya kaduman melik,\nKaliren wekasanipun.',
-        arti: 'Menghadapi zaman edan serba serba sulit bersikap. Ikut gila tak sampai hati, namun jika tidak ikut merasa tersisih dan kelaparan. Namun tetap beruntung orang yang ingat dan waspada.',
-        sound: 'Amenangi zaman edan. Ewuh aya ing pambudi. Melu edan nora tahan. Jen tan melu anglakoni. Boya kaduman melik. Kaliren wekasanipun.'
-      }
-    ];
-
-    const percakapanDaerah = [
-      { lang: 'Jawa Krama Inggil', phrase: 'Kula badhe nyuwun pirsa', arti: 'Saya ingin bertanya', sound: 'Kula badhe nyuwun pirsa' },
-      { lang: 'Jawa Ngoko', phrase: 'Kowe arep lunga menyang ngendi?', arti: 'Kamu mau pergi ke mana?', sound: 'Kowe arep lunga menyang ngendi' },
-      { lang: 'Sunda Halus', phrase: 'Dupi bumi anjeun di palih mana?', arti: 'Kalau rumah Anda di sebelah mana?', sound: 'Dupi bumi anjeun di palih mana' },
-      { lang: 'Sunda Akrab', phrase: 'Kamari kuring nempo maneh di jalan', arti: 'Kemarin aku melihatmu di jalan', sound: 'Kamari kuring nempo maneh di jalan' },
-      { lang: 'Minangkabau', phrase: 'Lai ka pai ka pasa kito bisuak?', arti: 'Apakah kita jadi pergi ke pasar besok?', sound: 'Lai ka pai ka pasa kito bisuak' },
-      { lang: 'Bali Alus', phrase: 'Matur suksma sampun rauh', arti: 'Terima kasih banyak sudah berkenan hadir', sound: 'Matur suksma sampun rauh' },
-      { lang: 'Batak Toba', phrase: 'Aha do barita hamu sude dongan?', arti: 'Bagaimana kabar kalian semua kawan?', sound: 'Aha do barita hamu sude dongan' }
-    ];
-
-    const jepangData = {
-      hiragana: [
-        { char: 'あ / い / う / え / お', romaji: 'A - I - U - E - O', desc: 'Garis vokal utama dasar', sound: 'あいうえお' },
-        { char: 'か / き / く / け / こ', romaji: 'Ka - Ki - Ku - Ke - Ko', desc: 'Keluarga konsonan K', sound: 'かきくけこ' },
-        { char: 'さ / し / す / せ / そ', romaji: 'Sa - Shi - Su - Se - So', desc: 'Keluarga konsonan S', sound: 'さしすせそ' },
-        { char: 'た / ち / つ / て / と', romaji: 'Ta - Chi - Tsu - Te - To', desc: 'Keluarga konsonan T', sound: 'たちつてと' },
-        { char: 'な / に / ぬ / ね / の', romaji: 'Na - Ni - Nu - Ne - No', desc: 'Keluarga konsonan N', sound: 'なにぬねの' },
-        { char: 'は / ひ / ふ / へ / ほ', romaji: 'Ha - Hi - Fu - He - Ho', desc: 'Keluarga konsonan H', sound: 'はひふへほ' },
-        { char: 'ま / み / む / め / も', romaji: 'Ma - Mi - Mu - Me - Mo', desc: 'Keluarga konsonan M', sound: 'まみむめも' },
-        { char: 'や / ゆ / よ', romaji: 'Ya - Yu - Yo', desc: 'Semi vokal Y', sound: 'やゆよ' },
-        { char: 'ら / り / る / れ / ろ', romaji: 'Ra - Ri - Ru - Re - Ro', desc: 'Keluarga konsonan R', sound: 'らりるれろ' },
-        { char: 'わ / を / ん', romaji: 'Wa - Wo - N', desc: 'Konsonan W & sengau N', sound: 'わをん' }
-      ],
-      katakana: [
-        { char: 'ア / イ / ウ / エ / オ', romaji: 'A - I - U - E - O', desc: 'Huruf kata serapan vokal', sound: 'アイウエオ' },
-        { char: 'カ / キ / ク / ケ / コ', romaji: 'Ka - Ki - Ku - Ke - Ko', desc: 'Keluarga katakana K', sound: 'カキクケコ' },
-        { char: 'サ / シ / ス / セ / ソ', romaji: 'Sa - Shi - Su - Se - So', desc: 'Keluarga katakana S', sound: 'サシスセソ' },
-        { char: 'タ / チ / ツ / テ / ト', romaji: 'Ta - Chi - Tsu - Te - To', desc: 'Keluarga katakana T', sound: 'タチツテト' },
-        { char: 'ナ / ニ / ヌ / ネ / ノ', romaji: 'Na - Ni - Nu - Ne - No', desc: 'Keluarga katakana N', sound: 'ナニヌネノ' },
-        { char: 'ハ / ヒ / フ / ヘ / ホ', romaji: 'Ha - Hi - Fu - He - Ho', desc: 'Keluarga katakana H', sound: 'ハヒフヘホ' }
-      ],
-      aisatsu: [
-        { char: 'おはようございます', romaji: 'Ohayou Gozaimasu', desc: 'Selamat pagi (Formal/Sopan)', sound: 'おはようございます' },
-        { char: 'こんにちは', romaji: 'Konnichiwa', desc: 'Selamat siang / Halo umum', sound: 'こんにちは' },
-        { char: 'こんばんは', romaji: 'Konbanwa', desc: 'Selamat malam saat bertemu', sound: 'こんばんは' },
-        { char: 'おやすみなさい', romaji: 'Oyasuminasai', desc: 'Selamat malam / tidur', sound: 'おやすみなさい' },
-        { char: 'ありがとうございます', romaji: 'Arigatou Gozaimasu', desc: 'Terima kasih banyak (Sopan)', sound: 'ありがとうございます' },
-        { char: 'すみません', romaji: 'Sumimasen', desc: 'Permisi / Mohon maaf', sound: 'すみません' },
-        { char: 'いただきます', romaji: 'Itadakimasu', desc: 'Diucapkan sebelum makan', sound: 'いただきます' },
-        { char: 'ごちそうさまでした', romaji: 'Gochisousama deshita', desc: 'Diucapkan selesai makan', sound: 'ごちそうさまでした' }
-      ],
-      jikou: [
-        { char: 'はじめまして', romaji: 'Hajimemashite', desc: 'Senang berkenalan pertama kali', sound: 'はじめまして' },
-        { char: 'わたし の なまえ は ... です', romaji: 'Watashi no namae wa ... desu', desc: 'Nama saya adalah ...', sound: 'わたしのなまえは' },
-        { char: 'インドネシア から きました', romaji: 'Indoneshia kara kimashita', desc: 'Saya berasal dari Indonesia', sound: 'インドネシアからきました' },
-        { char: 'どうぞ よろしく おねがいします', romaji: 'Douzo yoroshiku onegaishimasu', desc: 'Mohon bantuan dan kerja samanya', sound: 'どうぞよろしくおねがいします' }
-      ],
-      mochimono: [
-        { char: 'ほん (本)', romaji: 'Hon', desc: 'Buku', sound: 'ほん' },
-        { char: 'ノート', romaji: 'Nooto', desc: 'Buku catatan (Note)', sound: 'ノート' },
-        { char: 'ペン / えんぴつ', romaji: 'Pen / Enpitsu', desc: 'Pena / Pensil tulis', sound: 'ペン' },
-        { char: 'かばん (鞄)', romaji: 'Kaban', desc: 'Tas bawaan', sound: 'かばん' },
-        { char: 'とけい (時計)', romaji: 'Tokei', desc: 'Jam tangan / arloji', sound: 'とけい' },
-        { char: 'さいふ (財布)', romaji: 'Saifu', desc: 'Dompet uang', sound: 'さいふ' },
-        { char: 'スマホ / けいたい', romaji: 'Sumaho / Keitai', desc: 'Smartphone / Telepon genggam', sound: 'スマホ' },
-        { char: 'かさ (傘)', romaji: 'Kasa', desc: 'Payung hujan', sound: 'かさ' }
-      ]
-    };
-
-    const inggrisData = {
-      daily: [
-        { char: 'Good morning / afternoon', romaji: 'Pagi / Siang', desc: 'Salam formal waktu', sound: 'Good morning, good afternoon' },
-        { char: 'How are you holding up?', romaji: 'Kabar', desc: 'Bagaimana kabarmu menghadapi hari ini?', sound: 'How are you holding up?' },
-        { char: 'I appreciate your help', romaji: 'Apresiasi', desc: 'Saya sangat menghargai bantuanmu', sound: 'I appreciate your help' },
-        { char: 'Never mind, it is all good', romaji: 'Santai', desc: 'Tidak apa-apa, semuanya baik-baik saja', sound: 'Never mind, it is all good' }
-      ],
-      conversation: [
-        { char: 'Could you please clarify that?', romaji: 'Klarifikasi', desc: 'Bisakah Anda memperjelas hal tersebut?', sound: 'Could you please clarify that?' },
-        { char: 'I am looking forward to it', romaji: 'Antusias', desc: 'Saya sangat menantikan momen tersebut', sound: 'I am looking forward to it' },
-        { char: 'Where can I find the nearest exit?', romaji: 'Petunjuk', desc: 'Di mana saya bisa menemukan pintu keluar terdekat?', sound: 'Where can I find the nearest exit?' },
-        { char: 'Let us keep in touch', romaji: 'Relasi', desc: 'Mari kita tetap saling berkabar', sound: 'Let us keep in touch' }
-      ],
-      idioms: [
-        { char: 'Piece of cake', romaji: 'Sangat Mudah', desc: 'Sesuatu yang sangat mudah dikerjakan', sound: 'Piece of cake' },
-        { char: 'Break a leg', romaji: 'Semoga Berhasil', desc: 'Ungkapan menyemangati sebelum tampil', sound: 'Break a leg' },
-        { char: 'Under the weather', romaji: 'Kurang Sehat', desc: 'Merasa badan sedang meriang / tidak enak', sound: 'Under the weather' },
-        { char: 'Hit the books', romaji: 'Mulai Belajar', desc: 'Mulai belajar dengan giat dan fokus', sound: 'Hit the books' }
-      ]
-    };
-
-    // ================= 3. BANK SOAL & KUIS =================
-    const quizBank = {
-      'quiz-id': [
-        {
-          q: 'Aksara Jawa "ꦏ" jika diberi sandhangan Wulu (ꦶ) maka pelafalannya berubah menjadi...',
-          options: ['Ka', 'Ki', 'Ku', 'Ko'],
-          correct: 1,
-          exp: 'Sandhangan Wulu (ꦶ) mengubah bunyi vokal konsonan menjadi "I". Ka + Wulu = Ki.'
-        },
-        {
-          q: 'Berapakah paugeran Guru Gatra pada Tembang Pocung?',
-          options: ['4 Gatra (larik)', '5 Gatra (larik)', '6 Gatra (larik)', '7 Gatra (larik)'],
-          correct: 0,
-          exp: 'Tembang Pocung memiliki 4 gatra dengan paugeran wilangan dan lagu: 12u, 6a, 8i, 12a.'
-        },
-        {
-          q: 'Frasa "Kumaha damang?" dalam bahasa Sunda memiliki arti yang sama dengan...',
-          options: ['Siapa namamu?', 'Dari mana asalmu?', 'Bagaimana kabarmu?', 'Selamat jalan!'],
-          correct: 2,
-          exp: '"Kumaha damang?" adalah sapaan santun menanyakan kabar dalam bahasa Sunda.'
-        }
-      ],
-      'quiz-jp': [
-        {
-          q: 'Ungkapan salam yang tepat diucapkan pada orang lain saat sebelum menikmati hidangan makanan adalah...',
-          options: ['Gochisousama deshita', 'Konnichiwa', 'Itadakimasu', 'Oyasuminasai'],
-          correct: 2,
-          exp: '"Itadakimasu" (いただきます) adalah ungkapan syukur sebelum makan.'
-        },
-        {
-          q: 'Kata benda "Kaban" (かばん) dalam bahasa Indonesia berarti...',
-          options: ['Jam tangan', 'Tas bawaan', 'Buku catatan', 'Payung'],
-          correct: 1,
-          exp: 'Kaban (鞄/かばん) memiliki arti tas.'
-        },
-        {
-          q: 'Kalimat perkenalan "Indoneshia kara kimashita" bermakna...',
-          options: ['Saya orang Jepang', 'Saya berasal dari Indonesia', 'Saya ingin pergi ke Indonesia', 'Nama saya Indonesia'],
-          correct: 1,
-          exp: '"~ kara kimashita" menyatakan asal kedatangan (berasal dari Indonesia).'
-        }
-      ],
-      'quiz-en': [
-        {
-          q: 'What does the idiom "Piece of cake" actually mean?',
-          options: ['A sweet dessert', 'Something very easy to do', 'A difficult challenge', 'An expensive gift'],
-          correct: 1,
-          exp: '"Piece of cake" adalah idiom bahasa Inggris yang berarti sesuatu yang sangat gampang.'
-        },
-        {
-          q: 'If your friend says "I am feeling a bit under the weather", it means they are...',
-          options: ['Enjoying the rain', 'Feeling unwell/sick', 'Traveling abroad', 'Extremely happy'],
-          correct: 1,
-          exp: '"Under the weather" berarti merasa kurang sehat atau agak demam.'
-        }
-      ],
-      'final-exam': [
-        {
-          q: '1. Aksara Jawa "ꦫ" (Ra) jika ingin berbunyi "Re" (pepet), maka menggunakan sandhangan...',
-          options: ['Wulu', 'Suku', 'Pepet', 'Layar'],
-          correct: 2,
-          exp: 'Pepet (ꦼ) dipakai untuk memunculkan vokal "e" lemah.'
-        },
-        {
-          q: '2. Tembang Macapat yang memiliki watak mendidik, keakraban, dan cocok untuk memberi nasihat persahabatan adalah...',
-          options: ['Pocung', 'Gambuh', 'Durma', 'Maskumambang'],
-          correct: 1,
-          exp: 'Gambuh berwatak ramah, akrab, dan tepat untuk petuah kebaikan.'
-        },
-        {
-          q: '3. "Matur suksma" adalah ungkapan terima kasih yang berasal dari daerah...',
-          options: ['Batak', 'Sunda', 'Bali', 'Minang'],
-          correct: 2,
-          exp: '"Matur suksma" adalah bahasa Bali halus untuk terima kasih.'
-        },
-        {
-          q: '4. Cara membaca huruf hiragana "ありがとう" adalah...',
-          options: ['Ohayou', 'Arigatou', 'Sumimasen', 'Sayounara'],
-          correct: 1,
-          exp: 'Huruf itu berbunyi a-ri-ga-to-u (Arigatou).'
-        },
-        {
-          q: '5. "Break a leg" biasanya diucapkan kepada seseorang ketika mereka akan...',
-          options: ['Tidur malam', 'Tampil beraksi / Ujian', 'Makan siang', 'Pulang kampung'],
-          correct: 1,
-          exp: '"Break a leg" adalah tradisi ucapan semoga sukses di atas panggung.'
-        }
-      ]
-    };
-
-    // ================= 4. LOGIKA RENDER & TAMPILAN =================
-    function switchLanguage(lang) {
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-
-      const titles = {
-        id: ['Belajar Bahasa Nusantara & Daerah', 'Pelajari ragam bahasa daerah, aksara carakan, dan tembang filosofis Nusantara.'],
-        jp: ['Belajar Bahasa Jepang (日本語)', 'Pahami Hiragana, Katakana, salam resmi (Aisatsu), perkenalan diri, dan benda sekitar.'],
-        en: ['Mastering Practical English', 'Pelajari kosakata penting, ungkapan umum, serta idiom populer penutur asli.'],
-        exam: ['Ujian Akhir Komprehensif', 'Uji sejauh mana penguasaan materi bahasa daerah, Jepang, dan Inggris yang telah dipelajari.']
-      };
-
-      document.getElementById('bannerTitle').innerText = titles[lang][0];
-      document.getElementById('bannerDesc').innerText = titles[lang][1];
-
-      document.getElementById(`section-${lang}`).classList.add('active');
-      event.currentTarget.classList.add('active');
-
-      if (lang === 'jp') renderJpGrid('hiragana');
-      if (lang === 'en') renderEnGrid('daily');
-      if (lang === 'exam') renderFinalExam();
-    }
-
-    function switchSubTab(lang, key) {
-      const parent = document.getElementById(`section-${lang}`);
-      parent.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-
-      if (lang === 'id') {
-        document.getElementById('sub-id-aksara').style.display = key === 'aksara' ? 'block' : 'none';
-        document.getElementById('sub-id-tembang').style.display = key === 'tembang' ? 'block' : 'none';
-        document.getElementById('sub-id-daerah').style.display = key === 'daerah' ? 'block' : 'none';
-      } else if (lang === 'jp') {
-        renderJpGrid(key);
-      } else if (lang === 'en') {
-        renderEnGrid(key);
-      }
-    }
-
-    // Render Komponen Daerah
-    function renderAksara() {
-      const cBox = document.getElementById('aksaraGrid');
-      cBox.innerHTML = carakanLengkap.map(item => `
-        <div class="card">
-          <div class="card-top">
-            <div class="char-main">${item.char}</div>
-            <button class="sound-btn" onclick="speakText('${item.romaji}', 'id')" title="Dengar Suara">
-              <i class="bi bi-volume-up-fill"></i>
-            </button>
-          </div>
-          <div class="char-romaji">${item.romaji} <span style="font-size:0.75rem; color:var(--text-muted); font-weight:normal;">(${item.pas})</span></div>
-          <div class="char-desc">${item.desc}</div>
-        </div>
-      `).join('');
-
-      const sBox = document.getElementById('sandhanganGrid');
-      sBox.innerHTML = sandhanganData.map(item => `
-        <div class="card">
-          <div class="card-top">
-            <div class="char-main" style="color:var(--accent-blue);">${item.char}</div>
-            <button class="sound-btn" onclick="speakText('${item.romaji}', 'id')">
-              <i class="bi bi-volume-up-fill"></i>
-            </button>
-          </div>
-          <div class="char-romaji">${item.romaji}</div>
-          <div class="char-desc">${item.desc}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderTembang() {
-      const tBox = document.getElementById('tembangList');
-      tBox.innerHTML = tembangData.map(t => `
-        <div class="macapat-card">
-          <h3>
-            <span>${t.nama}</span>
-            <span class="paugeran-badge">${t.paugeran}</span>
-          </h3>
-          <p class="macapat-text">${t.teks.replace(/\n/g, '<br>')}</p>
-          <p class="macapat-meaning"><strong>Tegese:</strong> ${t.arti}</p>
-          <button class="sound-btn" onclick="speakText('${t.sound}', 'id')" title="Lafalkan Tembang">
-            <i class="bi bi-volume-up-fill"></i>
-          </button>
-        </div>
-      `).join('');
-    }
-
-    function renderDaerah() {
-      const dBox = document.getElementById('daerahGrid');
-      dBox.innerHTML = percakapanDaerah.map(item => `
-        <div class="card">
-          <div class="card-top">
-            <div>
-              <span class="paugeran-badge">${item.lang}</span>
-              <h4 class="mt-2" style="font-size: 1.05rem;">${item.phrase}</h4>
-            </div>
-            <button class="sound-btn" onclick="speakText('${item.sound}', 'id')">
-              <i class="bi bi-volume-up-fill"></i>
-            </button>
-          </div>
-          <div class="char-desc"><strong>Arti:</strong> ${item.arti}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderJpGrid(key) {
-      const container = document.getElementById('jpContentGrid');
-      const items = jepangData[key] || [];
-      container.innerHTML = items.map(item => `
-        <div class="card">
-          <div class="card-top">
-            <div class="char-main">${item.char}</div>
-            <button class="sound-btn" onclick="speakText('${item.sound}', 'ja')">
-              <i class="bi bi-volume-up-fill"></i>
-            </button>
-          </div>
-          <div class="char-romaji">${item.romaji}</div>
-          <div class="char-desc">${item.desc}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderEnGrid(key) {
-      const container = document.getElementById('enContentGrid');
-      const items = inggrisData[key] || [];
-      container.innerHTML = items.map(item => `
-        <div class="card">
-          <div class="card-top">
-            <h4 style="font-size: 1.1rem; color: var(--text-dark);">${item.char}</h4>
-            <button class="sound-btn" onclick="speakText('${item.sound}', 'en')">
-              <i class="bi bi-volume-up-fill"></i>
-            </button>
-          </div>
-          <div class="char-romaji">${item.romaji}</div>
-          <div class="char-desc">${item.desc}</div>
-        </div>
-      `).join('');
-    }
-
-    // ================= 5. SISTEM KUIS & EVALUASI =================
-    function openTopicQuiz(quizId) {
-      const quizContainer = document.getElementById(quizId);
-      quizContainer.style.display = 'block';
-      quizContainer.scrollIntoView({ behavior: 'smooth' });
-
-      const body = document.getElementById(`${quizId}-body`);
-      const questions = quizBank[quizId] || [];
-
-      body.innerHTML = questions.map((item, qIdx) => `
-        <div class="quiz-question-box" id="${quizId}-qbox-${qIdx}">
-          <p class="quiz-q-title">${qIdx + 1}. ${item.q}</p>
-          <div class="quiz-options">
-            ${item.options.map((opt, optIdx) => `
-              <button class="option-btn" onclick="answerQuestion('${quizId}', ${qIdx}, ${optIdx})">
-                ${String.fromCharCode(65 + optIdx)}. ${opt}
-              </button>
-            `).join('')}
-          </div>
-          <div class="feedback-box" id="${quizId}-fb-${qIdx}"></div>
-        </div>
-      `).join('');
-    }
-
-    function closeTopicQuiz(quizId) {
-      document.getElementById(quizId).style.display = 'none';
-    }
-
-    function answerQuestion(quizId, qIdx, selectedIdx) {
-      const questionData = quizBank[quizId][qIdx];
-      const qBox = document.getElementById(`${quizId}-qbox-${qIdx}`);
-      const buttons = qBox.querySelectorAll('.option-btn');
-      const fbBox = document.getElementById(`${quizId}-fb-${qIdx}`);
-
-      // Kunci tombol agar tidak bisa spam klik
-      buttons.forEach(b => b.disabled = true);
-
-      if (selectedIdx === questionData.correct) {
-        buttons[selectedIdx].classList.add('correct');
-        fbBox.style.display = 'block';
-        fbBox.style.background = '#dcfce7';
-        fbBox.style.color = '#166534';
-        fbBox.innerHTML = `<strong>Benar!</strong> ${questionData.exp}`;
-      } else {
-        buttons[selectedIdx].classList.add('wrong');
-        buttons[questionData.correct].classList.add('correct');
-        fbBox.style.display = 'block';
-        fbBox.style.background = '#fee2e2';
-        fbBox.style.color = '#991b1b';
-        fbBox.innerHTML = `<strong>Kurang tepat.</strong> ${questionData.exp}`;
-      }
-    }
-
-    function renderFinalExam() {
-      const container = document.getElementById('finalExamContainer');
-      const questions = quizBank['final-exam'];
-
-      container.innerHTML = `
-        <div id="examBody">
-          ${questions.map((item, qIdx) => `
-            <div class="quiz-question-box border-bottom pb-3 mb-3" id="exam-qbox-${qIdx}">
-              <p class="quiz-q-title">${item.q}</p>
-              <div class="quiz-options">
-                ${item.options.map((opt, optIdx) => `
-                  <button class="option-btn" onclick="answerQuestion('final-exam', ${qIdx}, ${optIdx})">
-                    ${String.fromCharCode(65 + optIdx)}. ${opt}
-                  </button>
-                `).join('')}
-              </div>
-              <div class="feedback-box" id="final-exam-fb-${qIdx}"></div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      const name = document.getElementById('sugName').value;
-      const cat = document.getElementById('sugCategory').value;
-      const msg = document.getElementById('sugMessage').value;
-
-      document.getElementById('sugAlert').style.display = 'block';
-      document.getElementById('suggestionForm').reset();
-
-      setTimeout(() => {
-        document.getElementById('sugAlert').style.display = 'none';
-      }, 5000);
-    }
-
-    // Inisialisasi awal
-    window.onload = function() {
-      renderAksara();
-      renderTembang();
-      renderDaerah();
-    };
   </script>
 </body>
 </html>
