@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinguaSphere - Belajar Bahasa & Budaya Dunia</title>
+  <title>LinguaSphere - Belajar Bahasa & Aksara Dunia</title>
 
   <!-- Google Fonts & Bootstrap Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,10 +14,9 @@
   <style>
     :root {
       --font-main: 'Outfit', sans-serif;
-      --font-jp: 'Noto Sans JP', sans-serif;
-      --glass-surface: rgba(255, 255, 255, 0.88);
-      --glass-border: rgba(255, 255, 255, 0.5);
-      --glass-shadow: 0 16px 32px 0 rgba(15, 23, 42, 0.12);
+      --glass-surface: rgba(255, 255, 255, 0.90);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-shadow: 0 16px 36px 0 rgba(15, 23, 42, 0.14);
       --theme-accent: #e11d48;
       --theme-soft: #ffe4e6;
     }
@@ -32,7 +31,7 @@
     body {
       min-height: 100vh;
       color: #0f172a;
-      transition: background 0.6s ease-in-out;
+      transition: background 0.5s ease-in-out;
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -40,33 +39,33 @@
       flex-direction: column;
     }
 
-    /* THEME BACKGROUNDS */
+    /* TEMA LATAR BELAKANG */
     body.theme-jp {
-      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.45), rgba(244, 63, 94, 0.35)),
+      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.45), rgba(225, 29, 72, 0.35)),
         url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');
       --theme-accent: #e11d48;
       --theme-soft: #ffe4e6;
     }
 
     body.theme-jv {
-      background-image: linear-gradient(135deg, rgba(30, 27, 24, 0.55), rgba(180, 83, 9, 0.35)),
+      background-image: linear-gradient(135deg, rgba(30, 27, 24, 0.55), rgba(180, 83, 9, 0.38)),
         url('https://images.unsplash.com/photo-1596402184320-417e7178b2cd?q=80&w=1600&auto=format&fit=crop');
       --theme-accent: #b45309;
       --theme-soft: #fef3c7;
     }
 
     body.theme-en {
-      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(2, 132, 199, 0.35)),
+      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(2, 132, 199, 0.38)),
         url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1600&auto=format&fit=crop');
       --theme-accent: #0284c7;
       --theme-soft: #e0f2fe;
     }
 
-    /* Top Navigation */
+    /* Header Navigasi */
     header {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.82);
       border-bottom: 1px solid var(--glass-border);
       position: sticky;
       top: 0;
@@ -76,16 +75,16 @@
     .navbar {
       max-width: 1050px;
       margin: 0 auto;
-      padding: 0.9rem 1.5rem;
+      padding: 0.85rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
     .brand-logo {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #0f172a;
       display: flex;
@@ -98,12 +97,13 @@
       display: flex;
       gap: 0.5rem;
       list-style: none;
+      flex-wrap: wrap;
     }
 
     .tab-btn {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(0,0,0,0.06);
-      padding: 0.55rem 1.1rem;
+      padding: 0.5rem 1.1rem;
       border-radius: 24px;
       font-weight: 600;
       font-size: 0.88rem;
@@ -123,27 +123,28 @@
       background: var(--theme-accent);
       color: #ffffff;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      border-color: var(--theme-accent);
     }
 
     main {
-      max-width: 900px;
-      margin: 2.5rem auto;
+      max-width: 920px;
+      margin: 2.2rem auto;
       padding: 0 1.5rem;
       flex: 1;
       width: 100%;
     }
 
-    /* Container Kartu Kaca */
+    /* Kotak Kaca Glassmorphism */
     .glass-box {
       background: var(--glass-surface);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 2rem;
+      border-radius: 22px;
+      padding: 2.2rem;
       box-shadow: var(--glass-shadow);
       margin-bottom: 2rem;
-      animation: fadeIn 0.35s ease-in-out;
+      animation: fadeIn 0.3s ease-in-out;
     }
 
     @keyframes fadeIn {
@@ -151,17 +152,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Menu Level Cards */
+    /* Grid Kartu Materi */
     .level-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.2rem;
-      margin-top: 1.5rem;
+      margin-top: 1.6rem;
     }
 
     .level-card {
       background: #ffffff;
-      border: 1.5px solid rgba(226, 232, 240, 0.8);
+      border: 1.5px solid rgba(226, 232, 240, 0.85);
       border-radius: 16px;
       padding: 1.4rem;
       cursor: pointer;
@@ -174,7 +175,7 @@
     .level-card:hover {
       transform: translateY(-4px);
       border-color: var(--theme-accent);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.09);
     }
 
     .level-pill {
@@ -183,7 +184,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      padding: 0.25rem 0.6rem;
+      padding: 0.25rem 0.65rem;
       border-radius: 12px;
       background: var(--theme-soft);
       color: var(--theme-accent);
@@ -191,9 +192,9 @@
     }
 
     .level-card h4 {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       color: #0f172a;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
 
     .level-card p {
@@ -209,7 +210,7 @@
       color: #0f172a;
       font-weight: 700;
       font-size: 0.85rem;
-      padding: 0.6rem;
+      padding: 0.65rem;
       border-radius: 10px;
       text-align: center;
       transition: all 0.2s;
@@ -221,9 +222,13 @@
       border-color: var(--theme-accent);
     }
 
-    /* AREA KUIS INTERAKTIF */
-    #arena-soal {
+    /* Layar Soal */
+    .view-panel {
       display: none;
+    }
+
+    .view-panel.active {
+      display: block;
     }
 
     .quiz-navbar {
@@ -235,9 +240,9 @@
 
     .indicator-pill {
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       color: var(--theme-accent);
     }
 
@@ -245,9 +250,12 @@
       background: none;
       border: none;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: #64748b;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
     .btn-quit:hover {
@@ -256,7 +264,7 @@
 
     .quiz-meter-bar {
       height: 8px;
-      background: rgba(0, 0, 0, 0.06);
+      background: rgba(0, 0, 0, 0.07);
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 1.8rem;
@@ -282,16 +290,17 @@
     }
 
     .prompt-target {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 800;
       color: #0f172a;
-      line-height: 1.2;
+      line-height: 1.25;
       margin-bottom: 0.8rem;
+      word-break: break-word;
     }
 
     .prompt-clue {
-      font-size: 0.95rem;
-      color: #475569;
+      font-size: 0.98rem;
+      color: #334155;
       margin-bottom: 1rem;
     }
 
@@ -299,10 +308,10 @@
       background: var(--theme-soft);
       color: var(--theme-accent);
       border: 1px solid transparent;
-      padding: 0.55rem 1.3rem;
+      padding: 0.55rem 1.4rem;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -314,18 +323,17 @@
       transform: scale(1.04);
     }
 
-    /* Pilihan Opsi Respons */
     .options-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.9rem;
+      gap: 1rem;
     }
 
     .choice-card {
       background: #ffffff;
       border: 2px solid #e2e8f0;
       border-radius: 14px;
-      padding: 1.1rem;
+      padding: 1.15rem 1rem;
       font-size: 1.05rem;
       font-weight: 700;
       color: #1e293b;
@@ -353,8 +361,7 @@
     }
 
     /* Layar Selesai */
-    #arena-finish {
-      display: none;
+    .finish-box {
       text-align: center;
       padding: 2.5rem 1rem;
     }
@@ -374,12 +381,32 @@
       border: 3px solid var(--theme-accent);
     }
 
+    .btn-return-hub {
+      background: var(--theme-accent);
+      color: #ffffff;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 1.2rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s;
+    }
+
+    .btn-return-hub:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+    }
+
     @media (max-width: 600px) {
       .options-layout {
         grid-template-columns: 1fr;
       }
       .prompt-target {
-        font-size: 2.6rem;
+        font-size: 2.5rem;
       }
     }
   </style>
@@ -388,7 +415,7 @@
 
   <header>
     <div class="navbar">
-      <a href="#" class="brand-logo">
+      <a href="javascript:void(0)" onclick="backToHub()" class="brand-logo">
         <i class="bi bi-compass-fill"></i> LinguaSphere
       </a>
       <ul class="nav-tabs">
@@ -400,12 +427,12 @@
   </header>
 
   <main>
-    <!-- ================= DASHBOARD PILIH MATERI ================= -->
-    <section id="menu-section">
+    <!-- ================= 1. DASHBOARD PILIH MODUL ================= -->
+    <section id="panel-hub" class="view-panel active">
       <div class="glass-box">
         <h2 id="hub-title" style="font-size: 1.6rem; margin-bottom: 0.3rem;">Belajar Bahasa Jepang (日本語)</h2>
         <p id="hub-subtitle" style="color: #475569; font-size: 0.95rem;">
-          Mulai dari huruf fonetik, membedakan karakter kembar, hingga dialog nyata di Tokyo.
+          Pilih salah satu dari 5 materi di bawah ini untuk memulai latihan interaktif.
         </p>
 
         <div class="level-grid" id="moduleCardsContainer">
@@ -414,12 +441,12 @@
       </div>
     </section>
 
-    <!-- ================= ARENA SOAL KUIS DINAMIS ================= -->
-    <section id="arena-soal">
+    <!-- ================= 2. ARENA SOAL INTERAKTIF ================= -->
+    <section id="panel-quiz" class="view-panel">
       <div class="glass-box">
         <div class="quiz-navbar">
-          <span class="indicator-pill" id="soalCategoryTag">LEVEL 1 — FONETIK</span>
-          <button class="btn-quit" onclick="backToHub()"><i class="bi bi-x-circle me-1"></i>Keluar</button>
+          <span class="indicator-pill" id="soalCategoryTag">MODUL</span>
+          <button class="btn-quit" onclick="backToHub()"><i class="bi bi-x-circle"></i> Keluar</button>
         </div>
 
         <div class="quiz-meter-bar">
@@ -427,27 +454,27 @@
         </div>
 
         <div class="prompt-box">
-          <div class="prompt-context" id="soalContextText">Pertanyaan 1 dari 5</div>
-          <div class="prompt-target" id="soalMainDisplay">あ</div>
-          <div class="prompt-clue" id="soalClueText">Manakah bacaan abjad latin yang tepat?</div>
+          <div class="prompt-context" id="soalContextText">Soal 1 dari 10</div>
+          <div class="prompt-target" id="soalMainDisplay">...</div>
+          <div class="prompt-clue" id="soalClueText">Pertanyaan...</div>
           <button class="btn-listen" id="btnSoundAction" onclick="playAudioCurrent()">
-            <i class="bi bi-volume-up-fill"></i> Dengar Audio
+            <i class="bi bi-volume-up-fill"></i> Dengar Audio (0.75x)
           </button>
         </div>
 
         <div class="options-layout" id="soalOptionsGrid">
-          <!-- 4 Opsi Jawaban Dinamis -->
+          <!-- 4 Opsi Jawaban -->
         </div>
       </div>
     </section>
 
-    <!-- ================= LAYAR HASIL AKHIR ================= -->
-    <section id="arena-finish">
-      <div class="glass-box">
+    <!-- ================= 3. LAYAR HASIL AKHIR ================= -->
+    <section id="panel-finish" class="view-panel">
+      <div class="glass-box finish-box">
         <div class="score-badge" id="finishScoreBadge">100</div>
-        <h3 id="finishTitle" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Sangat Bagus!</h3>
-        <p id="finishDesc" style="color: #64748b; margin-bottom: 1.5rem;">Kamu menuntaskan seluruh tantangan materi ini.</p>
-        <button class="choice-card" style="background: var(--theme-accent); color: #fff; border: none; max-width: 220px; margin: 0 auto; display: block;" onclick="backToHub()">
+        <h3 id="finishTitle" style="font-size: 1.6rem; margin-bottom: 0.4rem;">Luar Biasa!</h3>
+        <p id="finishDesc" style="color: #64748b; margin-bottom: 1rem;">Kamu telah menyelesaikan modul ini.</p>
+        <button class="btn-return-hub" id="btnBackFinish" onclick="backToHub()">
           Kembali ke Modul
         </button>
       </div>
@@ -455,139 +482,338 @@
   </main>
 
   <script>
-    // ================= 1. DATABASE MATERI BERJENJANG =================
+    // ================= BANK MATERI & SOAL (MINIMAL 5 MODUL PER BAHASA, 10 SOAL PER MODUL) =================
     const courseDatabases = {
-      // ===== MODUL JEPANG (Tema Sakura & Tokyo) =====
+      // =========================== 1. JEPANG (5 MODUL) ===========================
       jp: {
         title: 'Belajar Bahasa Jepang (日本語)',
-        desc: 'Jelajahi keindahan aksara Hiragana, Katakana, dan situasi budaya sehari-hari di Jepang.',
+        desc: 'Kuasai aksara fonetik, etika berkomunikasi, perlengkapan harian, hingga hitungan waktu di Tokyo.',
         modules: [
           {
-            id: 'jp_tier1',
-            level: 'Tingkat 1 • Pemula',
-            title: 'Hiragana Baris Dasar (A-I-U-E-O)',
-            desc: 'Mengenal pelafalan 5 vokal dasar melalui bentuk dan suara lambat.',
+            id: 'jp_mod1',
+            level: 'Modul 1 • Fondasi Aksara',
+            title: 'Hiragana Baris Dasar (A-K-S-T-N)',
+            desc: 'Penguasaan 10 huruf dan suku kata awal Hiragana terpenting.',
             questions: [
-              { target: 'あ', context: 'Vokal Dasar', clue: 'Tebak pelafalan karakter hiragana ini:', sound: 'あ', options: ['A', 'O', 'Ka', 'Ta'], correct: 0 },
-              { target: 'い', context: 'Vokal Dasar', clue: 'Huruf dua coretan melengkung ini dibaca:', sound: 'い', options: ['U', 'I', 'Shi', 'Ri'], correct: 1 },
-              { target: 'う', context: 'Vokal Dasar', clue: 'Manakah bunyi vokal yang tepat?', sound: 'う', options: ['O', 'E', 'U', 'N'], correct: 2 },
-              { target: 'え', context: 'Vokal Dasar', clue: 'Lafalkan karakter berikut:', sound: 'え', options: ['A', 'E', 'Ro', 'So'], correct: 1 },
-              { target: 'お', context: 'Vokal Dasar', clue: 'Perhatikan coretan bulat di bagian bawah:', sound: 'お', options: ['O', 'A', 'Ha', 'Ho'], correct: 0 }
+              { target: 'あ', context: 'Vokal Dasar', clue: 'Huruf vokal awal ini dibaca:', sound: 'あ', options: ['A', 'O', 'Ka', 'Ta'], correct: 0 },
+              { target: 'い', context: 'Vokal Dasar', clue: 'Huruf dua goresan sejajar ini dibaca:', sound: 'い', options: ['U', 'I', 'Shi', 'Ri'], correct: 1 },
+              { target: 'う', context: 'Vokal Dasar', clue: 'Karakter vokal berlekuk ini berbunyi:', sound: 'う', options: ['O', 'E', 'U', 'N'], correct: 2 },
+              { target: 'え', context: 'Vokal Dasar', clue: 'Manakah bacaan yang benar untuk huruf ini?', sound: 'え', options: ['A', 'E', 'Ro', 'So'], correct: 1 },
+              { target: 'お', context: 'Vokal Dasar', clue: 'Huruf dengan titik di kanan atas ini dibaca:', sound: 'お', options: ['O', 'A', 'Ha', 'Mu'], correct: 0 },
+              { target: 'か', context: 'Keluarga Konsonan K', clue: 'Konsonan K pertama (Ka) berwujud:', sound: 'か', options: ['Ki', 'Ka', 'Ke', 'Ko'], correct: 1 },
+              { target: 'き', context: 'Keluarga Konsonan K', clue: 'Huruf dengan dua garis horizontal sejajar ini berbunyi:', sound: 'き', options: ['Sa', 'Chi', 'Ki', 'Ku'], correct: 2 },
+              { target: 'さ', context: 'Keluarga Konsonan S', clue: 'Huruf satu garis horizontal ini berbunyi:', sound: 'さ', options: ['Sa', 'Ki', 'Chi', 'Shi'], correct: 0 },
+              { target: 'し', context: 'Keluarga Konsonan S', clue: 'Bentuk kail pancing ini dibaca:', sound: 'し', options: ['Tsu', 'Shi', 'No', 'I'], correct: 1 },
+              { target: 'た', context: 'Keluarga Konsonan T', clue: 'Karakter pembuka keluarga T (Ta) adalah:', sound: 'た', options: ['Ta', 'Na', 'Ko', 'Ni'], correct: 0 }
             ]
           },
           {
-            id: 'jp_tier2',
-            level: 'Tingkat 2 • Menengah',
-            title: 'Karakter Serupa & Mirip',
-            desc: 'Tantangan membedakan pasangan huruf mirip seperti さ vs き dan あ vs お.',
+            id: 'jp_mod2',
+            level: 'Modul 2 • Kata Serapan',
+            title: 'Katakana Esensial & Istilah Asing',
+            desc: 'Membaca Katakana untuk nama kota, teknologi, dan kata serapan asing.',
             questions: [
-              { target: 'さ vs き', context: 'Bentuk Serupa', clue: 'Huruf "SA" hanya memiliki satu garis mendatar, yaitu...', sound: 'さ', options: ['さ', 'き', 'ち', 'そ'], correct: 0 },
-              { target: 'れ vs わ', context: 'Kaki Karakter', clue: 'Manakah yang dibaca "WA" (lingkaran bulat menutup)?', sound: 'わ', options: ['れ', 'わ', 'ね', 'め'], correct: 1 },
-              { target: 'シ vs ツ', context: 'Katakana Kembar', clue: 'Coretan dari bawah ke atas "SHI" (Katakana) adalah...', sound: 'シ', options: ['ツ', 'シ', 'ン', 'ソ'], correct: 1 }
+              { target: 'ア', context: 'Katakana Vokal', clue: 'Huruf vokal pembuka Katakana dibaca:', sound: 'ア', options: ['A', 'I', 'U', 'E'], correct: 0 },
+              { target: 'カ', context: 'Katakana Konsonan', clue: 'Bentuk tegas tanpa titik ini berbunyi:', sound: 'カ', options: ['Ku', 'Ka', 'Ta', 'Ro'], correct: 1 },
+              { target: 'コーヒー', context: 'Kata Serapan', clue: 'Kata "Koohii" (Katakana) dalam bahasa Indonesia berarti:', sound: 'コーヒー', options: ['Teh manis', 'Kopi', 'Air mineral', 'Kue'], correct: 1 },
+              { target: 'ホテル', context: 'Fasilitas', clue: 'Kata "Hoteru" mengacu pada tempat:', sound: 'ホテル', options: ['Hotel', 'Rumah sakit', 'Bandara', 'Restoran'], correct: 0 },
+              { target: 'タクシー', context: 'Transportasi', clue: 'Alat transportasi "Takushii" adalah:', sound: 'タクシー', options: ['Kereta listrik', 'Taksi', 'Bus kota', 'Pesawat'], correct: 1 },
+              { target: 'テレビ', context: 'Elektronik', clue: 'Kata "Terebi" merupakan singkatan dari:', sound: 'テレビ', options: ['Telepon', 'Televisi', 'Radio', 'Komputer'], correct: 1 },
+              { target: 'カメラ', context: 'Elektronik', clue: 'Kata serapan "Kamera" berarti:', sound: 'カメラ', options: ['Kamera', 'Jam tangan', 'Lensa', 'Cermin'], correct: 0 },
+              { target: 'パン', context: 'Makanan', clue: 'Makanan serapan "Pan" bermakna:', sound: 'パン', options: ['Nasi kepal', 'Roti', 'Mie ramen', 'Daging'], correct: 1 },
+              { target: 'バス', context: 'Transportasi', clue: 'Kata Katakana "Basu" dibaca:', sound: 'バス', options: ['Bus', 'Pasar', 'Sepeda', 'Kapal'], correct: 0 },
+              { target: 'トイレ', context: 'Fasilitas Umum', clue: 'Istilah "Toire" berarti:', sound: 'トイレ', options: ['Toilet / Kamar kecil', 'Kamar tidur', 'Dapur', 'Taman'], correct: 0 }
             ]
           },
           {
-            id: 'jp_tier3',
-            level: 'Tingkat 3 • Percakapan Realistis',
-            title: 'Situasi Etika & Barang (Aisatsu & Mochimono)',
-            desc: 'Membaca kalimat utuh pada situasi nyata di stasiun atau restoran.',
+            id: 'jp_mod3',
+            level: 'Modul 3 • Etika Bertutur',
+            title: 'Aisatsu (挨拶) & Salam Harian',
+            desc: 'Ungkapan sopan, salam waktu, dan etika santun masyarakat Jepang.',
             questions: [
-              { target: 'ごちそうさまでした', context: 'Etika Restoran', clue: 'Ungkapan sopan yang diucapkan tepat seusai selesai makan:', sound: 'ごちそうさまでした', options: ['Itadakimasu', 'Gochisousama deshita', 'Konnichiwa', 'Sumimasen'], correct: 1 },
-              { target: '鞄 (かばん)', context: 'Benda Bawaan', clue: 'Kata "Kaban" artinya adalah...', sound: 'かばん', options: ['Buku catatan', 'Tas punggung/jinjing', 'Jam saku', 'Payung hujan'], correct: 1 },
-              { target: 'はじめまして', context: 'Bertemu Orang Baru', clue: 'Salam perkenalan diri pertama kali yang berarti "Senang berkenalan":', sound: 'はじめまして', options: ['Hajimemashite', 'Sayounara', 'Oyasumi', 'Douitashimashite'], correct: 0 }
+              { target: 'おはようございます', context: 'Salam Pagi', clue: 'Diucapkan saat bertemu rekan di pagi hari (formal):', sound: 'おはようございます', options: ['Ohayou gozaimasu', 'Konnichiwa', 'Konbanwa', 'Sayounara'], correct: 0 },
+              { target: 'こんにちは', context: 'Salam Siang', clue: 'Sapaan umum siang hari (Halo/Selamat siang):', sound: 'こんにちは', options: ['Oyasumi', 'Konnichiwa', 'Moshi-moshi', 'Itadakimasu'], correct: 1 },
+              { target: 'こんばんは', context: 'Salam Petang', clue: 'Sapaan saat berjumpa di malam hari:', sound: 'こんばんは', options: ['Konbanwa', 'Ohayou', 'Sayounara', 'Arigatou'], correct: 0 },
+              { target: 'おやすみなさい', context: 'Waktu Istirahat', clue: 'Salam sebelum tidur atau berpamitan larut malam:', sound: 'おやすみなさい', options: ['Oyasuminasai', 'Itadakimasu', 'Hajimemashite', 'Tadaima'], correct: 0 },
+              { target: 'ありがとうございます', context: 'Ungkapan Terima Kasih', clue: 'Terima kasih banyak dalam nuansa formal sopan:', sound: 'ありがとうございます', options: ['Sumimasen', 'Arigatou gozaimasu', 'Gomen nasai', 'Iie'], correct: 1 },
+              { target: 'すみません', context: 'Permisi / Minta Maaf', clue: 'Ungkapan memanggil pelayan atau meminta maaf santun:', sound: 'すみません', options: ['Sumimasen', 'Konnichiwa', 'Sayounara', 'Okaeri'], correct: 0 },
+              { target: 'いただきます', context: 'Etika Makan', clue: 'Diucapkan tepat sebelum mulai menyantap makanan:', sound: 'いただきます', options: ['Itadakimasu', 'Gochisousama', 'Oishii', 'Kanpai'], correct: 0 },
+              { target: 'ごちそうさまでした', context: 'Etika Selesai Makan', clue: 'Diucapkan sesudah selesai makan sebagai rasa syukur:', sound: 'ごちそうさまでした', options: ['Gochisousama deshita', 'Itadakimasu', 'Arigatou', 'Omatase'], correct: 0 },
+              { target: 'いってきます', context: 'Keluar Rumah', clue: 'Diucapkan saat pamit berangkat beraktivitas dari rumah:', sound: 'いってきます', options: ['Ittekimasu', 'Itterasshai', 'Tadaima', 'Okaeri'], correct: 0 },
+              { target: 'ただいま', context: 'Pulang ke Rumah', clue: 'Diucapkan saat baru tiba kembali di dalam rumah:', sound: 'ただいま', options: ['Tadaima', 'Okaerinasai', 'Ittekimasu', 'Konbanwa'], correct: 0 }
+            ]
+          },
+          {
+            id: 'jp_mod4',
+            level: 'Modul 4 • Kosakata Benda',
+            title: 'Mochimono (持ち物) & Benda Sekitar',
+            desc: 'Perlengkapan sekolah, kantor, dan barang bawaan pribadi.',
+            questions: [
+              { target: '本 (ほん)', context: 'Alat Belajar', clue: 'Kata "Hon" berarti:', sound: 'ほん', options: ['Buku', 'Buku tulis', 'Kamus', 'Pena'], correct: 0 },
+              { target: '鞄 (かばん)', context: 'Barang Bawaan', clue: 'Kata "Kaban" artinya adalah:', sound: 'かばん', options: ['Tas bawaan', 'Dompet', 'Sepatu', 'Baju'], correct: 0 },
+              { target: '時計 (とけい)', context: 'Penunjuk Waktu', clue: 'Kata "Tokei" merujuk pada benda:', sound: 'とけい', options: ['Jam tangan / dinding', 'Kacamata', 'Cincin', 'Kunci'], correct: 0 },
+              { target: '財布 (さいふ)', context: 'Benda Berharga', clue: 'Kata "Saifu" memiliki arti:', sound: 'さいふ', options: ['Dompet uang', 'Koper', 'Amplop', 'Kotak pensil'], correct: 0 },
+              { target: '傘 (かさ)', context: 'Pelindung Hujan', clue: 'Benda pelindung "Kasa" adalah:', sound: 'かさ', options: ['Payung', 'Topi', 'Jas hujan', 'Syal'], correct: 0 },
+              { target: '鍵 (かぎ)', context: 'Keamanan Pintu', clue: 'Benda logam kecil "Kagi" berarti:', sound: 'かぎ', options: ['Kunci', 'Gunting', 'Paku', 'Pisau'], correct: 0 },
+              { target: '靴 (くつ)', context: 'Pakaian Kaki', clue: 'Kata "Kutsu" berarti:', sound: 'くつ', options: ['Sepatu', 'Kaus kaki', 'Sandal', 'Celana'], correct: 0 },
+              { target: '眼鏡 (めがね)', context: 'Alat Penglihatan', clue: 'Kata "Megane" berarti:', sound: 'めがね', options: ['Kacamata', 'Teropong', 'Topi', 'Cermin'], correct: 0 },
+              { target: '鉛筆 (えんぴつ)', context: 'Alat Tulis', clue: 'Kata "Enpitsu" merujuk pada:', sound: 'えんぴつ', options: ['Pensil tulis', 'Pena tinta', 'Penghapus', 'Penggaris'], correct: 0 },
+              { target: '消しゴム (けしごむ)', context: 'Alat Tulis', clue: 'Alat tulis "Keshigomu" adalah:', sound: 'けしごむ', options: ['Penghapus karet', 'Rautan', 'Pena', 'Kertas'], correct: 0 }
+            ]
+          },
+          {
+            id: 'jp_mod5',
+            level: 'Modul 5 • Identitas & Waktu',
+            title: 'Jikoshoukai (自己紹介) & Hitungan',
+            desc: 'Pola kalimat memperkenalkan diri, asal negara, serta hitungan jam.',
+            questions: [
+              { target: 'はじめまして', context: 'Awal Perkenalan', clue: 'Kata pembuka perkenalan pertama kali:', sound: 'はじめまして', options: ['Hajimemashite', 'Sayounara', 'Tadaima', 'Konbanwa'], correct: 0 },
+              { target: '私の名前は ... です', context: 'Nama Diri', clue: 'Pola kalimat ini berfungsi untuk menyatakan:', sound: 'わたしのなまえは', options: ['Nama saya adalah...', 'Saya tinggal di...', 'Umur saya...', 'Hobi saya adalah...'], correct: 0 },
+              { target: 'インドネシアから来ました', context: 'Asal Negara', clue: 'Arti kalimat "Indoneshia kara kimashita":', sound: 'インドネシアからきました', options: ['Saya berasal dari Indonesia', 'Saya ingin ke Indonesia', 'Saya suka Indonesia', 'Orang tua saya di Indonesia'], correct: 0 },
+              { target: 'どうぞよろしくお願いします', context: 'Penutup Perkenalan', clue: 'Kalimat santun menutup perkenalan diri:', sound: 'どうぞよろしくおねがいします', options: ['Douzo yoroshiku onegaishimasu', 'Gochisousama', 'Itadakimasu', 'Oyasuminasai'], correct: 0 },
+              { target: '学生 (がくせい)', context: 'Status Pekerjaan', clue: 'Kata "Gakusei" bermakna:', sound: 'がくせい', options: ['Pelajar / Siswa', 'Guru / Dosen', 'Dokter', 'Pegawai kantor'], correct: 0 },
+              { target: '会社員 (かいしゃいん)', context: 'Profesi', clue: 'Kata "Kaishain" bermakna:', sound: 'かいしゃいん', options: ['Karyawan swasta / kantor', 'Petani', 'Polisi', 'Pedagang'], correct: 0 },
+              { target: '一時 (いちじ)', context: 'Waktu Jam', clue: 'Penyebutan "Ichi-ji" menunjukkan pukul:', sound: 'いちじ', options: ['Pukul 1', 'Pukul 2', 'Pukul 12', 'Pukul 10'], correct: 0 },
+              { target: '三時 (さんじ)', context: 'Waktu Jam', clue: 'Penyebutan "San-ji" menunjukkan pukul:', sound: 'さんじ', options: ['Pukul 3', 'Pukul 4', 'Pukul 5', 'Pukul 6'], correct: 0 },
+              { target: '半 (はん)', context: 'Menit Jam', clue: 'Kata "Han" di belakang jam (misal 3-ji han) berarti:', sound: 'はん', options: ['Lewat 30 menit (setengah)', 'Kurang 15 menit', 'Tepat waktu', 'Dini hari'], correct: 0 },
+              { target: '何時ですか (なんじですか)', context: 'Pertanyaan Waktu', clue: 'Pertanyaan ini menanyakan:', sound: 'なんじですか', options: ['Jam berapa sekarang?', 'Hari apa ini?', 'Di mana stasiun?', 'Berapa harganya?'], correct: 0 }
             ]
           }
         ]
       },
 
-      // ===== MODUL JAWA (Tema Borobudur & Karaton) =====
+      // =========================== 2. JAWA & NUSANTARA (5 MODUL) ===========================
       jv: {
         title: 'Aksara & Sastra Jawa Nusantara',
-        desc: 'Mempelajari nilai luhur carakan, ragam sandhangan pangowah swara, dan tembang macapat.',
+        desc: 'Pelajari carakan 20 aksara, hukum sandhangan, paugeran tembang macapat, hingga ragam dialek Nusantara.',
         modules: [
           {
-            id: 'jv_tier1',
-            level: 'Tingkat 1 • Dasar Carakan',
-            title: 'Pancaran Huruf Pokok (Ha-Na-Ca-Ra-Ka)',
-            desc: 'Mengenal rupa 5 aksara carakan baris pembuka.',
+            id: 'jv_mod1',
+            level: 'Modul 1 • Aksara Legena',
+            title: 'Carakan 20 Aksara Lengkap',
+            desc: 'Menghafal bentuk dan urutan filosofis Carakan Jawa.',
             questions: [
-              { target: 'ꦲ', context: 'Carakan Baris 1', clue: 'Aksara ini melambangkan nafas hidup, dibaca:', sound: 'Ha', options: ['Ha', 'Na', 'Ca', 'Ka'], correct: 0 },
-              { target: 'ꦤ', context: 'Carakan Baris 1', clue: 'Aksara "Na" berwujud...', sound: 'Na', options: ['ꦫ', 'ꦤ', 'ꦏ', 'ꦢ'], correct: 1 },
-              { target: 'ꦫ', context: 'Carakan Baris 1', clue: 'Karakter lengkung dua berikut berbunyi:', sound: 'Ra', options: ['Ca', 'La', 'Ra', 'Wa'], correct: 2 },
-              { target: 'ꦏ', context: 'Carakan Baris 1', clue: 'Aksara "Ka" digambarkan dengan rupa:', sound: 'Ka', options: ['ꦏ', 'ꦠ', 'ꦱ', 'ꦥ'], correct: 0 }
+              { target: 'ꦲ', context: 'Carakan Baris 1', clue: 'Aksara pembuka melambangkan nafas hidup (Hana):', sound: 'Ha', options: ['Ha', 'Na', 'Ca', 'Ra'], correct: 0 },
+              { target: 'ꦤ', context: 'Carakan Baris 1', clue: 'Aksara carakan "Na" memiliki rupa:', sound: 'Na', options: ['ꦏ', 'ꦤ', 'ꦢ', 'ꦠ'], correct: 1 },
+              { target: 'ꦕ', context: 'Carakan Baris 1', clue: 'Aksara dengan lekuk mahkota "Ca" adalah:', sound: 'Ca', options: ['ꦫ', 'ꦮ', 'ꦕ', 'ꦭ'], correct: 2 },
+              { target: 'ꦫ', context: 'Carakan Baris 1', clue: 'Aksara dengan lekukan dua puncak "Ra" dibaca:', sound: 'Ra', options: ['Ra', 'Ga', 'Nga', 'Ba'], correct: 0 },
+              { target: 'ꦏ', context: 'Carakan Baris 1', clue: 'Aksara "Ka" berwujud:', sound: 'Ka', options: ['ꦏ', 'ꦠ', 'ꦱ', 'ꦥ'], correct: 0 },
+              { target: 'ꦢ', context: 'Carakan Baris 2', clue: 'Aksara "Da" (Data sawala) adalah:', sound: 'Da', options: ['ꦢ', 'ꦠ', 'ꦱ', 'ꦮ'], correct: 0 },
+              { target: 'ꦠ', context: 'Carakan Baris 2', clue: 'Aksara "Ta" dilambangkan dengan:', sound: 'Ta', options: ['ꦠ', 'ꦭ', 'ꦥ', 'ꦝ'], correct: 0 },
+              { target: 'ꦱ', context: 'Carakan Baris 2', clue: 'Aksara "Sa" berwujud:', sound: 'Sa', options: ['ꦱ', 'ꦮ', 'ꦭ', 'ꦪ'], correct: 0 },
+              { target: 'ꦩ', context: 'Carakan Baris 4', clue: 'Aksara "Ma" (Magabathanga) adalah:', sound: 'Ma', options: ['ꦩ', 'ꦒ', 'ꦧ', 'ꦔ'], correct: 0 },
+              { target: 'ꦔ', context: 'Carakan Baris 4', clue: 'Aksara penutup ke-20 "Nga" adalah:', sound: 'Nga', options: ['ꦔ', 'ꦧ', 'ꦒ', 'ꦛ'], correct: 0 }
             ]
           },
           {
-            id: 'jv_tier2',
-            level: 'Tingkat 2 • Sandhangan Swara',
-            title: 'Pangowah Swara (Vokal Pengubah)',
-            desc: 'Memahami fungsi Wulu (i), Suku (u), Taling (é), dan Pepet (e).',
+            id: 'jv_mod2',
+            level: 'Modul 2 • Tanda Vokal',
+            title: 'Sandhangan Swara & Panyigeg',
+            desc: 'Mengubah bunyi vokal aksara serta mematikan suku kata akhir.',
             questions: [
-              { target: 'ꦏꦶ', context: 'Sandhangan Wulu', clue: 'Aksara Ka yang diberi tanda bulatan cilik di atasnya dibaca:', sound: 'Ki', options: ['Ku', 'Ki', 'Ké', 'Ko'], correct: 1 },
-              { target: 'ꦱꦸ', context: 'Sandhangan Suku', clue: 'Tanda juntai ke bawah (Suku) mengubah vokal menjadi...', sound: 'Su', options: ['Si', 'Se', 'Su', 'Sa'], correct: 2 },
-              { target: 'ꦺꦠꦴ', context: 'Taling Tarung', clue: 'Apit taling dan tarung mengubah bunyi konsonan menjadi vokal:', sound: 'To', options: ['O (To)', 'E (Te)', 'U (Tu)', 'I (Ti)'], correct: 0 }
+              { target: 'ꦶ (Wulu)', context: 'Sandhangan Swara', clue: 'Sandhangan Wulu mengubah bunyi vokal konsonan menjadi:', sound: 'Wulu', options: ['Vokal I', 'Vokal U', 'Vokal E', 'Vokal O'], correct: 0 },
+              { target: 'ꦸ (Suku)', context: 'Sandhangan Swara', clue: 'Sandhangan Suku di bawah aksara mengubah bunyi menjadi:', sound: 'Suku', options: ['Vokal U', 'Vokal I', 'Vokal O', 'Vokal E'], correct: 0 },
+              { target: 'ꦺ (Taling)', context: 'Sandhangan Swara', clue: 'Sandhangan Taling diletakkan di depan aksara untuk bunyi:', sound: 'Taling', options: ['Vokal É (sate)', 'Vokal U', 'Vokal I', 'Konsonan mati'], correct: 0 },
+              { target: 'ꦼ (Pepet)', context: 'Sandhangan Swara', clue: 'Sandhangan Pepet di atas aksara menghasilkan vokal:', sound: 'Pepet', options: ['Vokal E lemah (sepet)', 'Vokal A', 'Vokal I', 'Vokal U'], correct: 0 },
+              { target: 'ꦺ...ꦴ (Taling-Tarung)', context: 'Sandhangan Swara', clue: 'Apit taling-tarung mengubah bunyi aksara menjadi:', sound: 'Taling Tarung', options: ['Vokal O', 'Vokal U', 'Vokal I', 'Vokal E'], correct: 0 },
+              { target: 'ꦂ (Layar)', context: 'Sandhangan Panyigeg', clue: 'Tanda garis miring di atas aksara mematikan konsonan:', sound: 'Layar', options: ['Mati -R', 'Mati -H', 'Mati -NG', 'Mati vokal total'], correct: 0 },
+              { target: 'ꦃ (Wignyan)', context: 'Sandhangan Panyigeg', clue: 'Tanda Wignyan di belakang aksara mematikan konsonan:', sound: 'Wignyan', options: ['Mati -H', 'Mati -R', 'Mati -K', 'Mati -NG'], correct: 0 },
+              { target: 'ꦁ (Cecak)', context: 'Sandhangan Panyigeg', clue: 'Tanda Cecak bulat kecil di atas mematikan konsonan:', sound: 'Cecak', options: ['Mati -NG', 'Mati -R', 'Mati -S', 'Mati -N'], correct: 0 },
+              { target: '꧀ (Pangkon)', context: 'Sandhangan Panyigeg', clue: 'Pangkon berfungsi pada akhir kalimat untuk:', sound: 'Pangkon', options: ['Mematikan huruf konsonan', 'Membuat huruf kapital', 'Tanda seru', 'Tanda tanya'], correct: 0 },
+              { target: 'ꦱꦶꦱꦶ', context: 'Latihan Membaca', clue: 'Dua aksara Sa berwulu ini dibaca:', sound: 'Sisi', options: ['Sisi', 'Susu', 'Sasa', 'Sose'], correct: 0 }
             ]
           },
           {
-            id: 'jv_tier3',
-            level: 'Tingkat 3 • Sastra Macapat',
-            title: 'Paugeran & Watak Tembang',
-            desc: 'Uji pemahaman aturan guru gatra, wilangan, dan makna tembang leluhur.',
+            id: 'jv_mod3',
+            level: 'Modul 3 • Tembang Macapat',
+            title: 'Paugeran & Watak Tembang Jawa',
+            desc: 'Menghitung guru gatra, wilangan, lagu, serta watak tembang.',
             questions: [
-              { target: '12u - 6a - 8i - 12a', context: 'Aturan Guru Gatra', clue: 'Paugeran dengan 4 larik/gatra tersebut merupakan ciri tembang:', sound: 'Tembang Pocung', options: ['Gambuh', 'Pocung', 'Sinom', 'Kinanthi'], correct: 1 },
-              { target: 'Watak Tembang Gambuh', context: 'Karakter Seni', clue: 'Tembang Gambuh memiliki watak yang cocok untuk menyampaikan...', sound: 'Gambuh', options: ['Peperangan seram', 'Nasihat persahabatan akrab', 'Rasa berduka sedih', 'Pernikahan mewah'], correct: 1 }
+              { target: 'Guru Gatra', context: 'Aturan Macapat', clue: 'Istilah "Guru Gatra" dalam tembang macapat bermakna:', sound: 'Guru Gatra', options: ['Jumlah larik/baris dalam satu bait', 'Jumlah suku kata per baris', 'Jatuhnya vokal akhir', 'Irama gamelan'], correct: 0 },
+              { target: 'Guru Wilangan', context: 'Aturan Macapat', clue: 'Istilah "Guru Wilangan" berarti:', sound: 'Guru Wilangan', options: ['Cacahing wanda (jumlah suku kata)', 'Jumlah baris bait', 'Suara nada lagu', 'Nama pencipta'], correct: 0 },
+              { target: 'Guru Lagu', context: 'Aturan Macapat', clue: 'Istilah "Guru Lagu" berarti:', sound: 'Guru Lagu', options: ['Tibaning swara vokal ing pungkasan gatra', 'Judul lagu', 'Alat musik pengiring', 'Penyanyi tembang'], correct: 0 },
+              { target: '12u, 6a, 8i, 12a', context: 'Paugeran Pocung', clue: 'Paugeran 4 gatra tersebut adalah milik tembang:', sound: 'Pocung', options: ['Pocung', 'Gambuh', 'Sinom', 'Asmaradana'], correct: 0 },
+              { target: '7u, 10u, 12i, 8u, 8o', context: 'Paugeran Gambuh', clue: 'Paugeran 5 gatra tersebut adalah milik tembang:', sound: 'Gambuh', options: ['Gambuh', 'Pocung', 'Mijil', 'Maskumambang'], correct: 0 },
+              { target: 'Watak Tembang Pocung', context: 'Sifat Seni', clue: 'Watak tembang Pocung umumnya bersifat:', sound: 'Watak Pocung', options: ['Kendho, sembrana, cocok kanggé cangkriman', 'Galak lan nantang', 'Sedhih nelangsa', 'Kasmaran romantis'], correct: 0 },
+              { target: 'Watak Tembang Gambuh', context: 'Sifat Seni', clue: 'Watak tembang Gambuh sangat sesuai untuk:', sound: 'Watak Gambuh', options: ['Pituduh akrab lan pitutur becik', 'Perang tanding', 'Tangisan duka', 'Marah murka'], correct: 0 },
+              { target: 'Tembang Sinom', context: 'Filosofi Hidup', clue: 'Sinom melambangkan fase kehidupan manusia ketika:', sound: 'Sinom', options: ['Masa muda yang penuh semangat tumbuh', 'Masa bayi baru lahir', 'Masa tua menjelang wafat', 'Masa pernikahan'], correct: 0 },
+              { target: 'Tembang Kinanthi', context: 'Filosofi Hidup', clue: 'Kata Kinanthi bermakna dikanthi-kanthi, yaitu:', sound: 'Kinanthi', options: ['Dibimbing dan diarahkan perilakunya', 'Ditinggalkan sendiri', 'Diberi harta', 'Dimarahi'], correct: 0 },
+              { target: 'Tembang Durma', context: 'Watak Tembang', clue: 'Tembang macapat yang berwatak keras, galak, dan cocok untuk suasana perang adalah:', sound: 'Durma', options: ['Durma', 'Mijil', 'Maskumambang', 'Pocung'], correct: 0 }
+            ]
+          },
+          {
+            id: 'jv_mod4',
+            level: 'Modul 4 • Unggah-Ungguh',
+            title: 'Tata Krama: Ngoko vs Krama Inggil',
+            desc: 'Penerapan tingkatan tutur bahasa Jawa dalam pergaulan sehari-hari.',
+            questions: [
+              { target: 'Mangan (Ngoko)', context: 'Tingkatan Kata', clue: 'Bentuk Krama Inggil santun dari kata "mangan" (makan) adalah:', sound: 'Dahar', options: ['Dhahar', 'Nedha', 'Turu', 'Adus'], correct: 0 },
+              { target: 'Turu (Ngoko)', context: 'Tingkatan Kata', clue: 'Bentuk Krama Inggil dari kata "turu" (tidur) adalah:', sound: 'Sare', options: ['Sarè', 'Tilem', 'Gugah', 'Mlebu'], correct: 0 },
+              { target: 'Lunga (Ngoko)', context: 'Tingkatan Kata', clue: 'Bentuk Krama Inggil dari kata "lunga" (pergi) adalah:', sound: 'Tindak', options: ['Tindak', 'Késah', 'Mlayu', 'Mampir'], correct: 0 },
+              { target: 'Omah (Ngoko)', context: 'Tingkatan Kata', clue: 'Bentuk Krama Inggil untuk menyebut rumah orang tua/guru:', sound: 'Dalem', options: ['Dalem', 'Griya', 'Pondhok', 'Kamar'], correct: 0 },
+              { target: 'Kula badhe nyuwun pirsa', context: 'Percakapan Santun', clue: 'Kalimat Krama Inggil ini bermakna:', sound: 'Kula badhe nyuwun pirsa', options: ['Saya mau bertanya', 'Saya mau minta uang', 'Saya mau pamit pulang', 'Saya mau makan'], correct: 0 },
+              { target: 'Matur nuwun sanget', context: 'Ungkapan Santun', clue: 'Ungkapan ini memiliki arti:', sound: 'Matur nuwun sanget', options: ['Terima kasih banyak', 'Sama-sama', 'Minta maaf', 'Selamat pagi'], correct: 0 },
+              { target: 'Sugeng rawuh', context: 'Penyambutan', clue: 'Ucapan salam saat menyambut kedatangan tamu kehormatan:', sound: 'Sugeng rawuh', options: ['Selamat datang', 'Selamat tinggal', 'Selamat tidur', 'Selamat makan'], correct: 0 },
+              { target: 'Nyuwun sewu', context: 'Permisi Santun', clue: 'Ungkapan santun saat lewat di depan orang tua:', sound: 'Nyuwun sewu', options: ['Permisi / Maaf', 'Minta seribu rupiah', 'Beli barang', 'Ayo jalan'], correct: 0 },
+              { target: 'Jeneng (Ngoko)', context: 'Tingkatan Kata', clue: 'Bentuk Krama Inggil untuk menanyakan nama orang yang dihormati:', sound: 'Asma', options: ['Asma', 'Nama', 'Paraban', 'Gelar'], correct: 0 },
+              { target: 'Ngoko Lugu', context: 'Konsep Unggah-Ungguh', clue: 'Bahasa Jawa Ngoko Lugu paling pas digunakan saat berbicara dengan:', sound: 'Ngoko Lugu', options: ['Teman sebaya yang sudah sangat akrab', 'Kakek dan Nenek', 'Bapak Guru di kelas', 'Pejabat daerah'], correct: 0 }
+            ]
+          },
+          {
+            id: 'jv_mod5',
+            level: 'Modul 5 • Ragam Nusantara',
+            title: 'Percakapan Bahasa Daerah Populer',
+            desc: 'Mengenal frasa sapaan bahasa Sunda, Minang, Bali, dan Batak.',
+            questions: [
+              { target: 'Kumaha damang?', context: 'Bahasa Sunda', clue: 'Sapaan santun menanyakan kabar dalam bahasa Sunda:', sound: 'Kumaha damang', options: ['Bagaimana kabarmu?', 'Mau pergi ke mana?', 'Siapa namamu?', 'Berapa harganya?'], correct: 0 },
+              { target: 'Hatur nuhun pisan', context: 'Bahasa Sunda', clue: 'Ungkapan terima kasih mendalam dalam bahasa Sunda:', sound: 'Hatur nuhun pisan', options: ['Terima kasih banyak', 'Sama-sama', 'Minta maaf', 'Selamat jalan'], correct: 0 },
+              { target: 'Wilujeng sumping', context: 'Bahasa Sunda', clue: 'Penyambutan selamat datang dalam bahasa Sunda:', sound: 'Wilujeng sumping', options: ['Selamat datang', 'Selamat sore', 'Hati-hati di jalan', 'Sampai jumpa'], correct: 0 },
+              { target: 'Baa kaba sanak?', context: 'Bahasa Minang', clue: 'Frasa sapaan hangat kepada sanak kawan di Minangkabau:', sound: 'Baa kaba sanak', options: ['Bagaimana kabar kawan?', 'Di mana rumahmu?', 'Sudah makan belum?', 'Kapan pulang?'], correct: 0 },
+              { target: 'Tarimo kasih banyak', context: 'Bahasa Minang', clue: 'Arti dari ucapan santun Minang ini:', sound: 'Tarimo kasih banyak', options: ['Terima kasih banyak', 'Sama-sama kembali', 'Selamat datang', 'Mari mampir'], correct: 0 },
+              { target: 'Matur suksma', context: 'Bahasa Bali', clue: 'Ungkapan rasa terima kasih dalam bahasa Bali halus:', sound: 'Matur suksma', options: ['Terima kasih', 'Selamat pagi', 'Minta tolong', 'Sampai jumpa'], correct: 0 },
+              { target: 'Om Swastyastu', context: 'Bahasa Bali', clue: 'Salam kedamaian dan kebajikan masyarakat Bali:', sound: 'Om Swastyastu', options: ['Salam salam sejahtera damai', 'Selamat tidur', 'Hati-hati di perjalanan', 'Terima kasih'], correct: 0 },
+              { target: 'Horas!', context: 'Bahasa Batak', clue: 'Salam khas penuh sukacita dan kesehatan suku Batak:', sound: 'Horas', options: ['Salam sejahtera / Berjaya', 'Selamat tinggal', 'Permisi lewat', 'Terima kasih'], correct: 0 },
+              { target: 'Aha do barita?', context: 'Bahasa Batak Toba', clue: 'Pertanyaan kabar dalam bahasa Batak:', sound: 'Aha do barita', options: ['Bagaimana kabar?', 'Siapa namamu?', 'Mau ke mana?', 'Dari mana asalmu?'], correct: 0 },
+              { target: 'Punten (Sunda)', context: 'Bahasa Sunda', clue: 'Kata permisi santun ketika melintas di hadapan orang lain:', sound: 'Punten', options: ['Punten (Permisi)', 'Mangga (Silakan)', 'Nuhun', 'Hayu'], correct: 0 }
             ]
           }
         ]
       },
 
-      // ===== MODUL INGGRIS (Tema London Skyline) =====
+      // =========================== 3. BAHASA INGGRIS (5 MODUL) ===========================
       en: {
         title: 'English Language Studio',
-        desc: 'Asah kepekaan frasa natural, idiom penutur asli, dan respons percakapan sehari-hari.',
+        desc: 'Asah kepekaan frasa natural, kosakata fungsional, idiom penutur asli, dan etika kerja global.',
         modules: [
           {
-            id: 'en_tier1',
-            level: 'Tier 1 • Essentials',
-            title: 'Polite Conversational Openers',
+            id: 'en_mod1',
+            level: 'Modul 1 • Kesantunan Berbahasa',
+            title: 'Daily Polite Expressions',
             desc: 'Memilih kalimat pembuka yang luwes saat berbicara dengan penutur asing.',
             questions: [
-              { target: 'How do you do?', context: 'Formal Greeting', clue: 'Respons paling tepat saat pertama kali berjabat tangan resmi:', sound: 'How do you do?', options: ['I am fine, and you?', 'How do you do?', 'Good night', 'Never mind'], correct: 1 },
-              { target: 'Excuse me', context: 'Asking for Attention', clue: 'Ungkapan sebelum menanyakan arah stasiun:', sound: 'Excuse me', options: ['Excuse me', 'Watch out', 'Take care', 'No problem'], correct: 0 }
+              { target: 'How do you do?', context: 'Formal Greeting', clue: 'Jawaban paling tepat saat pertama kali berjabat tangan formal:', sound: 'How do you do?', options: ['How do you do?', 'I am fine, thanks', 'Never mind', 'Good night'], correct: 0 },
+              { target: 'Excuse me', context: 'Attention Opener', clue: 'Ungkapan permisi sebelum menanyakan arah stasiun kereta:', sound: 'Excuse me', options: ['Excuse me', 'Watch out', 'Take care', 'No problem'], correct: 0 },
+              { target: 'I appreciate your help', context: 'Gratitude', clue: 'Ungkapan berbobot ini bermakna:', sound: 'I appreciate your help', options: ['Saya sangat menghargai bantuanmu', 'Saya tidak butuh bantuan', 'Tolong bantu saya sekarang', 'Apakah kamu lelah?'], correct: 0 },
+              { target: 'You are welcome', context: 'Polite Response', clue: 'Jawaban sopan setelah seseorang mengucapkan terima kasih:', sound: 'You are welcome', options: ['Sama-sama / Terima kasih kembali', 'Tidak usah dibahas', 'Sampai jumpa besok', 'Hati-hati di jalan'], correct: 0 },
+              { target: 'Pleased to meet you', context: 'Introduction', clue: 'Frasa perkenalan ini memiliki arti:', sound: 'Pleased to meet you', options: ['Senang berkenalan denganmu', 'Siapa nama Anda?', 'Saya sedang terburu-buru', 'Mari berpisah'], correct: 0 },
+              { target: 'Could you do me a favor?', context: 'Asking for Help', clue: 'Maksud dari pertanyaan santun ini:', sound: 'Could you do me a favor', options: ['Bisakah kamu menolong saya?', 'Apakah kamu punya uang?', 'Bolehkah saya pergi?', 'Kamu sedang apa?'], correct: 0 },
+              { target: 'Never mind', context: 'Casual Response', clue: 'Frasa santai yang bermakna "lupakan saja / tidak apa-apa":', sound: 'Never mind', options: ['Never mind', 'Take it easy', 'Of course', 'By the way'], correct: 0 },
+              { target: 'Have a wonderful day', context: 'Warm Parting', clue: 'Maksud ucapan perpisahan ramah ini:', sound: 'Have a wonderful day', options: ['Semoga harimu menyenangkan', 'Hati-hati banyak tugas', 'Bangunlah sekarang', 'Selamat sarapan'], correct: 0 },
+              { target: 'My apologies', context: 'Formal Apology', clue: 'Ungkapan formal saat menyampaikan permohonan maaf:', sound: 'My apologies', options: ['Mohon maaf saya yang sebesar-besarnya', 'Saya tidak setuju', 'Terima kasih kembali', 'Bukan urusan saya'], correct: 0 },
+              { target: 'Make yourself at home', context: 'Welcoming Guests', clue: 'Ucapan tuan rumah yang mempersilakan tamu agar tidak canggung:', sound: 'Make yourself at home', options: ['Anggaplah seperti di rumah sendiri', 'Bereskan rumah ini', 'Segeralah pulang', 'Kunci pintunya'], correct: 0 }
             ]
           },
           {
-            id: 'en_tier2',
-            level: 'Tier 2 • Native Idioms',
-            title: 'Real-World English Idioms',
-            desc: 'Pahami apa arti sebenarnya di balik ungkapan kiasan bahasa Inggris.',
+            id: 'en_mod2',
+            level: 'Modul 2 • Kosakata Fungsional',
+            title: 'Travel & Routine Essentials',
+            desc: 'Kosakata esensial untuk perjalanan udara, belanja, dan aktivitas harian.',
             questions: [
-              { target: 'Piece of cake', context: 'Idiomatic Expression', clue: 'Jika seorang rekan berkata suatu ujian itu "a piece of cake", artinya:', sound: 'Piece of cake', options: ['Sangat lezat dimakan', 'Sangat mudah diselesaikan', 'Perlu biaya mahal', 'Harus dirayakan'], correct: 1 },
-              { target: 'Break a leg!', context: 'Performance Wish', clue: 'Ungkapan ini disampaikan dengan maksud:', sound: 'Break a leg', options: ['Hati-hati jangan jatuh', 'Semoga penampilanmu sukses!', 'Kamu harus beristirahat', 'Jangan lari kencang'], correct: 1 },
-              { target: 'Under the weather', context: 'Health Condition', clue: 'Arti dari frasa kiasan "I feel under the weather":', sound: 'Under the weather', options: ['Menikmati udara dingin', 'Kurang enak badan / meriang', 'Lupa membawa payung', 'Kehujanan'], correct: 1 }
+              { target: 'Boarding pass', context: 'Airport Vocabulary', clue: 'Dokumen izin naik ke pesawat terbang disebut:', sound: 'Boarding pass', options: ['Boarding pass', 'Luggage tag', 'Visa stamp', 'Hotel voucher'], correct: 0 },
+              { target: 'Luggage / Baggage', context: 'Travel Vocabulary', clue: 'Kata yang merujuk pada tas koper dan barang bawaan penumpang:', sound: 'Luggage', options: ['Koper bawaan / Bagasi', 'Tiket parkir', 'Jadwal terbang', 'Dompet koin'], correct: 0 },
+              { target: 'Departure lounge', context: 'Airport Terminal', clue: 'Ruang tunggu sebelum calon penumpang dipanggil masuk pesawat:', sound: 'Departure lounge', options: ['Ruang tunggu keberangkatan', 'Pintu keluar bagasi', 'Pos bea cukai', 'Loket tiket'], correct: 0 },
+              { target: 'Currency exchange', context: 'Financial Service', clue: 'Tempat menukarkan mata uang asing disebut:', sound: 'Currency exchange', options: ['Penukaran valuta asing', 'Mesin tiket', 'Toko cinderamata', 'Bank pinjaman'], correct: 0 },
+              { target: 'Receipt', context: 'Shopping', clue: 'Bukti pembayaran tertulis setelah membeli barang di toko:', sound: 'Receipt', options: ['Struk / Nota belanja', 'Daftar menu', 'Buku garansi', 'Brosur diskon'], correct: 0 },
+              { target: 'Fitting room', context: 'Clothing Store', clue: 'Bilik khusus untuk mencoba pakaian sebelum dibeli:', sound: 'Fitting room', options: ['Kamar pas pakaian', 'Gudang barang', 'Meja kasir', 'Eskalator'], correct: 0 },
+              { target: 'Commute', context: 'Daily Routine', clue: 'Aktivitas bepergian rutin pulang-pergi ke tempat kerja/sekolah:', sound: 'Commute', options: ['Commute (Perjalanan komuter rutin)', 'Jogging', 'Vacation', 'Sleeping'], correct: 0 },
+              { target: 'Subway / Underground', context: 'Public Transit', clue: 'Sistem moda transportasi kereta bawah tanah di kota besar:', sound: 'Subway', options: ['Kereta bawah tanah', 'Bus tingkat', 'Perahu feri', 'Taksi terbang'], correct: 0 },
+              { target: 'Intersection', context: 'Road & Navigation', clue: 'Pertemuan persimpangan jalan lalu lintas raya:', sound: 'Intersection', options: ['Persimpangan jalan', 'Jembatan layang', 'Trotoar pejalan kaki', 'Pintu tol'], correct: 0 },
+              { target: 'Pedestrian', context: 'Traffic', clue: 'Orang yang berjalan kaki di trotoar pinggir jalan:', sound: 'Pedestrian', options: ['Pejalan kaki', 'Pengemudi mobil', 'Pengendara motor', 'Polisi patroli'], correct: 0 }
+            ]
+          },
+          {
+            id: 'en_mod3',
+            level: 'Modul 3 • Ungkapan Kiasan',
+            title: 'Native Idioms & Metaphors',
+            desc: 'Pahami apa maksud sebenarnya di balik idiom populer penutur asli.',
+            questions: [
+              { target: 'Piece of cake', context: 'Idiomatic Slang', clue: 'Jika suatu tugas disebut "a piece of cake", artinya:', sound: 'Piece of cake', options: ['Sangat mudah diselesaikan', 'Sangat lezat disantap', 'Perlu banyak biaya', 'Membuat pusing'], correct: 0 },
+              { target: 'Break a leg!', context: 'Performance Wish', clue: 'Ungkapan ini disampaikan menjelang pentas dengan makna:', sound: 'Break a leg', options: ['Semoga sukses / Good luck!', 'Hati-hati terpeleset', 'Segera hentikan lari', 'Jangan bergerak'], correct: 0 },
+              { target: 'Under the weather', context: 'Health Idiom', clue: 'Arti kiasan dari "I feel under the weather":', sound: 'Under the weather', options: ['Merasa tidak enak badan / sakit', 'Senang menikmati hujan', 'Kepanasan terik', 'Kedinginan di gunung'], correct: 0 },
+              { target: 'Bite the bullet', context: 'Mindset', clue: 'Idiom "Bite the bullet" berarti:', sound: 'Bite the bullet', options: ['Menghadapi kenyataan sulit dengan tabah', 'Makan dengan tergesa', 'Menolak tanggung jawab', 'Membeli amunisi'], correct: 0 },
+              { target: 'Hit the books', context: 'Study Habit', clue: 'Ungkapan "Hit the books" berarti:', sound: 'Hit the books', options: ['Mulai belajar giat', 'Membeli buku baru', 'Membuang lemari buku', 'Membaca komik santai'], correct: 0 },
+              { target: 'Cost an arm and a leg', context: 'Price Metaphor', clue: 'Barang yang "costs an arm and a leg" adalah barang yang:', sound: 'Cost an arm and a leg', options: ['Sangat mahal harganya', 'Barang tiruan murah', 'Tidak boleh dibeli', 'Sangat berbahaya'], correct: 0 },
+              { target: 'Once in a blue moon', context: 'Frequency', clue: 'Peristiwa yang terjadi "once in a blue moon":', sound: 'Once in a blue moon', options: ['Sangat jarang sekali terjadi', 'Terjadi tiap malam', 'Hanya di bulan purnama', 'Selalu berulang tiap pekan'], correct: 0 },
+              { target: 'Spill the beans', context: 'Communication', clue: 'Maksud dari idiom "spill the beans":', sound: 'Spill the beans', options: ['Membocorkan rahasia', 'Menumpahkan sup', 'Memasak kacang', 'Mengajak berkelahi'], correct: 0 },
+              { target: 'See eye to eye', context: 'Agreement', clue: 'Jika dua pihak "see eye to eye", artinya mereka:', sound: 'See eye to eye', options: ['Saling sepakat dan sepaham', 'Saling bermusuhan', 'Saling memelototi', 'Tidak mau bertemu'], correct: 0 },
+              { target: 'Burn the midnight oil', context: 'Hard Work', clue: 'Idiom ini bermakna:', sound: 'Burn the midnight oil', options: ['Bekerja/belajar lembur hingga larut malam', 'Menyalakan lilin kamar', 'Membuang minyak goreng', 'Begadang menonton film'], correct: 0 }
+            ]
+          },
+          {
+            id: 'en_mod4',
+            level: 'Modul 4 • Frasa Kerja',
+            title: 'Essential Phrasal Verbs',
+            desc: 'Gabungan kata kerja dan preposisi yang mengubah makna secara alami.',
+            questions: [
+              { target: 'Look forward to', context: 'Anticipation', clue: 'Frasa "I look forward to hearing from you" bermakna:', sound: 'Look forward to', options: ['Sangat menantikan kabar darimu', 'Melihat ke depan jendela', 'Mendengar suara gaduh', 'Menolak pesanmu'], correct: 0 },
+              { target: 'Call off', context: 'Event Planning', clue: 'Jika sebuah pertemuan di "called off", artinya acara itu:', sound: 'Call off', options: ['Dibatalkan sepenuhnya', 'Ditunda pekan depan', 'Dimulai lebih awal', 'Dipindah tempat'], correct: 0 },
+              { target: 'Put off', context: 'Scheduling', clue: 'Perbedaan "put off" dengan "call off" adalah "put off" berarti:', sound: 'Put off', options: ['Menunda ke waktu lain', 'Membatalkan permanen', 'Mempercepat acara', 'Menyudahi rapat'], correct: 0 },
+              { target: 'Figure out', context: 'Problem Solving', clue: 'Frasa "I need to figure it out" berarti:', sound: 'Figure out', options: ['Menemukan solusi / memahaminya', 'Menggambar diagram angka', 'Melupakan masalah', 'Meminta uang ganti'], correct: 0 },
+              { target: 'Catch up with', context: 'Social Connection', clue: 'Maksud ajakan "Let us catch up over coffee":', sound: 'Catch up', options: ['Saling bertukar kabar terbaru', 'Berlari mengejar cangkir', 'Membayar tagihan kopi', 'Menuntaskan pekerjaan'], correct: 0 },
+              { target: 'Run out of', context: 'Supplies', clue: 'Kalimat "We ran out of milk" berarti:', sound: 'Run out of', options: ['Persediaan susu telah habis', 'Susu tumpah keluar', 'Membeli banyak susu', 'Menjual susu kaleng'], correct: 0 },
+              { target: 'Turn down', context: 'Polite Refusal', clue: 'Kata "turn down an offer" bermakna:', sound: 'Turn down', options: ['Menolak tawaran secara santun', 'Menerima pekerjaan', 'Mengecilkan volume', 'Mengubah arah'], correct: 0 },
+              { target: 'Hold on', context: 'Phone Etiquette', clue: 'Ucapan "Please hold on a second" di telepon berarti:', sound: 'Hold on', options: ['Mohon tunggu sebentar', 'Pegang gagang teleponnya', 'Tutup panggilannya', 'Tolong bicara keras'], correct: 0 },
+              { target: 'Give up', context: 'Perseverance', clue: 'Frasa penting "Never give up" menyemangati untuk:', sound: 'Give up', options: ['Jangan pernah menyerah', 'Berikan semua barangmu', 'Istirahatlah selamanya', 'Lupakan impianmu'], correct: 0 },
+              { target: 'Show up', context: 'Attendance', clue: 'Frasa "He didn't show up" berarti seseorang:', sound: 'Show up', options: ['Tidak hadir / tidak datang', 'Tidak memamerkan pakaian', 'Hadir paling depan', 'Membawa pertunjukan'], correct: 0 }
+            ]
+          },
+          {
+            id: 'en_mod5',
+            level: 'Modul 5 • Dunia Profesional',
+            title: 'Workplace & Meeting Etiquette',
+            desc: 'Komunikasi diplomatis, penyampaian pendapat, dan etika rapat profesional.',
+            questions: [
+              { target: 'From my perspective', context: 'Giving Opinion', clue: 'Cara santun menyampaikan opini pribadi dalam rapat:', sound: 'From my perspective', options: ['Dari sudut pandang saya', 'Menurut aturan yang mutlak', 'Semua orang salah', 'Saya tidak peduli'], correct: 0 },
+              { target: 'I see your point, but...', context: 'Diplomatic Disagreement', clue: 'Maksud dari sanggahan diplomatis ini:', sound: 'I see your point', options: ['Saya paham maksud Anda, tetapi...', 'Pendapat Anda tidak masuk akal', 'Saya tidak mau mendengar lagi', 'Anda benar seratus persen'], correct: 0 },
+              { target: 'Keep me in the loop', context: 'Collaboration', clue: 'Ungkapan kerja sama ini meminta rekan untuk:', sound: 'Keep me in the loop', options: ['Tetap memberi saya perkembangan terbaru', 'Jangan beritahu saya apa-apa', 'Tutup ruang komunikasinya', 'Kerjakan proyek sendirian'], correct: 0 },
+              { target: 'Deadline', context: 'Project Term', clue: 'Batas akhir penyelesaian suatu berkas/tugas disebut:', sound: 'Deadline', options: ['Batas akhir penyerahan (Tenggat waktu)', 'Waktu istirahat kantor', 'Waktu lembur malam', 'Jadwal wawancara'], correct: 0 },
+              { target: 'Follow up', context: 'Client Communication', clue: 'Tindakan "follow up with the client" bermakna:', sound: 'Follow up', options: ['Menghubungi kembali untuk menindaklanjuti', 'Mengakhiri kontrak sepihak', 'Menolak pesanan', 'Mengajak liburan'], correct: 0 },
+              { target: 'Agenda', context: 'Meeting Structure', clue: 'Daftar rencana pokok pembahasan yang disusun sebelum rapat:', sound: 'Agenda', options: ['Agenda pokok rapat', 'Buku absensi', 'Daftar gaji karyawan', 'Menu makan siang'], correct: 0 },
+              { target: 'Brainstorming', context: 'Creativity Session', clue: 'Sesi diskusi bebas untuk mengumpulkan ide-ide baru disebut:', sound: 'Brainstorming', options: ['Sesi curah pendapat (Brainstorming)', 'Evaluasi hukuman', 'Ujian tertulis', 'Rapat pembagian laba'], correct: 0 },
+              { target: 'Minutes of meeting (MoM)', context: 'Documentation', clue: 'Catatan ringkas resmi mengenai hasil keputusan rapat:', sound: 'Minutes of meeting', options: ['Notula hasil rapat', 'Durasi lamanya rapat', 'Jadwal jam kantor', 'Daftar nama undangan'], correct: 0 },
+              { target: 'On the same page', context: 'Team Synergy', clue: 'Jika seluruh tim "on the same page", artinya tim tersebut:', sound: 'On the same page', options: ['Memiliki pemahaman dan visi yang seragam', 'Membaca buku di halaman yang sama', 'Membeli kertas yang serupa', 'Bekerja di meja yang sama'], correct: 0 },
+              { target: 'Win-win solution', context: 'Negotiation', clue: 'Hasil kesepakatan negosiasi yang saling menguntungkan kedua pihak:', sound: 'Win-win solution', options: ['Solusi yang saling menguntungkan', 'Kemenangan sepihak', 'Kesepakatan yang merugikan', 'Pembatalan transaksi'], correct: 0 }
             ]
           }
         ]
       }
     };
 
-    // ================= 2. STATE & ENGINE NAVIGASI =================
+    // ================= PENGELOLA TAMPILAN & STATE =================
     let currentThemeKey = 'jp';
     let activeModule = null;
     let currentQIndex = 0;
     let sessionScore = 0;
 
+    // FUNGSI GANTI VIEW UTAMA (Mengatasi bug tombol macet)
+    function showView(viewId) {
+      document.querySelectorAll('.view-panel').forEach(panel => {
+        panel.classList.remove('active');
+        panel.style.display = 'none';
+      });
+
+      const target = document.getElementById(viewId);
+      if (target) {
+        target.classList.add('active');
+        target.style.display = 'block';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // GANTI TEMA BAHASA
     function switchTheme(key) {
       currentThemeKey = key;
       document.body.className = `theme-${key}`;
 
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(`tab-${key}`).classList.add('active');
+      const activeBtn = document.getElementById(`tab-${key}`);
+      if (activeBtn) activeBtn.classList.add('active');
 
       renderModuleHub();
       backToHub();
     }
 
+    // RENDER MENU MODUL
     function renderModuleHub() {
       const data = courseDatabases[currentThemeKey];
       document.getElementById('hub-title').innerText = data.title;
@@ -601,11 +827,12 @@
             <h4>${mod.title}</h4>
             <p>${mod.desc}</p>
           </div>
-          <div class="btn-card-start">Uji Materi Ini &rarr;</div>
+          <div class="btn-card-start">Uji Materi Ini (10 Soal) &rarr;</div>
         </div>
       `).join('');
     }
 
+    // MULAI KUIS
     function startModuleSession(modId) {
       const pack = courseDatabases[currentThemeKey];
       activeModule = pack.modules.find(m => m.id === modId);
@@ -614,14 +841,12 @@
       currentQIndex = 0;
       sessionScore = 0;
 
-      document.getElementById('menu-section').style.display = 'none';
-      document.getElementById('arena-finish').style.display = 'none';
-      document.getElementById('arena-soal').style.display = 'block';
-
       document.getElementById('soalCategoryTag').innerText = activeModule.title;
       renderCurrentCard();
+      showView('panel-quiz');
     }
 
+    // RENDER KARTU SOAL
     function renderCurrentCard() {
       const q = activeModule.questions[currentQIndex];
       const total = activeModule.questions.length;
@@ -639,6 +864,7 @@
       `).join('');
     }
 
+    // CEK JAWABAN
     function submitChoice(pickedIdx) {
       const q = activeModule.questions[currentQIndex];
       const buttons = document.querySelectorAll('.choice-card');
@@ -660,33 +886,31 @@
         } else {
           showFinishScreen();
         }
-      }, 1000);
+      }, 950);
     }
 
+    // LAYAR HASIL AKHIR
     function showFinishScreen() {
-      document.getElementById('arena-soal').style.display = 'none';
-      const finishBox = document.getElementById('arena-finish');
-      finishBox.style.display = 'block';
-
       const finalVal = Math.min(100, sessionScore);
       document.getElementById('finishScoreBadge').innerText = finalVal;
 
       if (finalVal >= 80) {
         document.getElementById('finishTitle').innerText = '🎉 Pemahaman Sempurna!';
-        document.getElementById('finishDesc').innerText = 'Daya tangkapmu luar biasa dalam materi ini.';
+        document.getElementById('finishDesc').innerText = 'Daya tangkapmu luar biasa dalam menuntaskan 10 soal modul ini.';
       } else {
         document.getElementById('finishTitle').innerText = 'Tetap Semangat Berlatih!';
-        document.getElementById('finishDesc').innerText = 'Ulangi sesinya sekali lagi untuk mempertajam insting bahasamu.';
+        document.getElementById('finishDesc').innerText = 'Ulangi sesinya sekali lagi untuk memperkuat ingatan kosakata dan tata bahasamu.';
       }
+
+      showView('panel-finish');
     }
 
+    // KEMBALI KE MODUL (DIPERBAIKI SECARA GLOBAL)
     function backToHub() {
-      document.getElementById('arena-soal').style.display = 'none';
-      document.getElementById('arena-finish').style.display = 'none';
-      document.getElementById('menu-section').style.display = 'block';
+      showView('panel-hub');
     }
 
-    // ================= 3. MESIN SUARA ARTIKULASI RENDAH (RATE 0.75) =================
+    // AUDIO PERAMBAN (RATE 0.75x)
     function playAudioCurrent() {
       if (!activeModule) return;
       const q = activeModule.questions[currentQIndex];
@@ -696,7 +920,7 @@
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(speechWord);
-      utterance.rate = 0.75; // Sesuai permintaan: tempo dibuat tenang dan tidak buru-buru
+      utterance.rate = 0.75;
       utterance.pitch = 1.0;
 
       if (currentThemeKey === 'jp') utterance.lang = 'ja-JP';
@@ -706,9 +930,10 @@
       window.speechSynthesis.speak(utterance);
     }
 
-    // Jalankan inisialisasi awal
+    // Inisialisasi awal saat pertama kali web dibuka
     window.onload = function() {
       renderModuleHub();
+      showView('panel-hub');
     };
   </script>
 </body>
