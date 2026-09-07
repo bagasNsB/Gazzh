@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil & Portofolio</title>
-  <!-- Google Fonts -->
+  <title>LinguaNusantara - Belajar Bahasa & Aksara</title>
+  
+  <!-- Font Modern -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
   <style>
     :root {
-      --bg-sky: #eaf4fc;
-      --bg-card: #ffffff;
+      --bg-main: #f0f7fd;
+      --card-bg: #ffffff;
       --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
       --accent-hover: #0369a1;
-      --text-black: #0f172a;
-      --text-muted: #475569;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
       --silver-border: #cbd5e1;
-      --silver-gradient: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      --silver-gradient: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
     }
 
     * {
@@ -29,8 +33,8 @@
     }
 
     body {
-      background-color: var(--bg-sky);
-      color: var(--text-black);
+      background-color: var(--bg-main);
+      color: var(--text-dark);
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
@@ -47,356 +51,627 @@
     }
 
     .navbar {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 1.1rem 1.5rem;
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .brand {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
-      letter-spacing: 0.5px;
-      color: var(--text-black);
+      color: var(--text-dark);
       text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent-blue);
-    }
-
-    /* Container Utama */
-    main {
-      max-width: 1050px;
-      margin: 2.5rem auto;
-      padding: 0 1.5rem;
-      flex: 1;
-    }
-
-    /* Hero Section */
-    .hero-card {
-      background: var(--bg-card);
-      border: 1px solid var(--silver-border);
-      border-radius: 16px;
-      padding: 3rem 2.5rem;
-      display: grid;
-      grid-template-columns: 1.3fr 0.7fr;
-      gap: 2rem;
-      align-items: center;
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-      margin-bottom: 2rem;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: var(--silver-gradient);
-      border: 1px solid var(--silver-border);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
-    }
-
-    .hero-text h1 {
-      font-size: 2.2rem;
-      line-height: 1.25;
-      font-weight: 800;
-      color: var(--text-black);
-      margin-bottom: 1rem;
-    }
-
-    .hero-text h1 span {
-      color: var(--accent-blue);
-    }
-
-    .hero-text p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn-primary {
-      background: var(--accent-blue);
-      color: #ffffff;
-      padding: 0.75rem 1.4rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: background 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-secondary {
-      background: #ffffff;
-      color: var(--text-black);
-      border: 1px solid var(--silver-border);
-      padding: 0.75rem 1.4rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: background 0.2s;
-    }
-
-    .btn-secondary:hover {
-      background: #f1f5f9;
-    }
-
-    .hero-avatar-wrap {
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-avatar {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ffffff;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-      background-color: #cbd5e1;
-    }
-
-    /* Grid Bagian Bawah */
-    .grid-section {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 2rem;
-    }
-
-    .panel {
-      background: var(--bg-card);
-      border: 1px solid var(--silver-border);
-      border-radius: 16px;
-      padding: 1.8rem;
-      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
-    }
-
-    .panel-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .skill-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .skill-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.6rem 0.8rem;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    .skill-tag {
-      font-size: 0.75rem;
-      background: #e0f2fe;
+    .brand i {
       color: var(--accent-blue);
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
     }
 
-    /* Project Cards */
-    .projects-grid {
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--accent-blue);
+      background-color: var(--accent-blue-light);
+    }
+
+    .tab-btn.active {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    /* Container */
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .hero-banner {
+      background: #ffffff;
+      border: 1px solid var(--silver-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+    }
+
+    .hero-banner h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-banner p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Tab Content Display */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sub Navigation */
+    .subnav {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .sub-btn {
+      background: #ffffff;
+      border: 1px solid var(--silver-border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sub-btn.active, .sub-btn:hover {
+      border-color: var(--accent-blue);
+      background: var(--accent-blue-light);
+      color: var(--accent-blue);
+    }
+
+    /* Grid & Cards */
+    .grid-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 1.2rem;
     }
 
-    .project-card {
+    .card {
+      background: var(--card-bg);
       border: 1px solid var(--silver-border);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1.2rem;
-      background: #f8fafc;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
       transition: transform 0.2s, border-color 0.2s;
     }
 
-    .project-card:hover {
-      transform: translateY(-2px);
+    .card:hover {
+      transform: translateY(-3px);
       border-color: var(--accent-blue);
     }
 
-    .project-card h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--text-black);
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.6rem;
     }
 
-    .project-card p {
+    .char-main {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+
+    .char-romaji {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    .char-desc {
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-bottom: 1rem;
     }
 
-    .project-link {
-      font-size: 0.85rem;
-      font-weight: 600;
+    .sound-btn {
+      background: var(--accent-blue-light);
       color: var(--accent-blue);
-      text-decoration: none;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
     }
 
-    .project-link:hover {
-      text-decoration: underline;
+    .sound-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    /* Macapat / Puisi Container */
+    .macapat-card {
+      background: #ffffff;
+      border: 1px solid var(--silver-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .macapat-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .paugeran-badge {
+      background: var(--silver-gradient);
+      border: 1px solid var(--silver-border);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .macapat-text {
+      background: var(--bg-main);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0.8rem 0;
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.8;
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    .macapat-meaning {
+      font-size: 0.85rem;
+      color: var(--text-muted);
     }
 
     /* Footer */
     footer {
-      background: var(--text-black);
+      background: var(--text-dark);
       color: #94a3b8;
       text-align: center;
       padding: 1.5rem;
       font-size: 0.85rem;
       border-top: 3px solid var(--silver-border);
-      margin-top: 3rem;
+      margin-top: auto;
     }
 
-    footer a {
-      color: #e2e8f0;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* Responsive untuk Layar HP */
     @media (max-width: 768px) {
-      .hero-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 2rem 1.5rem;
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
       }
-      .btn-group {
+      .nav-tabs {
+        width: 100%;
         justify-content: center;
       }
-      .grid-section {
+      .grid-cards {
         grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none; /* Sederhana untuk mobile */
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigasi -->
+  <!-- Header Navigasi -->
   <header>
     <div class="navbar">
-      <a href="#" class="brand">PORTFOLIO.</a>
-      <ul class="nav-links">
-        <li><a href="#about">Tentang</a></li>
-        <li><a href="#skills">Keahlian</a></li>
-        <li><a href="#projects">Proyek</a></li>
-        <li><a href="mailto:emailmu@example.com">Kontak</a></li>
+      <a href="#" class="brand">
+        <i class="bi bi-translate"></i> LinguaNusantara
+      </a>
+      <ul class="nav-tabs">
+        <li><button class="tab-btn active" onclick="switchLanguage('id')">Nusantara & Daerah</button></li>
+        <li><button class="tab-btn" onclick="switchLanguage('jp')">Bahasa Jepang</button></li>
+        <li><button class="tab-btn" onclick="switchLanguage('en')">Bahasa Inggris</button></li>
       </ul>
     </div>
   </header>
 
   <!-- Konten Utama -->
   <main>
-    <!-- Hero Section -->
-    <section class="hero-card" id="about">
-      <div class="hero-text">
-        <span class="hero-badge">Selamat Datang</span>
-        <h1>Halo, Saya <span>Nama Kamu</span></h1>
-        <p>Saya seorang pengembang web dan antusias teknologi. Terbiasa membangun sistem, mengonfigurasi jaringan, serta membuat tampilan web yang modern dan responsif.</p>
-        <div class="btn-group">
-          <a href="#projects" class="btn-primary">Lihat Proyek</a>
-          <a href="mailto:emailmu@example.com" class="btn-secondary">Hubungi Saya</a>
+    <div class="hero-banner">
+      <h1 id="bannerTitle">Belajar Bahasa Nusantara & Bahasa Daerah</h1>
+      <p id="bannerDesc">Pelajari ragam bahasa daerah di Indonesia, aksara tradisional, dan tembang klasik Nusantara.</p>
+    </div>
+
+    <!-- ================= SECTION INDONESIA & DAERAH ================= -->
+    <section id="section-id" class="content-section active">
+      <div class="subnav">
+        <button class="sub-btn active" onclick="switchSubTab('id', 'aksara')">Aksara Jawa (Carakan)</button>
+        <button class="sub-btn" onclick="switchSubTab('id', 'tembang')">Tembang Macapat</button>
+        <button class="sub-btn" onclick="switchSubTab('id', 'daerah')">Percakapan Daerah Populer</button>
+      </div>
+
+      <!-- Aksara Jawa -->
+      <div id="sub-id-aksara">
+        <div class="grid-cards" id="aksaraGrid">
+          <!-- Rendered via JS -->
         </div>
       </div>
-      <div class="hero-avatar-wrap">
-        <!-- Ganti URL gambar di bawah dengan fotomu -->
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80" alt="Foto Profil" class="hero-avatar">
+
+      <!-- Tembang Macapat -->
+      <div id="sub-id-tembang" style="display: none;">
+        <div class="macapat-card">
+          <h3>
+            Tembang Pocung
+            <span class="paugeran-badge">Paugeran: 12u, 6a, 8i, 12a</span>
+          </h3>
+          <p class="macapat-text">
+            Ngelmu iku kalakone kanthi laku,<br>
+            Lekase lawan kas,<br>
+            Tegese kas nyantosani,<br>
+            Setya budya pangekese durangkara.
+          </p>
+          <p class="macapat-meaning">
+            <strong>Tegese:</strong> Ilmu itu hanya dapat diraih melalui perbuatan nyata, dimulai dengan kemauan yang teguh. Kemauan yang teguh itu memperkokoh jiwa, serta berpegang teguh pada budi pekerti luhur demi menyingkirkan angkara murka.
+          </p>
+          <button class="sound-btn mt-3" onclick="speakText('Ngelmu iku kalakone kanthi laku. Lekase lawan kas. Tegese kas nyantosani. Setya budya pangekese durangkara.', 'jv')" title="Dengarkan Pelafalan">
+            <i class="bi bi-volume-up-fill"></i>
+          </button>
+        </div>
+
+        <div class="macapat-card">
+          <h3>
+            Tembang Gambuh
+            <span class="paugeran-badge">Paugeran: 7u, 10u, 12i, 8u, 8o</span>
+          </h3>
+          <p class="macapat-text">
+            Sekar gambuh ping catur,<br>
+            Kang cinatur polah kang kalantur,<br>
+            Tanpa tutur katula-tula katali,<br>
+            Kadaluwarsa kapatuh,<br>
+            Kapatuh pan dadi awon.
+          </p>
+          <p class="macapat-meaning">
+            <strong>Tegese:</strong> Tembang gambuh keempat ini, membicarakan tingkah laku yang terlanjur menyimpang, tanpa nasihat akhirnya terjerumus dalam kesulitan, terbiasa hingga mendarah daging, dan kebiasaan buruk itu berbuah kehancuran.
+          </p>
+          <button class="sound-btn mt-3" onclick="speakText('Sekar gambuh ping catur. Kang cinatur polah kang kalantur. Tanpa tutur katula tula katali. Kadaluwarsa kapatuh. Kapatuh pan dadi awon.', 'jv')" title="Dengarkan Pelafalan">
+            <i class="bi bi-volume-up-fill"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Percakapan Daerah -->
+      <div id="sub-id-daerah" style="display: none;">
+        <div class="grid-cards" id="daerahGrid">
+          <!-- Rendered via JS -->
+        </div>
       </div>
     </section>
 
-    <!-- Grid Skill & Project -->
-    <section class="grid-section">
-      <!-- Panel Kiri: Skillset -->
-      <div class="panel" id="skills">
-        <h3 class="panel-title">Keahlian Utama</h3>
-        <ul class="skill-list">
-          <li class="skill-item">
-            <span>HTML & CSS Modern</span>
-            <span class="skill-tag">Dasar</span>
-          </li>
-          <li class="skill-item">
-            <span>Jaringan & Server</span>
-            <span class="skill-tag">Infrastruktur</span>
-          </li>
-          <li class="skill-item">
-            <span>Linux & Git</span>
-            <span class="skill-tag">Tools</span>
-          </li>
-          <li class="skill-item">
-            <span>Domain & DNS Management</span>
-            <span class="skill-tag">Web Setup</span>
-          </li>
-        </ul>
+    <!-- ================= SECTION JEPANG ================= -->
+    <section id="section-jp" class="content-section">
+      <div class="subnav">
+        <button class="sub-btn active" onclick="switchSubTab('jp', 'hiragana')">Hiragana (ひらがな)</button>
+        <button class="sub-btn" onclick="switchSubTab('jp', 'katakana')">Katakana (カタカナ)</button>
+        <button class="sub-btn" onclick="switchSubTab('jp', 'aisatsu')">Aisatsu (Salam)</button>
+        <button class="sub-btn" onclick="switchSubTab('jp', 'jikou')">Jikoshoukai (Perkenalan)</button>
+        <button class="sub-btn" onclick="switchSubTab('jp', 'mochimono')">Mochimono (Benda Bawaan)</button>
       </div>
 
-      <!-- Panel Kanan: Proyek -->
-      <div class="panel" id="projects">
-        <h3 class="panel-title">Proyek Unggulan</h3>
-        <div class="projects-grid">
-          <div class="project-card">
-            <h4>Website Statis</h4>
-            <p>Deploy website landing page yang ringan menggunakan GitHub Pages dan domain kustom.</p>
-            <a href="#" class="project-link">Lihat Detail &rarr;</a>
-          </div>
-          <div class="project-card">
-            <h4>Konfigurasi Jaringan</h4>
-            <p>Simulasi topologi jaringan, integrasi DNS, dan manajemen routing IP.</p>
-            <a href="#" class="project-link">Lihat Detail &rarr;</a>
-          </div>
-        </div>
+      <div id="jpContentGrid" class="grid-cards">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ================= SECTION INGGRIS ================= -->
+    <section id="section-en" class="content-section">
+      <div class="subnav">
+        <button class="sub-btn active" onclick="switchSubTab('en', 'daily')">Daily Greetings & Basics</button>
+        <button class="sub-btn" onclick="switchSubTab('en', 'conversation')">Useful Phrases</button>
+      </div>
+
+      <div id="enContentGrid" class="grid-cards">
+        <!-- Rendered via JS -->
       </div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Hak Cipta Terpelihara. Dibuat dengan GitHub Pages.</p>
+    <p>&copy; 2026 LinguaNusantara. Platform Terbuka Belajar Bahasa.</p>
   </footer>
 
+  <script>
+    // ================= DATA KAMUS & MATERI =================
+
+    // 1. Aksara Jawa (Carakan & Pasangan)
+    const aksaraData = [
+      { char: 'ꦲ', romaji: 'Ha', desc: 'Hana (Nafas / Ada)', jvSound: 'Ha' },
+      { char: 'ꦤ', romaji: 'Na', desc: 'Caraka (Utusan)', jvSound: 'Na' },
+      { char: 'ꦕ', romaji: 'Ca', desc: 'Cipta / Rekaan', jvSound: 'Ca' },
+      { char: 'ꦫ', romaji: 'Ra', desc: 'Rasa / Jiwa', jvSound: 'Ra' },
+      { char: 'ꦏ', romaji: 'Ka', desc: 'Karsa / Kemauan', jvSound: 'Ka' },
+      { char: 'ꦢ', romaji: 'Da', desc: 'Datanya (Tuntunan)', jvSound: 'Dho' },
+      { char: 'ꦠ', romaji: 'Ta', desc: 'Tatag (Teguh)', jvSound: 'Ta' },
+      { char: 'ꦱ', romaji: 'Sa', desc: 'Sanyata (Kebenaran)', jvSound: 'Sa' },
+      { char: 'ꦮ', romaji: 'Wa', desc: 'Waspada', jvSound: 'Wa' },
+      { char: 'ꦭ', romaji: 'La', desc: 'Laras (Harmonis)', jvSound: 'La' },
+      { char: 'ꦥ', romaji: 'Pa', desc: 'Papan (Tempat)', jvSound: 'Pa' },
+      { char: 'ꦝ', romaji: 'Dha', desc: 'Dhandhan (Memperbaiki)', jvSound: 'Dha' },
+      { char: 'ꦪ', romaji: 'Ya', desc: 'Yekti (Nyata)', jvSound: 'Ya' },
+      { char: 'ꦚ', romaji: 'Nya', desc: 'Nyawiji (Menyatu)', jvSound: 'Nya' },
+      { char: 'ꦩ', romaji: 'Ma', desc: 'Madep (Menghadap)', jvSound: 'Ma' },
+      { char: 'ꦒ', romaji: 'Ga', desc: 'Gusti (Tuhan)', jvSound: 'Ga' },
+      { char: 'ꦧ', romaji: 'Ba', desc: 'Budi pekerti', jvSound: 'Ba' },
+      { char: 'ꦛ', romaji: 'Tha', desc: 'Thukul (Tumbuh)', jvSound: 'Tha' },
+      { char: 'ꦔ', romaji: 'Nga', desc: 'Ngabekti (Berbakti)', jvSound: 'Nga' }
+    ];
+
+    // 2. Percakapan Bahasa Daerah Populer
+    const daerahData = [
+      { lang: 'Bahasa Jawa', phrase: 'Sugeng enjang', arti: 'Selamat pagi', sound: 'Sugeng enjang' },
+      { lang: 'Bahasa Jawa', phrase: 'Matur nuwun sanget', arti: 'Terima kasih banyak', sound: 'Matur nuwun sanget' },
+      { lang: 'Bahasa Sunda', phrase: 'Wilujeng sumping', arti: 'Selamat datang', sound: 'Wilujeng sumping' },
+      { lang: 'Bahasa Sunda', phrase: 'Kumaha damang?', arti: 'Bagaimana kabarnya?', sound: 'Kumaha damang' },
+      { lang: 'Bahasa Sunda', phrase: 'Hatur nuhun pisan', arti: 'Terima kasih banyak', sound: 'Hatur nuhun pisan' },
+      { lang: 'Bahasa Minang', phrase: 'Tarimo kasih banyak', arti: 'Terima kasih banyak', sound: 'Tarimo kasih banyak' },
+      { lang: 'Bahasa Minang', phrase: 'Baa kaba sanak?', arti: 'Bagaimana kabarmu kawan?', sound: 'Baa kaba sanak' },
+      { lang: 'Bahasa Bali', phrase: 'Om Swastyastu', arti: 'Salam damai sejahtera', sound: 'Om Swastyastu' },
+      { lang: 'Bahasa Bali', phrase: 'Matur suksma', arti: 'Terima kasih', sound: 'Matur suksma' },
+      { lang: 'Bahasa Batak', phrase: 'Horas ma di hita saluhutna', arti: 'Salam sejahtera untuk kita semua', sound: 'Horas ma di hita saluhutna' }
+    ];
+
+    // 3. Bahasa Jepang
+    const jpData = {
+      hiragana: [
+        { char: 'あ', romaji: 'A', desc: 'Vokal dasar A', sound: 'あ' },
+        { char: 'い', romaji: 'I', desc: 'Vokal dasar I', sound: 'い' },
+        { char: 'う', romaji: 'U', desc: 'Vokal dasar U', sound: 'う' },
+        { char: 'え', romaji: 'E', desc: 'Vokal dasar E', sound: 'え' },
+        { char: 'お', romaji: 'O', desc: 'Vokal dasar O', sound: 'お' },
+        { char: 'か', romaji: 'Ka', desc: 'Konsonan K + A', sound: 'か' },
+        { char: 'き', romaji: 'Ki', desc: 'Konsonan K + I', sound: 'き' },
+        { char: 'く', romaji: 'Ku', desc: 'Konsonan K + U', sound: 'く' },
+        { char: 'さ', romaji: 'Sa', desc: 'Konsonan S + A', sound: 'さ' },
+        { char: 'し', romaji: 'Shi', desc: 'Konsonan S + I', sound: 'し' },
+        { char: 'た', romaji: 'Ta', desc: 'Konsonan T + A', sound: 'た' },
+        { char: 'な', romaji: 'Na', desc: 'Konsonan N + A', sound: 'な' }
+      ],
+      katakana: [
+        { char: 'ア', romaji: 'A', desc: 'Kata serapan A', sound: 'ア' },
+        { char: 'イ', romaji: 'I', desc: 'Kata serapan I', sound: 'イ' },
+        { char: 'ウ', romaji: 'U', desc: 'Kata serapan U', sound: 'ウ' },
+        { char: 'エ', romaji: 'E', desc: 'Kata serapan E', sound: 'エ' },
+        { char: 'オ', romaji: 'O', desc: 'Kata serapan O', sound: 'オ' },
+        { char: 'カ', romaji: 'Ka', desc: 'Kata serapan Ka', sound: 'カ' },
+        { char: 'コ', romaji: 'Ko', desc: 'Kata serapan Ko', sound: 'コ' },
+        { char: 'サ', romaji: 'Sa', desc: 'Kata serapan Sa', sound: 'サ' }
+      ],
+      aisatsu: [
+        { char: 'おはようございます', romaji: 'Ohayou Gozaimasu', desc: 'Selamat pagi (Sopan)', sound: 'おはようございます' },
+        { char: 'こんにちは', romaji: 'Konnichiwa', desc: 'Selamat siang / Halo', sound: 'こんにちは' },
+        { char: 'こんばんは', romaji: 'Konbanwa', desc: 'Selamat malam', sound: 'こんばんは' },
+        { char: 'ありがとうございます', romaji: 'Arigatou Gozaimasu', desc: 'Terima kasih banyak', sound: 'ありがとうございます' },
+        { char: 'すみません', romaji: 'Sumimasen', desc: 'Permisi / Maaf', sound: 'すみません' },
+        { char: 'さようなら', romaji: 'Sayounara', desc: 'Selamat tinggal', sound: 'さようなら' }
+      ],
+      jikou: [
+        { char: 'はじめまして', romaji: 'Hajimemashite', desc: 'Senang bertemu pertama kali', sound: 'はじめまして' },
+        { char: 'わたしはがくせいです', romaji: 'Watashi wa gakusei desu', desc: 'Saya adalah seorang pelajar', sound: 'わたしはがくせいです' },
+        { char: 'インドネシアからきました', romaji: 'Indoneshia kara kimashita', desc: 'Saya berasal dari Indonesia', sound: 'インドネシアからきました' },
+        { char: 'どうぞよろしくおねがいします', romaji: 'Douzo yoroshiku onegaishimasu', desc: 'Mohon bimbingan & kerja samanya', sound: 'どうぞよろしくおねがいします' }
+      ],
+      mochimono: [
+        { char: 'ほん (本)', romaji: 'Hon', desc: 'Buku bacaan/pelajaran', sound: 'ほん' },
+        { char: 'かばん (鞄)', romaji: 'Kaban', desc: 'Tas punggung/kantor', sound: 'かばん' },
+        { char: 'とけい (時計)', romaji: 'Tokei', desc: 'Jam tangan / dinding', sound: 'とけい' },
+        { char: 'さいふ (財布)', romaji: 'Saifu', desc: 'Dompet uang', sound: 'さいふ' },
+        { char: 'けいたいでんわ', romaji: 'Keitai Denwa', desc: 'Ponsel / Smartphone', sound: 'けいたいでんわ' },
+        { char: 'かさ (傘)', romaji: 'Kasa', desc: 'Payung pelindung', sound: 'かさ' }
+      ]
+    };
+
+    // 4. Bahasa Inggris
+    const enData = {
+      daily: [
+        { char: 'Good morning', romaji: 'Pagi', desc: 'Selamat pagi', sound: 'Good morning' },
+        { char: 'Thank you very much', romaji: 'Terima kasih', desc: 'Terima kasih banyak', sound: 'Thank you very much' },
+        { char: 'You are welcome', romaji: 'Sama-sama', desc: 'Sama-sama / Terima kasih kembali', sound: 'You are welcome' },
+        { char: 'Excuse me', romaji: 'Permisi', desc: 'Permisi / Minta maaf santun', sound: 'Excuse me' },
+        { char: 'Have a nice day', romaji: 'Semoga harimu menyenangkan', desc: 'Ungkapan perpisahan ramah', sound: 'Have a nice day' }
+      ],
+      conversation: [
+        { char: 'Could you help me, please?', romaji: 'Bantuan', desc: 'Bisakah Anda membantu saya?', sound: 'Could you help me, please?' },
+        { char: 'Nice to meet you', romaji: 'Perkenalan', desc: 'Senang berkenalan dengan Anda', sound: 'Nice to meet you' },
+        { char: 'Where is the nearest station?', romaji: 'Arah', desc: 'Di mana stasiun terdekat?', sound: 'Where is the nearest station?' },
+        { char: 'I am learning new languages', romaji: 'Belajar', desc: 'Saya sedang belajar bahasa baru', sound: 'I am learning new languages' }
+      ]
+    };
+
+    // ================= FUNGSI TEXT TO SPEECH (SUARA) =================
+    function speakText(text, langCode) {
+      if (!('speechSynthesis' in window)) {
+        alert('Browser Anda tidak mendukung Text-to-Speech.');
+        return;
+      }
+
+      window.speechSynthesis.cancel(); // Hentikan suara sebelumnya jika ada
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.85; // Sedikit diperlambat agar artikulasi jelas
+      utterance.pitch = 1;
+
+      // Pemetaan kode bahasa peramban
+      if (langCode === 'ja') utterance.lang = 'ja-JP';
+      else if (langCode === 'en') utterance.lang = 'en-US';
+      else if (langCode === 'jv' || langCode === 'id') utterance.lang = 'id-ID';
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // ================= TAMPILAN & LOGIKA TAB =================
+    function switchLanguage(lang) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+
+      const titles = {
+        id: ['Belajar Bahasa Nusantara & Daerah', 'Pelajari ragam bahasa daerah di Indonesia, aksara tradisional, dan tembang klasik Nusantara.'],
+        jp: ['Belajar Bahasa Jepang (日本語)', 'Daftar aksara Hiragana, Katakana, salam resmi (Aisatsu), perkenalan diri, dan kosakata benda.'],
+        en: ['Learn English Naturally', 'Kuasai percakapan bahasa Inggris esensial dengan panduan suara interaktif.']
+      };
+
+      document.getElementById('bannerTitle').innerText = titles[lang][0];
+      document.getElementById('bannerDesc').innerText = titles[lang][1];
+
+      document.getElementById(`section-${lang}`).classList.add('active');
+      event.target.classList.add('active');
+
+      if (lang === 'jp') renderJpGrid('hiragana');
+      if (lang === 'en') renderEnGrid('daily');
+    }
+
+    function switchSubTab(lang, key) {
+      const parent = document.getElementById(`section-${lang}`);
+      parent.querySelectorAll('.sub-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (lang === 'id') {
+        document.getElementById('sub-id-aksara').style.display = key === 'aksara' ? 'block' : 'none';
+        document.getElementById('sub-id-tembang').style.display = key === 'tembang' ? 'block' : 'none';
+        document.getElementById('sub-id-daerah').style.display = key === 'daerah' ? 'block' : 'none';
+      } else if (lang === 'jp') {
+        renderJpGrid(key);
+      } else if (lang === 'en') {
+        renderEnGrid(key);
+      }
+    }
+
+    // Render Aksara Jawa
+    function renderAksara() {
+      const container = document.getElementById('aksaraGrid');
+      container.innerHTML = aksaraData.map(item => `
+        <div class="card">
+          <div class="card-top">
+            <div class="char-main">${item.char}</div>
+            <button class="sound-btn" onclick="speakText('${item.jvSound}', 'id')" title="Dengar Suara">
+              <i class="bi bi-volume-up-fill"></i>
+            </button>
+          </div>
+          <div class="char-romaji">${item.romaji}</div>
+          <div class="char-desc">${item.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    // Render Percakapan Daerah
+    function renderDaerah() {
+      const container = document.getElementById('daerahGrid');
+      container.innerHTML = daerahData.map(item => `
+        <div class="card">
+          <div class="card-top">
+            <div>
+              <span class="paugeran-badge">${item.lang}</span>
+              <h4 class="mt-2" style="font-size: 1.1rem;">${item.phrase}</h4>
+            </div>
+            <button class="sound-btn" onclick="speakText('${item.sound}', 'id')" title="Dengar Suara">
+              <i class="bi bi-volume-up-fill"></i>
+            </button>
+          </div>
+          <div class="char-desc"><strong>Arti:</strong> ${item.arti}</div>
+        </div>
+      `).join('');
+    }
+
+    // Render Jepang
+    function renderJpGrid(key) {
+      const container = document.getElementById('jpContentGrid');
+      const items = jpData[key] || [];
+      container.innerHTML = items.map(item => `
+        <div class="card">
+          <div class="card-top">
+            <div class="char-main">${item.char}</div>
+            <button class="sound-btn" onclick="speakText('${item.sound}', 'ja')" title="Dengar Suara">
+              <i class="bi bi-volume-up-fill"></i>
+            </button>
+          </div>
+          <div class="char-romaji">${item.romaji}</div>
+          <div class="char-desc">${item.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    // Render Inggris
+    function renderEnGrid(key) {
+      const container = document.getElementById('enContentGrid');
+      const items = enData[key] || [];
+      container.innerHTML = items.map(item => `
+        <div class="card">
+          <div class="card-top">
+            <h4 style="font-size: 1.15rem; color: var(--text-dark);">${item.char}</h4>
+            <button class="sound-btn" onclick="speakText('${item.sound}', 'en')" title="Dengar Suara">
+              <i class="bi bi-volume-up-fill"></i>
+            </button>
+          </div>
+          <div class="char-romaji">${item.romaji}</div>
+          <div class="char-desc">${item.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    // Inisialisasi awal saat web dimuat
+    window.onload = function() {
+      renderAksara();
+      renderDaerah();
+    };
+  </script>
 </body>
 </html>
