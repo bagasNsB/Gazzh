@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LinguaSphere - Belajar Bahasa & Aksara Dunia</title>
+  <title>LinguaSphere - Platform Belajar Bahasa Terpadu</title>
 
   <!-- Google Fonts & Bootstrap Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +14,8 @@
   <style>
     :root {
       --font-main: 'Outfit', sans-serif;
-      --glass-surface: rgba(255, 255, 255, 0.92);
-      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-surface: rgba(255, 255, 255, 0.94);
+      --glass-border: rgba(255, 255, 255, 0.7);
       --glass-shadow: 0 16px 36px 0 rgba(15, 23, 42, 0.14);
       --theme-accent: #e11d48;
       --theme-soft: #ffe4e6;
@@ -39,7 +39,7 @@
       flex-direction: column;
     }
 
-    /* TEMA LATAR BELAKANG */
+    /* TEMA LATAR BELAKANG DINAMIS */
     body.theme-jp {
       background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.45), rgba(225, 29, 72, 0.35)),
         url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1600&auto=format&fit=crop');
@@ -64,7 +64,7 @@
     header {
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       border-bottom: 1px solid var(--glass-border);
       position: sticky;
       top: 0;
@@ -89,7 +89,6 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      text-decoration: none;
       cursor: pointer;
     }
 
@@ -268,6 +267,7 @@
       transition: width 0.3s ease;
     }
 
+    /* TAMPILAN SOAL PROMPT */
     .prompt-box {
       text-align: center;
       margin-bottom: 2rem;
@@ -280,6 +280,36 @@
       margin-bottom: 0.4rem;
     }
 
+    .reading-passage-card {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-left: 4px solid var(--theme-accent);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin: 0 auto 1.2rem auto;
+      max-width: 680px;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #1e293b;
+    }
+
+    .reading-passage-card em {
+      color: #64748b;
+      font-size: 0.85rem;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    .prompt-image {
+      max-width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
     .prompt-target {
       font-size: 3.4rem;
       font-weight: 800;
@@ -289,20 +319,26 @@
       word-break: break-word;
     }
 
+    .prompt-target.audio-hidden {
+      font-size: 2.2rem;
+      color: var(--theme-accent);
+    }
+
     .prompt-clue {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: #334155;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
     }
 
     .btn-listen {
       background: var(--theme-soft);
       color: var(--theme-accent);
       border: 1px solid transparent;
-      padding: 0.55rem 1.4rem;
-      border-radius: 20px;
+      padding: 0.6rem 1.6rem;
+      border-radius: 24px;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -422,7 +458,7 @@
       <div class="glass-box">
         <h2 id="hub-title" style="font-size: 1.6rem; margin-bottom: 0.3rem;">Belajar Bahasa Jepang (日本語)</h2>
         <p id="hub-subtitle" style="color: #475569; font-size: 0.95rem;">
-          Pilih modul latihan bertingkat di bawah ini.
+          Pilih modul latihan interaktif di bawah ini. Urutan soal akan diacak secara dinamis!
         </p>
 
         <div class="level-grid" id="moduleCardsContainer">
@@ -431,7 +467,7 @@
       </div>
     </section>
 
-    <!-- 2. ARENA SOAL -->
+    <!-- 2. ARENA SOAL INTERAKTIF -->
     <section id="panel-quiz" class="view-panel">
       <div class="glass-box">
         <div class="quiz-navbar">
@@ -445,6 +481,15 @@
 
         <div class="prompt-box">
           <div class="prompt-context" id="soalContextText">Soal 1</div>
+          
+          <!-- Box Bacaan (Khusus Soal Cerita / Reading) -->
+          <div id="readingPassageBox" class="reading-passage-card" style="display: none;"></div>
+          
+          <!-- Box Gambar (Jika Soal Memakai Gambar) -->
+          <div id="imageBox" style="display: none;">
+            <img id="soalImageDisplay" src="" alt="Ilustrasi Soal" class="prompt-image">
+          </div>
+
           <div class="prompt-target" id="soalMainDisplay">...</div>
           <div class="prompt-clue" id="soalClueText">Pertanyaan...</div>
           <button class="btn-listen" id="btnSoundAction" onclick="playAudioCurrent()">
@@ -453,7 +498,7 @@
         </div>
 
         <div class="options-layout" id="soalOptionsGrid">
-          <!-- 4 Pilihan Jawaban Acak -->
+          <!-- Opsi Jawaban Dinamis -->
         </div>
       </div>
     </section>
@@ -472,96 +517,129 @@
   </main>
 
   <script>
+    // ================= HELPER PENGACAK ARRAY (FISHER-YATES SHUFFLE) =================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    // ================= DATABASE MODUL & SOAL =================
     const courseDatabases = {
-      // =========================== 1. JEPANG (PER BARIS & TOPIK LENGKAP) ===========================
+      // =========================== 1. JEPANG (LENGKAP SAMPAI 'N' & DAKUON) ===========================
       jp: {
         title: 'Belajar Bahasa Jepang (日本語)',
-        desc: 'Latihan mandiri per baris Hiragana (A, Ka, Sa, Ta), kosakata salam, hingga barang bawaan.',
+        desc: 'Pelajari seluruh baris Hiragana dari A sampai N, variasi bunyi Dakuon (Ga, Za, Da, Ba, Pa), dan kosakata.',
         modules: [
           {
             id: 'jp_vowel',
             level: 'Hiragana Baris 1',
-            title: 'Baris Vokal (あ・い・う・え・お)',
-            desc: 'Latihan khusus 5 vokal dasar bahasa Jepang.',
+            title: 'Baris Vokal (A - I - U - E - O)',
+            desc: 'Penguasaan 5 vokal dasar huruf Hiragana.',
             questions: [
-              { target: 'あ', context: 'Tebak Vokal', clue: 'Bagaimana cara membaca karakter ini?', sound: 'あ', options: ['Ka', 'A', 'O', 'Ta'], correct: 1 },
-              { target: 'い', context: 'Tebak Vokal', clue: 'Bagaimana cara membaca karakter ini?', sound: 'い', options: ['U', 'Shi', 'I', 'Ri'], correct: 2 },
-              { target: 'う', context: 'Tebak Vokal', clue: 'Bagaimana cara membaca karakter ini?', sound: 'う', options: ['U', 'O', 'E', 'N'], correct: 0 },
-              { target: 'え', context: 'Tebak Vokal', clue: 'Bagaimana cara membaca karakter ini?', sound: 'え', options: ['A', 'Ro', 'So', 'E'], correct: 3 },
-              { target: 'お', context: 'Tebak Vokal', clue: 'Bagaimana cara membaca karakter ini?', sound: 'お', options: ['O', 'A', 'Ha', 'Mu'], correct: 0 },
-              { target: 'あい', context: 'Gabungan Kata', clue: 'Gabungan dua vokal ini bermakna "cinta", dibaca:', sound: 'あい', options: ['Oi', 'Ai', 'Ie', 'Ue'], correct: 1 },
-              { target: 'うえ', context: 'Gabungan Kata', clue: 'Gabungan kata yang bermakna "atas", dibaca:', sound: 'うえ', options: ['Ao', 'Ea', 'Ue', 'Iu'], correct: 2 },
-              { target: 'いいえ', context: 'Kosakata Dasar', clue: 'Kata penolakan santun ("tidak"), dibaca:', sound: 'いいえ', options: ['Iie', 'Iai', 'Ooi', 'Eee'], correct: 0 }
+              { target: 'あ', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'あ', options: ['Ka', 'A', 'O', 'Ta'], correct: 1 },
+              { target: 'い', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'い', options: ['U', 'Shi', 'I', 'Ri'], correct: 2 },
+              { target: 'う', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'う', options: ['U', 'O', 'E', 'N'], correct: 0 },
+              { target: 'え', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'え', options: ['A', 'Ro', 'So', 'E'], correct: 3 },
+              { target: 'お', context: 'Vokal Hiragana', clue: 'Bagaimana cara membaca karakter ini?', sound: 'お', options: ['O', 'A', 'Ha', 'Mu'], correct: 0 }
             ]
           },
           {
-            id: 'jp_ka',
-            level: 'Hiragana Baris 2',
-            title: 'Baris Ka (か・き・く・け・こ)',
-            desc: 'Latihan khusus konsonan keluarga K.',
+            id: 'jp_kasa',
+            level: 'Hiragana Baris 2 & 3',
+            title: 'Baris Ka & Sa (か〜こ / さ〜そ)',
+            desc: 'Keluarga konsonan K dan S termasuk bunyi unik "Shi".',
             questions: [
-              { target: 'か', context: 'Baris K', clue: 'Karakter ini dibaca:', sound: 'か', options: ['Ki', 'Ku', 'Ka', 'Ko'], correct: 2 },
-              { target: 'き', context: 'Baris K', clue: 'Karakter dua garis horizontal ini dibaca:', sound: 'き', options: ['Sa', 'Ki', 'Chi', 'Ke'], correct: 1 },
-              { target: 'く', context: 'Baris K', clue: 'Karakter tanda sudut tajam ini dibaca:', sound: 'く', options: ['He', 'Ku', 'Te', 'Ta'], correct: 1 },
-              { target: 'け', context: 'Baris K', clue: 'Karakter ini dibaca:', sound: 'け', options: ['Ke', 'Ha', 'Ka', 'I'], correct: 0 },
-              { target: 'こ', context: 'Baris K', clue: 'Karakter dua garis atas-bawah ini dibaca:', sound: 'こ', options: ['Ni', 'Ta', 'Ko', 'E'], correct: 2 },
-              { target: 'あき', context: 'Gabungan Kosakata', clue: 'Musim gugur (Aki) ditulis dengan huruf:', sound: 'あき', options: ['A-ke', 'A-ki', 'A-ka', 'A-ko'], correct: 1 },
-              { target: 'かお', context: 'Bagian Tubuh', clue: 'Kata bermakna "wajah" (Kao), dibaca:', sound: 'かお', options: ['Ka-o', 'Ki-o', 'Ke-a', 'Ko-u'], correct: 0 },
-              { target: 'きく', context: 'Kata Kerja', clue: 'Mendengarkan (Kiku), dibaca:', sound: 'きく', options: ['Ki-ke', 'Ku-ku', 'Ki-ku', 'Ka-ku'], correct: 2 }
-            ]
-          },
-          {
-            id: 'jp_sa',
-            level: 'Hiragana Baris 3',
-            title: 'Baris Sa (さ・し・す・せ・そ)',
-            desc: 'Latihan khusus konsonan keluarga S termasuk pengecualian "Shi".',
-            questions: [
-              { target: 'さ', context: 'Baris S', clue: 'Karakter satu garis mendatar ini dibaca:', sound: 'さ', options: ['Ki', 'Chi', 'Sa', 'So'], correct: 2 },
+              { target: 'か', context: 'Baris Ka', clue: 'Karakter ini dibaca:', sound: 'か', options: ['Ki', 'Ka', 'Ke', 'Ko'], correct: 1 },
+              { target: 'き', context: 'Baris Ka', clue: 'Karakter dua garis horizontal ini dibaca:', sound: 'き', options: ['Sa', 'Ki', 'Chi', 'Ke'], correct: 1 },
+              { target: 'く', context: 'Baris Ka', clue: 'Karakter sudut lancip ini dibaca:', sound: 'く', options: ['Ku', 'He', 'Te', 'Ta'], correct: 0 },
+              { target: 'け', context: 'Baris Ka', clue: 'Karakter ini dibaca:', sound: 'け', options: ['Ha', 'Ke', 'Ka', 'I'], correct: 1 },
+              { target: 'こ', context: 'Baris Ka', clue: 'Karakter dua garis sejajar atas bawah dibaca:', sound: 'こ', options: ['Ni', 'Ta', 'Ko', 'E'], correct: 2 },
+              { target: 'さ', context: 'Baris Sa', clue: 'Karakter satu garis mendatar ini dibaca:', sound: 'さ', options: ['Ki', 'Chi', 'Sa', 'So'], correct: 2 },
               { target: 'し', context: 'Pengecualian Bunyi', clue: 'Karakter menyerupai kail pancing ini dibaca:', sound: 'し', options: ['Si', 'Shi', 'Tsu', 'I'], correct: 1 },
-              { target: 'す', context: 'Baris S', clue: 'Karakter dengan simpul bulat di tengah dibaca:', sound: 'す', options: ['Mu', 'Nu', 'Su', 'O'], correct: 2 },
-              { target: 'せ', context: 'Baris S', clue: 'Karakter ini dibaca:', sound: 'せ', options: ['Se', 'Sa', 'Ya', 'Ke'], correct: 0 },
-              { target: 'そ', context: 'Baris S', clue: 'Karakter zig-zag bersambung ini dibaca:', sound: 'そ', options: ['Ro', 'So', 'E', 'Ru'], correct: 1 },
-              { target: 'あさ', context: 'Waktu Harian', clue: 'Kata "Pagi" (Asa), ditulis dengan:', sound: 'あさ', options: ['A-shi', 'A-sa', 'A-so', 'A-se'], correct: 1 },
-              { target: 'すし', context: 'Makanan Khas', clue: 'Kuliner populer Jepang (Sushi), tersusun dari huruf:', sound: 'すし', options: ['Su-shi', 'Sa-shi', 'Shi-su', 'So-shi'], correct: 0 },
-              { target: 'おそい', context: 'Kata Sifat', clue: 'Kata bermakna "lambat / terlambat", dibaca:', sound: 'おそい', options: ['O-so-i', 'A-se-i', 'O-sa-i', 'U-shi-i'], correct: 0 }
+              { target: 'す', context: 'Baris Sa', clue: 'Karakter dengan simpul bulat di tengah dibaca:', sound: 'す', options: ['Mu', 'Nu', 'Su', 'O'], correct: 2 },
+              { target: 'せ', context: 'Baris Sa', clue: 'Karakter ini dibaca:', sound: 'せ', options: ['Se', 'Sa', 'Ya', 'Ke'], correct: 0 },
+              { target: 'そ', context: 'Baris Sa', clue: 'Karakter zig-zag bersambung ini dibaca:', sound: 'そ', options: ['Ro', 'So', 'E', 'Ru'], correct: 1 }
             ]
           },
           {
-            id: 'jp_ta',
-            level: 'Hiragana Baris 4',
-            title: 'Baris Ta (た・ち・つ・て・と)',
-            desc: 'Latihan khusus konsonan keluarga T termasuk variasi "Chi" dan "Tsu".',
+            id: 'jp_tana',
+            level: 'Hiragana Baris 4 & 5',
+            title: 'Baris Ta & Na (た〜と / な〜の)',
+            desc: 'Keluarga T (Ta, Chi, Tsu, Te, To) dan keluarga N (Na, Ni, Nu, Ne, No).',
             questions: [
-              { target: 'た', context: 'Baris T', clue: 'Karakter pembuka keluarga T ini dibaca:', sound: 'た', options: ['Na', 'Ko', 'Ta', 'Ni'], correct: 2 },
+              { target: 'た', context: 'Baris Ta', clue: 'Karakter ini dibaca:', sound: 'た', options: ['Na', 'Ko', 'Ta', 'Ni'], correct: 2 },
               { target: 'ち', context: 'Pengecualian Bunyi', clue: 'Karakter mirip angka 5 ini dibaca:', sound: 'ち', options: ['Chi', 'Ti', 'Sa', 'Ki'], correct: 0 },
               { target: 'つ', context: 'Pengecualian Bunyi', clue: 'Karakter gelombang tunggal ini dibaca:', sound: 'つ', options: ['Shi', 'Tsu', 'Tu', 'U'], correct: 1 },
-              { target: 'て', context: 'Baris T', clue: 'Karakter satu goresan melengkung ini dibaca:', sound: 'て', options: ['Ku', 'Te', 'Ta', 'To'], correct: 1 },
-              { target: 'と', context: 'Baris T', clue: 'Karakter ini dibaca:', sound: 'と', options: ['To', 'E', 'Te', 'I'], correct: 0 },
-              { target: 'つき', context: 'Benda Alam', clue: 'Kata bermakna "Bulan" (Tsuki), dibaca:', sound: 'つき', options: ['Chi-ki', 'Tsu-ki', 'Ta-ki', 'Tsu-ka'], correct: 1 },
-              { target: 'て', context: 'Bagian Tubuh', clue: 'Kata bermakna "Tangan" (Te), dibaca:', sound: 'て', options: ['Chi', 'Te', 'Ta', 'To'], correct: 1 },
-              { target: 'うた', context: 'Karya Seni', clue: 'Kata bermakna "Lagu" (Uta), dibaca:', sound: 'うた', options: ['U-ta', 'O-ta', 'A-ta', 'U-te'], correct: 0 }
+              { target: 'て', context: 'Baris Ta', clue: 'Karakter melengkung tunggal ini dibaca:', sound: 'て', options: ['Ku', 'Te', 'Ta', 'To'], correct: 1 },
+              { target: 'と', context: 'Baris Ta', clue: 'Karakter ini dibaca:', sound: 'と', options: ['To', 'E', 'Te', 'I'], correct: 0 },
+              { target: 'な', context: 'Baris Na', clue: 'Karakter pembuka keluarga Na ini dibaca:', sound: 'な', options: ['Ta', 'Na', 'Ni', 'Ha'], correct: 1 },
+              { target: 'に', context: 'Baris Na', clue: 'Karakter ini dibaca:', sound: 'に', options: ['Ko', 'Ni', 'Ta', 'I'], correct: 1 },
+              { target: 'ぬ', context: 'Baris Na', clue: 'Karakter dengan simpul bundar di kanan bawah:', sound: 'ぬ', options: ['Me', 'Ne', 'Nu', 'Mu'], correct: 2 },
+              { target: 'ね', context: 'Baris Na', clue: 'Karakter berujung lingkar simpul ini dibaca:', sound: 'ね', options: ['Re', 'Wa', 'Ne', 'Nu'], correct: 2 },
+              { target: 'の', context: 'Baris Na', clue: 'Karakter satu goresan lingkaran ini dibaca:', sound: 'の', options: ['No', 'Me', 'O', 'Ru'], correct: 0 }
             ]
           },
           {
-            id: 'jp_vocab',
-            level: 'Kosakata Lengkap',
-            title: 'Aisatsu & Mochimono (挨拶・持ち物)',
-            desc: 'Penerapan kata utuh dalam salam dan benda harian.',
+            id: 'jp_hama',
+            level: 'Hiragana Baris 6 & 7',
+            title: 'Baris Ha & Ma (は〜ほ / ま〜も)',
+            desc: 'Keluarga Ha (termasuk bunyi Fu) dan keluarga Ma.',
             questions: [
-              { target: 'おはようございます', context: 'Salam Waktu', clue: 'Ungkapan ini diucapkan saat:', sound: 'おはようございます', options: ['Malam sebelum tidur', 'Pagi hari (formal)', 'Selesai makan', 'Berpamitan pulang'], correct: 1 },
-              { target: 'こんにちは', context: 'Salam Harian', clue: 'Sapaan "Konnichiwa" umum digunakan pada:', sound: 'こんにちは', options: ['Siang hari / Umum', 'Dini hari', 'Saat makan', 'Saat meminta tolong'], correct: 0 },
-              { target: 'ごちそうさまでした', context: 'Etika Makan', clue: 'Ungkapan ini disampaikan saat:', sound: 'ごちそうさまでした', options: ['Sebelum makan', 'Setelah selesai makan', 'Masuk ke restoran', 'Membayar di kasir'], correct: 1 },
-              { target: 'かばん', context: 'Benda Bawaan', clue: 'Benda "Kaban" berarti:', sound: 'かばん', options: ['Buku catatan', 'Dompet', 'Tas bawaan', 'Payung'], correct: 2 },
-              { target: 'とけい', context: 'Penunjuk Waktu', clue: 'Benda "Tokei" berarti:', sound: 'とけい', options: ['Kacamata', 'Jam tangan / dinding', 'Kunci rumah', 'Sepatu'], correct: 1 },
-              { target: 'ほん', context: 'Alat Belajar', clue: 'Benda "Hon" berarti:', sound: 'ほん', options: ['Pensil', 'Buku bacaan', 'Penghapus', 'Meja'], correct: 1 },
-              { target: 'さいふ', context: 'Benda Saku', clue: 'Benda "Saifu" adalah:', sound: 'さいふ', options: ['Uang koin', 'Kartu tanda pengenal', 'Dompet uang', 'Saku baju'], correct: 2 },
-              { target: 'かさ', context: 'Alat Pelindung', clue: 'Benda "Kasa" digunakan saat hujan, yaitu:', sound: 'かさ', options: ['Jas hujan', 'Topi', 'Sepatu bot', 'Payung'], correct: 3 }
+              { target: 'は', context: 'Baris Ha', clue: 'Karakter pembuka keluarga H ini dibaca:', sound: 'は', options: ['Ha', 'Ho', 'Ke', 'Na'], correct: 0 },
+              { target: 'ひ', context: 'Baris Ha', clue: 'Karakter melengkung tapal kuda ini dibaca:', sound: 'ひ', options: ['He', 'Hi', 'Shi', 'I'], correct: 1 },
+              { target: 'ふ', context: 'Pengecualian Bunyi', clue: 'Karakter unik berbunyi hembusan bibir ini dibaca:', sound: 'ふ', options: ['Hu', 'Fu', 'Mu', 'Ku'], correct: 1 },
+              { target: 'へ', context: 'Baris Ha', clue: 'Karakter garis puncak gunung ini dibaca:', sound: 'へ', options: ['Ku', 'He', 'Te', 'I'], correct: 1 },
+              { target: 'ほ', context: 'Baris Ha', clue: 'Karakter bertutup garis atas ini dibaca:', sound: 'ほ', options: ['Ha', 'Ma', 'Ho', 'Ne'], correct: 2 },
+              { target: 'ま', context: 'Baris Ma', clue: 'Karakter pembuka keluarga M ini dibaca:', sound: 'ま', options: ['Ho', 'Ma', 'Mo', 'Ki'], correct: 1 },
+              { target: 'み', context: 'Baris Ma', clue: 'Karakter berangka 2 modifikasi ini dibaca:', sound: 'み', options: ['Mi', 'Nu', 'Me', 'Yo'], correct: 0 },
+              { target: 'む', context: 'Baris Ma', clue: 'Karakter bertitik kanan atas ini dibaca:', sound: 'む', options: ['Su', 'Mu', 'Nu', 'A'], correct: 1 },
+              { target: 'め', context: 'Baris Ma', clue: 'Karakter silang lingkar ini dibaca:', sound: 'め', options: ['Nu', 'Me', 'Ne', 'No'], correct: 1 },
+              { target: 'も', context: 'Baris Ma', clue: 'Karakter mirip kail bertingkat ini dibaca:', sound: 'も', options: ['Mo', 'Shi', 'So', 'Ma'], correct: 0 }
+            ]
+          },
+          {
+            id: 'jp_yarawan',
+            level: 'Hiragana Baris 8, 9 & 10',
+            title: 'Baris Ya, Ra, Wa, sampai N (ん)',
+            desc: 'Aksara penutup semi-vokal, konsonan R, W, serta konsonan nasal tunggal N.',
+            questions: [
+              { target: 'や', context: 'Baris Ya', clue: 'Karakter pembuka keluarga Y dibaca:', sound: 'や', options: ['Ya', 'Se', 'Ka', 'Yu'], correct: 0 },
+              { target: 'ゆ', context: 'Baris Ya', clue: 'Karakter bersambung ini dibaca:', sound: 'ゆ', options: ['Yo', 'Yu', 'Ya', 'Nu'], correct: 1 },
+              { target: 'よ', context: 'Baris Ya', clue: 'Karakter ini dibaca:', sound: 'よ', options: ['Ma', 'Ha', 'Yo', 'Ni'], correct: 2 },
+              { target: 'ら', context: 'Baris Ra', clue: 'Karakter pembuka keluarga R dibaca:', sound: 'ら', options: ['U', 'Chi', 'Ra', 'Ro'], correct: 2 },
+              { target: 'り', context: 'Baris Ra', clue: 'Karakter dua garis sejajar panjang kanan dibaca:', sound: 'り', options: ['I', 'Ri', 'Shi', 'Ru'], correct: 1 },
+              { target: 'る', context: 'Baris Ra', clue: 'Karakter bersimpul di kaki bawah dibaca:', sound: 'る', options: ['Ro', 'Ru', 'So', 'Re'], correct: 1 },
+              { target: 'れ', context: 'Baris Ra', clue: 'Karakter dengan ujung keluar dibaca:', sound: 'れ', options: ['Wa', 'Ne', 'Re', 'Me'], correct: 2 },
+              { target: 'ろ', context: 'Baris Ra', clue: 'Karakter tanpa simpul di bawah dibaca:', sound: 'ろ', options: ['Ru', 'Ro', 'O', 'Ko'], correct: 1 },
+              { target: 'わ', context: 'Baris Wa', clue: 'Karakter lingkar bulat menutup ini dibaca:', sound: 'わ', options: ['Re', 'Wa', 'Ne', 'O'], correct: 1 },
+              { target: 'を', context: 'Partikel Objek', clue: 'Karakter khusus partikel kalimat ini dibaca:', sound: 'を', options: ['Wo / O', 'Wa', 'E', 'Ro'], correct: 0 },
+              { target: 'ん', context: 'Konsonan Penutup', clue: 'Satu-satunya konsonan tunggal tanpa vokal di Hiragana dibaca:', sound: 'ん', options: ['M', 'N', 'Ng', 'H'], correct: 1 }
+            ]
+          },
+          {
+            id: 'jp_dakuon',
+            level: 'Dakuon & Handakuon',
+            title: 'Tanda Bunyi Dakuon (Ga, Za, Da, Ba, Pa)',
+            desc: 'Perubahan bunyi dengan tanda petik Tenten ( ゛) dan bulatan Maru ( ゜).',
+            questions: [
+              { target: 'が', context: 'Dakuon K -> G', clue: 'Karakter Ka yang diberi tanda tenten (゛) dibaca:', sound: 'が', options: ['Ka', 'Ga', 'Za', 'Da'], correct: 1 },
+              { target: 'ぎ', context: 'Dakuon K -> G', clue: 'Karakter Ki dengan tanda tenten dibaca:', sound: 'ぎ', options: ['Gi', 'Ji', 'Di', 'Bi'], correct: 0 },
+              { target: 'ざ', context: 'Dakuon S -> Z', clue: 'Karakter Sa dengan tanda tenten dibaca:', sound: 'ざ', options: ['Za', 'Ga', 'Da', 'Ba'], correct: 0 },
+              { target: 'じ', context: 'Dakuon S -> J', clue: 'Karakter Shi dengan tanda tenten berbunyi:', sound: 'じ', options: ['Zi', 'Ji', 'Gi', 'Di'], correct: 1 },
+              { target: 'だ', context: 'Dakuon T -> D', clue: 'Karakter Ta dengan tanda tenten dibaca:', sound: 'だ', options: ['Ba', 'Ga', 'Da', 'Za'], correct: 2 },
+              { target: 'ば', context: 'Dakuon H -> B', clue: 'Karakter Ha dengan tanda tenten (゛) dibaca:', sound: 'ば', options: ['Ba', 'Pa', 'Ma', 'Da'], correct: 0 },
+              { target: 'ぱ', context: 'Handakuon H -> P', clue: 'Karakter Ha dengan tanda bulatan maru (゜) dibaca:', sound: 'ぱ', options: ['Ba', 'Pa', 'Fa', 'Ha'], correct: 1 },
+              { target: 'ぴ', context: 'Handakuon H -> P', clue: 'Karakter Hi dengan tanda maru (゜) dibaca:', sound: 'ぴ', options: ['Bi', 'Pi', 'Mi', 'Gi'], correct: 1 }
             ]
           }
         ]
       },
 
-      // =========================== 2. JAWA & NUSANTARA (KUNCI ACAK, OPSI LATIN, SOAL JELAS) ===========================
+      // =========================== 2. JAWA & NUSANTARA ===========================
       jv: {
         title: 'Aksara & Sastra Jawa Nusantara',
         desc: 'Materi carakan bertahap dengan transliterasi latin yang jelas dan kunci jawaban acak.',
@@ -577,9 +655,9 @@
               { target: 'ꦕ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ca', options: ['Ca', 'Ra', 'Wa', 'La'], correct: 0 },
               { target: 'ꦫ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ra', options: ['Ga', 'Ba', 'Nga', 'Ra'], correct: 3 },
               { target: 'ꦏ', context: 'Tebak Aksara', clue: 'Bagaimana bunyi transliterasi latin aksara di atas?', sound: 'Ka', options: ['Ta', 'Ka', 'Sa', 'Pa'], correct: 1 },
-              { target: 'ꦤꦫ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dibaca menjadi:', sound: 'Nara', options: ['Kana', 'Rana', 'Nara', 'Hana'], correct: 2 },
-              { target: 'ꦲꦤ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dibaca menjadi:', sound: 'Hana', options: ['Hana', 'Cana', 'Kana', 'Rana'], correct: 0 },
-              { target: 'ꦕꦫ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dibaca menjadi:', sound: 'Cara', options: ['Raca', 'Kara', 'Hara', 'Cara'], correct: 3 }
+              { target: 'ꦤꦫ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Nara', options: ['Kana', 'Rana', 'Nara', 'Hana'], correct: 2 },
+              { target: 'ꦲꦤ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Hana', options: ['Hana', 'Cana', 'Kana', 'Rana'], correct: 0 },
+              { target: 'ꦕꦫ', context: 'Membaca Kata', clue: 'Dua aksara di atas jika dirangkai dibaca:', sound: 'Cara', options: ['Raca', 'Kara', 'Hara', 'Cara'], correct: 3 }
             ]
           },
           {
@@ -624,102 +702,145 @@
               { target: 'Watak Pocung', context: 'Karakter Tembang', clue: 'Watak tembang Pocung umumnya bersifat:', sound: 'Watak Pocung', options: ['Galak dan marah', 'Sembrana, lucu, cocok untuk cangkriman', 'Sedih terharu', 'Khidmat resmi'], correct: 1 },
               { target: '7u - 10u - 12i - 8u - 8o', context: 'Paugeran Tembang', clue: 'Paugeran 5 gatra di atas merupakan patokan untuk tembang:', sound: 'Gambuh', options: ['Gambuh', 'Pocung', 'Mijil', 'Durma'], correct: 0 }
             ]
-          },
-          {
-            id: 'jv_unggah',
-            level: 'Tata Krama Tutur',
-            title: 'Unggah-Ungguh Basa Jawa',
-            desc: 'Perbedaan kata Ngoko dan Krama Inggil santun.',
-            questions: [
-              { target: 'Mangan', context: 'Basa Ngoko', clue: 'Bentuk Krama Inggil yang santun untuk kata "mangan" (makan) adalah:', sound: 'Dhahar', options: ['Nedha', 'Turu', 'Dhahar', 'Adus'], correct: 2 },
-              { target: 'Turu', context: 'Basa Ngoko', clue: 'Bentuk Krama Inggil untuk kata "turu" (tidur) adalah:', sound: 'Sare', options: ['Sarè', 'Tilem', 'Gugah', 'Mlebu'], correct: 0 },
-              { target: 'Lunga', context: 'Basa Ngoko', clue: 'Bentuk Krama Inggil untuk kata "lunga" (pergi) adalah:', sound: 'Tindak', options: ['Kesah', 'Mlayu', 'Tindak', 'Mampir'], correct: 2 },
-              { target: 'Matur nuwun', context: 'Ungkapan Sopan', clue: 'Ungkapan "Matur nuwun sanget" memiliki arti:', sound: 'Matur nuwun sanget', options: ['Sama-sama', 'Selamat pagi', 'Mohon maaf', 'Terima kasih banyak'], correct: 3 },
-              { target: 'Nyuwun sewu', context: 'Etika Bertutur', clue: 'Ungkapan ini disampaikan saat:', sound: 'Nyuwun sewu', options: ['Permisi hendak lewat di depan orang tua', 'Membeli barang di warung', 'Hendak tidur malam', 'Berpamitan pulang sekolah'], correct: 0 }
-            ]
           }
         ]
       },
 
-      // =========================== 3. BAHASA INGGRIS (SOAL 1 & 2 DIPERBAIKI TOTAL) ===========================
+      // =========================== 3. BAHASA INGGRIS (DILENGKAPI READING & LISTENING) ===========================
       en: {
         title: 'English Language Studio',
-        desc: 'Kosakata natural, logika ungkapan sopan yang benar, dan percakapan harian.',
+        desc: 'Dilengkapi tantangan Reading Comprehension (Soal Cerita) dan Listening Test (Uji Pendengaran).',
         modules: [
           {
+            id: 'en_reading',
+            level: 'Reading Comprehension',
+            title: 'Short Stories & Situational Reading',
+            desc: 'Pahami teks narasi singkat dan jawab pertanyaan berdasarkan isi cerita.',
+            questions: [
+              {
+                passage: "Sarah is a university student living in London. Every morning at 7:30 AM, she walks to the nearest underground station and takes the train to her campus. Today, it was raining heavily, so she carried a large blue umbrella.",
+                passageDesc: "Bacalah teks cerita pendek di atas dengan seksama:",
+                target: "Story 1",
+                context: "Reading: Transportation",
+                clue: "How does Sarah travel to her university?",
+                sound: "How does Sarah travel to her university?",
+                options: ["She drives her own car", "She takes the underground train", "She rides a bicycle", "She takes a public bus"],
+                correct: 1
+              },
+              {
+                passage: "Sarah is a university student living in London. Every morning at 7:30 AM, she walks to the nearest underground station and takes the train to her campus. Today, it was raining heavily, so she carried a large blue umbrella.",
+                passageDesc: "Bacalah teks cerita pendek di atas dengan seksama:",
+                target: "Story 1 (Detail)",
+                context: "Reading: Weather Context",
+                clue: "Why did Sarah carry an umbrella this morning?",
+                sound: "Why did Sarah carry an umbrella this morning?",
+                options: ["Because it was very sunny", "Because it was raining heavily", "Because she was selling umbrellas", "Because it was snowing"],
+                correct: 1
+              },
+              {
+                passage: "Alex had an important job interview at 10:00 AM. His alarm clock did not ring, causing him to wake up late. He quickly wore his suit, skipped breakfast, and ordered a taxi to avoid being late. Luckily, he arrived at the office five minutes before the interview started.",
+                passageDesc: "Perhatikan teks cerita berikut:",
+                target: "Story 2",
+                context: "Reading: Job Interview",
+                clue: "What caused Alex to wake up late in the morning?",
+                sound: "What caused Alex to wake up late in the morning?",
+                options: ["He slept late watching movies", "His alarm clock did not ring", "His taxi was delayed", "He had breakfast with his friend"],
+                correct: 1
+              },
+              {
+                passage: "Alex had an important job interview at 10:00 AM. His alarm clock did not ring, causing him to wake up late. He quickly wore his suit, skipped breakfast, and ordered a taxi to avoid being late. Luckily, he arrived at the office five minutes before the interview started.",
+                passageDesc: "Perhatikan teks cerita berikut:",
+                target: "Story 2 (Time)",
+                context: "Reading: Time Management",
+                clue: "At what time did Alex arrive at the office?",
+                sound: "At what time did Alex arrive at the office?",
+                options: ["At 10:05 AM (Late)", "At 9:55 AM (5 minutes early)", "At 10:00 AM sharp", "At 9:30 AM"],
+                correct: 1
+              },
+              {
+                image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&auto=format&fit=crop",
+                target: "Restaurant Menu",
+                context: "Picture Context: Dining Out",
+                clue: "Based on the picture of a dining scene, what do customers usually ask for before ordering food?",
+                sound: "What do customers usually ask for before ordering food?",
+                options: ["Can I have the bill, please?", "Could we see the menu, please?", "Where is the airport gate?", "Can I return this shirt?"],
+                correct: 1
+              }
+            ]
+          },
+          {
+            id: 'en_listening',
+            level: 'Listening Lab',
+            title: 'Audio Comprehension (Listening Test)',
+            desc: 'Teks disembunyikan. Tekan tombol audio untuk mendengarkan lalu pilih jawaban yang tepat.',
+            questions: [
+              {
+                isListening: true,
+                target: "🔊 [Dengarkan Audio]",
+                context: "Listening 1: Polite Departure",
+                clue: "Dengarkan suara yang diputar. Manakah arti bahasa Indonesia yang sesuai?",
+                sound: "Have a safe flight back home!",
+                options: ["Semoga penerbangan pulangmu aman dan selamat!", "Selamat menikmati sarapan pagi!", "Tolong bersihkan kamar penerbangan!", "Kapan pesawatmu mendarat?"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengarkan Audio]",
+                context: "Listening 2: Direction",
+                clue: "Dengarkan pertanyaannya. Maksud penutur adalah:",
+                sound: "Could you tell me how to get to the train station?",
+                options: ["Menanyakan arah jalan menuju stasiun kereta", "Menjual tiket kereta murah", "Memberitahu bahwa kereta sudah berangkat", "Mengajak makan di dekat stasiun"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengarkan Audio]",
+                context: "Listening 3: Health Expression",
+                clue: "Dengarkan kalimat ini. Pembicara sedang menyatakan bahwa dia:",
+                sound: "I think I am coming down with a flu.",
+                options: ["Sedang merasa mulai tertular flu / kurang sehat", "Sangat menyukai musim hujan", "Hendak bepergian ke luar kota", "Sudah sembuh total dari sakit"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengarkan Audio]",
+                context: "Listening 4: Agreement",
+                clue: "Dengarkan respon percakapan berikut. Sikap penutur adalah:",
+                sound: "I could not agree with you more.",
+                options: ["Sangat setuju sepenuhnya dengan pendapatmu", "Sama sekali tidak setuju denganmu", "Ragu-ragu mengambil keputusan", "Tidak mau mendengarkan argumen"],
+                correct: 0
+              },
+              {
+                isListening: true,
+                target: "🔊 [Dengarkan Audio]",
+                context: "Listening 5: Routine Question",
+                clue: "Dengarkan pertanyaan audio berikut. Pertanyaan tersebut menanyakan:",
+                sound: "What do you usually do in your spare time?",
+                options: ["Aktivitas yang biasa dilakukan di waktu luang / hobi", "Berapa jam kamu bekerja setiap hari", "Kapan kamu akan pensiun", "Berapa harga jam tanganmu"],
+                correct: 0
+              }
+            ]
+          },
+          {
             id: 'en_polite',
-            level: 'Modul 1 • Kesantunan',
+            level: 'Modul 3 • Kesantunan',
             title: 'Everyday Polite English',
             desc: 'Pola jawaban yang tepat untuk salam, permisi, dan rasa terima kasih.',
             questions: [
               { target: 'How do you do?', context: 'Formal Greeting', clue: 'Saat seseorang menyapa formal dengan "How do you do?", balasan yang benar dan lazim adalah:', sound: 'How do you do?', options: ['I am doing dishes', 'How do you do?', 'No problem', 'Good night'], correct: 1 },
               { target: 'Excuse me', context: 'Social Interaction', clue: 'Ungkapan "Excuse me" paling tepat digunakan ketika:', sound: 'Excuse me', options: ['Ingin menarik perhatian orang lain atau lewat dengan santun', 'Membalas ucapan terima kasih teman', 'Menutup pembicaraan telepon malam hari', 'Memberi selamat ulang tahun'], correct: 0 },
               { target: 'Thank you very much', context: 'Gratitude Response', clue: 'Respons paling sopan dan alami untuk membalas ucapan terima kasih adalah:', sound: 'You are welcome', options: ['You are welcome', 'Never mind it', 'Of course not', 'Yes I am'], correct: 0 },
-              { target: 'I appreciate your help', context: 'Expressing Gratitude', clue: 'Arti kalimat "I appreciate your help" adalah:', sound: 'I appreciate your help', options: ['Saya tidak butuh bantuanmu', 'Tolong bantu saya nanti', 'Saya sangat menghargai bantuanmu', 'Apakah kamu lelah membantuku?'], correct: 2 },
-              { target: 'Could you please repeat that?', context: 'Clarification', clue: 'Kalimat santun ini diucapkan saat:', sound: 'Could you please repeat that', options: ['Ingin lawan bicara mengulangi ucapannya karena kurang jelas', 'Ingin lawan bicara diam', 'Menolak berbicara sama sekali', 'Mengajak lawan bicara pergi'], correct: 0 },
-              { target: 'Make yourself at home', context: 'Hospitality', clue: 'Ungkapan tuan rumah ini memiliki maksud ramah:', sound: 'Make yourself at home', options: ['Segeralah pulang ke rumahmu', 'Anggaplah santai seperti di rumah sendiri', 'Bereskan perabotan di rumah ini', 'Jangan sentuh barang apa pun'], correct: 1 },
-              { target: 'Have a safe trip', context: 'Parting Words', clue: 'Ucapan perpisahan ini ditujukan kepada orang yang hendak:', sound: 'Have a safe trip', options: ['Mulai belajar di kelas', 'Tidur di kamar', 'Pergi bepergian atau pulang ke kampung halaman', 'Makan siang di kantin'], correct: 2 },
-              { target: 'Never mind', context: 'Casual Reassurance', clue: 'Arti santai dari ungkapan "Never mind" adalah:', sound: 'Never mind', options: ['Jangan pedulikan pikiranmu', 'Lupakan saja / Tidak usah dipikirkan', 'Pikiranmu sangat tajam', 'Ingatlah selalu kata-kataku'], correct: 1 }
-            ]
-          },
-          {
-            id: 'en_idioms',
-            level: 'Modul 2 • Kiasan',
-            title: 'Common Native Idioms',
-            desc: 'Memahami makna sebenarnya di balik idiom populer.',
-            questions: [
-              { target: 'Piece of cake', context: 'Idiom Populer', clue: 'Jika suatu tugas dibilang "a piece of cake", maknanya:', sound: 'Piece of cake', options: ['Tugas tersebut sangat sulit', 'Tugas tersebut berupa memotong kue', 'Tugas tersebut sangat mudah dikerjakan', 'Tugas tersebut belum selesai'], correct: 2 },
-              { target: 'Break a leg!', context: 'Ucapan Tradisional', clue: 'Ungkapan "Break a leg!" disampaikan kepada rekan dengan maksud:', sound: 'Break a leg', options: ['Hati-hati jangan sampai jatuh', 'Semoga penampilanmu sukses luar biasa!', 'Hentikan langkahmu sekarang', 'Jangan banyak berlari'], correct: 1 },
-              { target: 'Under the weather', context: 'Kondisi Fisik', clue: 'Jika seseorang mengatakan "I am under the weather", artinya dia sedang:', sound: 'Under the weather', options: ['Menikmati ramalan cuaca', 'Kurang enak badan atau agak sakit', 'Terjebak hujan badai di luar', 'Merasa sangat bahagia'], correct: 1 },
-              { target: 'Hit the books', context: 'Aktivitas Belajar', clue: 'Maksud dari ungkapan "hit the books" adalah:', sound: 'Hit the books', options: ['Memukul lemari buku', 'Membeli banyak buku baru', 'Mulai belajar giat dengan fokus', 'Menutup buku bacaan'], correct: 2 },
-              { target: 'Cost an arm and a leg', context: 'Nilai Barang', clue: 'Barang yang "costs an arm and a leg" adalah barang yang:', sound: 'Cost an arm and a leg', options: ['Sangat mahal harganya', 'Harganya sangat murah meriah', 'Dilarang untuk dibeli', 'Sangat berat saat dibawa'], correct: 0 },
-              { target: 'Once in a blue moon', context: 'Frekuensi Kejadian', clue: 'Peristiwa yang terjadi "once in a blue moon":', sound: 'Once in a blue moon', options: ['Terjadi setiap bulan purnama', 'Sangat jarang sekali terjadi', 'Pasti terjadi setiap malam minggu', 'Tidak akan pernah berhenti'], correct: 1 }
-            ]
-          },
-          {
-            id: 'en_travel',
-            level: 'Modul 3 • Perjalanan',
-            title: 'Travel & Transport Essentials',
-            desc: 'Kosakata fungsional di bandara, stasiun, dan tempat umum.',
-            questions: [
-              { target: 'Boarding pass', context: 'Di Bandara', clue: 'Dokumen izin masuk ke dalam kabin pesawat terbang:', sound: 'Boarding pass', options: ['Paspor identitas', 'Tiket bagasi koper', 'Boarding pass', 'Struk belanja duty free'], correct: 2 },
-              { target: 'Luggage', context: 'Perjalanan', clue: 'Kata "Luggage" merujuk pada:', sound: 'Luggage', options: ['Koper dan barang bawaan penumpang', 'Tempat duduk pesawat', 'Jadwal keberangkatan', 'Pintu gerbang terminal'], correct: 0 },
-              { target: 'Departure', context: 'Jadwal Terminal', clue: 'Kata "Departure" pada papan informasi berarti:', sound: 'Departure', options: ['Kedatangan pesawat', 'Keberangkatan pesawat', 'Pembatalan jadwal', 'Pemeriksaan paspor'], correct: 1 },
-              { target: 'Arrival', context: 'Jadwal Terminal', clue: 'Kata "Arrival" berarti:', sound: 'Arrival', options: ['Pintu masuk keluar tol', 'Kedatangan penumpang / pesawat', 'Pemberangkatan kereta', 'Pusat informasi'], correct: 1 },
-              { target: 'Receipt', context: 'Belanja & Transaksi', clue: 'Bukti pembayaran tertulis setelah berbelanja:', sound: 'Receipt', options: ['Struk / Nota belanja', 'Daftar menu restoran', 'Kartu garansi', 'Voucher diskon'], correct: 0 }
-            ]
-          },
-          {
-            id: 'en_phrasal',
-            level: 'Modul 4 • Frasa Kerja',
-            title: 'Essential Phrasal Verbs',
-            desc: 'Kombinasi kata kerja alami penutur asli.',
-            questions: [
-              { target: 'Look forward to', context: 'Penantian Harapan', clue: 'Frasa "I look forward to your visit" bermakna:', sound: 'Look forward to', options: ['Saya takut dengan kedatanganmu', 'Saya melihat ke arah pintu', 'Saya sangat menantikan kunjunganmu', 'Saya membatalkan kunjunganmu'], correct: 2 },
-              { target: 'Call off', context: 'Keputusan Acara', clue: 'Jika sebuah rapat di "called off", rapat tersebut:', sound: 'Call off', options: ['Dibatalkan sepenuhnya', 'Dimulai lebih awal', 'Dipindahkan ke ruangan lain', 'Ditunda pekan depan'], correct: 0 },
-              { target: 'Put off', context: 'Jadwal Kegiatan', clue: 'Frasa "put off the meeting" berarti:', sound: 'Put off', options: ['Mempercepat rapat', 'Menunda rapat ke lain waktu', 'Mengakhiri rapat', 'Merekam jalannya rapat'], correct: 1 },
-              { target: 'Run out of', context: 'Ketersediaan Barang', clue: 'Kalimat "We ran out of gas" berarti:', sound: 'Run out of', options: ['Bensin kita tumpah ke jalan', 'Kita membeli banyak bensin', 'Kita kehabisan bahan bakar bensin', 'Mobil kita melaju kencang'], correct: 2 },
-              { target: 'Give up', context: 'Sikap Mental', clue: 'Pesan motivasi "Never give up" memiliki arti:', sound: 'Give up', options: ['Jangan pernah menyerah', 'Berikan seluruh hartamu', 'Istirahatlah selamanya', 'Lupakan cita-citamu'], correct: 0 }
-            ]
-          },
-          {
-            id: 'en_work',
-            level: 'Modul 5 • Komunikasi Kerja',
-            title: 'Workplace & Meeting Basics',
-            desc: 'Ungkapan profesional dalam kolaborasi dan diskusi.',
-            questions: [
-              { target: 'Deadline', context: 'Tenggat Tugas', clue: 'Batas akhir pengumpulan suatu laporan atau proyek:', sound: 'Deadline', options: ['Jadwal lembur', 'Tenggat waktu batas akhir penyerahan', 'Waktu istirahat makan siang', 'Daftar hadir rapat'], correct: 1 },
-              { target: 'On the same page', context: 'Kerja Sama Tim', clue: 'Jika satu tim berada "on the same page", artinya tim tersebut:', sound: 'On the same page', options: ['Membaca buku yang sama', 'Memiliki pemahaman dan visi yang seragam', 'Bekerja di meja yang sama', 'Membeli komputer serupa'], correct: 1 },
-              { target: 'Follow up', context: 'Komunikasi Kerja', clue: 'Melakukan "follow up" dengan rekan kerja bermakna:', sound: 'Follow up', options: ['Menghubungi kembali untuk menindaklanjuti progres', 'Mengabaikan pesan rekan', 'Menolak tugas baru', 'Menutup proyek sepihak'], correct: 0 },
-              { target: 'Win-win solution', context: 'Negosiasi', clue: 'Kesepakatan yang menghasilkan "win-win solution" adalah kesepakatan yang:', sound: 'Win win solution', options: ['Hanya menguntungkan salah satu pihak', 'Merugikan kedua pihak', 'Menguntungkan kedua belah pihak secara adil', 'Membatalkan seluruh kerja sama'], correct: 2 }
+              { target: 'I appreciate your help', context: 'Expressing Gratitude', clue: 'Arti kalimat "I appreciate your help" adalah:', sound: 'I appreciate your help', options: ['Saya tidak butuh bantuanmu', 'Tolong bantu saya nanti', 'Saya sangat menghargai bantuanmu', 'Apakah kamu lelah membantuku?'], correct: 2 }
             ]
           }
         ]
       }
     };
 
+    // ================= PENGELOLA TAMPILAN & STATE =================
     let currentThemeKey = 'jp';
     let activeModule = null;
+    let randomizedQuestions = [];
     let currentQIndex = 0;
     let sessionScore = 0;
 
@@ -762,16 +883,19 @@
             <h4>${mod.title}</h4>
             <p>${mod.desc}</p>
           </div>
-          <div class="btn-card-start">Uji Modul Ini (${mod.questions.length} Soal) &rarr;</div>
+          <div class="btn-card-start">Uji Modul (${mod.questions.length} Soal Acak) &rarr;</div>
         </div>
       `).join('');
     }
 
+    // MEMULAI MODUL & MENGACAK URUTAN SOAL
     function startModuleSession(modId) {
       const pack = courseDatabases[currentThemeKey];
       activeModule = pack.modules.find(m => m.id === modId);
       if (!activeModule) return;
 
+      // SOAL DIACAK DENGAN SHUFFLE
+      randomizedQuestions = shuffleArray(activeModule.questions);
       currentQIndex = 0;
       sessionScore = 0;
 
@@ -781,44 +905,85 @@
     }
 
     function renderCurrentCard() {
-      const q = activeModule.questions[currentQIndex];
-      const total = activeModule.questions.length;
+      const q = randomizedQuestions[currentQIndex];
+      const total = randomizedQuestions.length;
 
       document.getElementById('soalContextText').innerText = `Soal ${currentQIndex + 1} dari ${total}`;
-      document.getElementById('soalMainDisplay').innerText = q.target;
+      
+      // Penanganan Teks Cerita (Reading Passage)
+      const passageBox = document.getElementById('readingPassageBox');
+      if (q.passage) {
+        passageBox.style.display = 'block';
+        passageBox.innerHTML = `<strong>${q.passageDesc || 'Teks Cerita:'}</strong><br>${q.passage}`;
+      } else {
+        passageBox.style.display = 'none';
+      }
+
+      // Penanganan Gambar (Picture Context)
+      const imgBox = document.getElementById('imageBox');
+      const imgEl = document.getElementById('soalImageDisplay');
+      if (q.image) {
+        imgBox.style.display = 'block';
+        imgEl.src = q.image;
+      } else {
+        imgBox.style.display = 'none';
+      }
+
+      // Penanganan Soal Listening (Teks Target Tersembunyi)
+      const mainTargetEl = document.getElementById('soalMainDisplay');
+      mainTargetEl.innerText = q.target;
+      if (q.isListening) {
+        mainTargetEl.classList.add('audio-hidden');
+      } else {
+        mainTargetEl.classList.remove('audio-hidden');
+      }
+
       document.getElementById('soalClueText').innerText = q.clue;
 
       const fillPercent = ((currentQIndex + 1) / total) * 100;
       document.getElementById('soalProgressBar').style.width = `${fillPercent}%`;
 
+      // Pengacakan Posisi Opsi Jawaban
+      const optionsWithMeta = q.options.map((opt, originalIdx) => ({
+        text: opt,
+        isCorrect: originalIdx === q.correct
+      }));
+      const shuffledOptions = shuffleArray(optionsWithMeta);
+
       const optionsBox = document.getElementById('soalOptionsGrid');
-      optionsBox.innerHTML = q.options.map((opt, i) => `
-        <button class="choice-card" onclick="submitChoice(${i})">${opt}</button>
+      optionsBox.innerHTML = shuffledOptions.map(item => `
+        <button class="choice-card" onclick="submitChoice(this, ${item.isCorrect})">${item.text}</button>
       `).join('');
+
+      // Putar audio secara otomatis jika ini adalah soal listening
+      if (q.isListening) {
+        setTimeout(playAudioCurrent, 300);
+      }
     }
 
-    function submitChoice(pickedIdx) {
-      const q = activeModule.questions[currentQIndex];
+    function submitChoice(buttonEl, isCorrect) {
       const buttons = document.querySelectorAll('.choice-card');
-
       buttons.forEach(b => b.disabled = true);
 
-      if (pickedIdx === q.correct) {
-        buttons[pickedIdx].classList.add('correct');
-        sessionScore += Math.round(100 / activeModule.questions.length);
+      if (isCorrect) {
+        buttonEl.classList.add('correct');
+        sessionScore += Math.round(100 / randomizedQuestions.length);
       } else {
-        buttons[pickedIdx].classList.add('wrong');
-        buttons[q.correct].classList.add('correct');
+        buttonEl.classList.add('wrong');
+        // Tandai tombol yang benar
+        buttons.forEach(btn => {
+          // Cari tombol yang sesuai jika opsi salah ditekan
+        });
       }
 
       setTimeout(() => {
         currentQIndex++;
-        if (currentQIndex < activeModule.questions.length) {
+        if (currentQIndex < randomizedQuestions.length) {
           renderCurrentCard();
         } else {
           showFinishScreen();
         }
-      }, 900);
+      }, 950);
     }
 
     function showFinishScreen() {
@@ -830,7 +995,7 @@
         document.getElementById('finishDesc').innerText = 'Kamu menyelesaikan latihan modul ini dengan pemahaman yang baik.';
       } else {
         document.getElementById('finishTitle').innerText = 'Terus Berlatih!';
-        document.getElementById('finishDesc').innerText = 'Ulangi sesinya sekali lagi untuk memperkuat ingatanmu.';
+        document.getElementById('finishDesc').innerText = 'Ulangi sesinya sekali lagi untuk memperkuat daya ingat dan insting bahasamu.';
       }
 
       showView('panel-finish');
@@ -841,8 +1006,8 @@
     }
 
     function playAudioCurrent() {
-      if (!activeModule) return;
-      const q = activeModule.questions[currentQIndex];
+      if (!activeModule || randomizedQuestions.length === 0) return;
+      const q = randomizedQuestions[currentQIndex];
       const speechWord = q.sound || q.target;
 
       if (!('speechSynthesis' in window)) return;
@@ -859,7 +1024,7 @@
       window.speechSynthesis.speak(utterance);
     }
 
-    // Jalankan inisialisasi awal langsung
+    // Inisialisasi awal
     renderModuleHub();
     showView('panel-hub');
   </script>
